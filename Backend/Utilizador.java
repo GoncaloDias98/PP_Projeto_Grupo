@@ -1,12 +1,13 @@
 package Backend;
 
 public class Utilizador {
-private String user;
-private String password;
-private String nome;
-private String morada;
-private String telefone;
-private String email;
+
+    private String user;
+    private String password;
+    private String nome;
+    private String morada;
+    private String telefone;
+    private String email;
 
     public Utilizador() {
     }
@@ -19,11 +20,6 @@ private String email;
         this.telefone = telefone;
         this.email = email;
     }
-
-  
-
-
-
 
     public String getUser() {
         return user;
@@ -73,18 +69,16 @@ private String email;
         this.email = email;
     }
 
-    public void Consulta()
-	{	
-		System.out.println("-------------------------------------");
-		System.out.println("User: "+ user);
-                System.out.println("Password: "+ password);
-		System.out.println("Nome: "+ nome);
-		System.out.println("Morada: "+ morada);
-		System.out.println("Telefone: " + telefone);
-                System.out.println("Email: "+ email);
-		System.out.println("-------------------------------------");	
-                
-      
-	}
+    public void Consulta() {
+        System.out.println("-------------------------------------");
+        System.out.println("User: " + user);
+        System.out.println("Password: " + password);
+        System.out.println("Nome: " + nome);
+        System.out.println("Morada: " + morada);
+        System.out.println("Telefone: " + telefone);
+        System.out.println("Email: " + email);
+        System.out.println("-------------------------------------");
 
     }
+
+}
