@@ -1,8 +1,6 @@
 package BackEnd;
 
-
-
-public class Utilizador {
+public class Utilizador implements java.io.Serializable {
 
     private String username;
     private String password;
@@ -73,7 +71,7 @@ public class Utilizador {
     }
   
             
-    public void Consulta() {
+    public void ConsultaUtilizador() {
         System.out.println("username: " + username + ", password: " + password + ", nome: " +   nome + ", morada: " + morada + ", telefone: " + telefone + ", email: " + email );
     
     }
