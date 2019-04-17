@@ -1,43 +1,55 @@
-package Backend;
+package BackEnd;
 
+import BackEnd.*;
 import java.util.*;
 
-public class ListaUtilizadores {
+public class ListaUtilizadores implements java.io.Serializable {
 
-    private List<Utilizador> lista_utilizador;
+    private ArrayList<Utilizador> arraylistautilizador = new ArrayList<Utilizador>();
+    private Utilizador utilizador;
+    private boolean existeutilizador = false;
 
-    public ListaUtilizadores() {
-        lista_utilizador = new ArrayList<Utilizador>();
+    public void setArraylistautilizador(ArrayList<Utilizador> arraylistautilizador) {
+        this.arraylistautilizador = arraylistautilizador;
     }
 
-    public void inserir(Utilizador u) {
-        lista_utilizador.add(u);
+    public void inserirUtilizador(Utilizador u) {
+        arraylistautilizador.add(u);
 
     }
 
-    public void listar() {
-        for (Utilizador u : lista_utilizador) {
-            u.Consulta();
+    public ArrayList<Utilizador> getArraylistautilizador() {
+        return arraylistautilizador;
+    }
+
+    public boolean isExisteutilizador() {
+        return existeutilizador;
+    }
+
+    public void setExisteutilizador(boolean existeutilizador) {
+        this.existeutilizador = existeutilizador;
+    }
+
+    public void ConsultaUtilizadores() {
+
+        for (Utilizador u : arraylistautilizador) {
+            u.ConsultaUtilizador();
         }
     }
 
-    public void login(String username, String password) {
-        for (Utilizador u : lista_utilizador) {
-
-            if ((username.equals(u.getUser())) && (password.equals(u.getPassword()))) {
-                System.out.println("Login com sucesso !");
-            } else {
-                System.out.println("Login Inválido");
+    public boolean ExisteUtilizador(String username) {
+        existeutilizador=false;
+        for (Utilizador u : arraylistautilizador) {
+            //verifica se o utilizador do login é igual ao utilizador do array
+            if (username.equals(u.getUser())) {
+                existeutilizador = true;
             }
-
         }
-    }
-    
-    public void alterarPerfil() {
-        for (Utilizador u : lista_utilizador) {
-
-            
-        }
+        return existeutilizador;
     }
 
+    @Override
+    public String toString() {
+        return "ListaUtilizadores{" + utilizador.getNome();
+    }
 }

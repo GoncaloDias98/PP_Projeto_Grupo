@@ -1,8 +1,8 @@
-package Backend;
+package BackEnd;
 
-public class Utilizador {
+public class Utilizador implements java.io.Serializable {
 
-    private String user;
+    private String username;
     private String password;
     private String nome;
     private String morada;
@@ -13,7 +13,7 @@ public class Utilizador {
     }
 
     public Utilizador(String user, String password, String nome, String morada, String telefone, String email) {
-        this.user = user;
+        this.username = user;
         this.password = password;
         this.nome = nome;
         this.morada = morada;
@@ -22,17 +22,18 @@ public class Utilizador {
     }
 
     public String getUser() {
-        return user;
+        return username;
     }
 
     public void setUser(String user) {
-        this.user = user;
+        this.username = user;
     }
 
     public String getPassword() {
         return password;
     }
 
+   
     public void setPassword(String password) {
         this.password = password;
     }
@@ -68,17 +69,18 @@ public class Utilizador {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public void Consulta() {
-        System.out.println("-------------------------------------");
-        System.out.println("User: " + user);
-        System.out.println("Password: " + password);
-        System.out.println("Nome: " + nome);
-        System.out.println("Morada: " + morada);
-        System.out.println("Telefone: " + telefone);
-        System.out.println("Email: " + email);
-        System.out.println("-------------------------------------");
-
+  
+            
+    public void ConsultaUtilizador() {
+        System.out.println("username: " + username + ", password: " + password + ", nome: " +   nome + ", morada: " + morada + ", telefone: " + telefone + ", email: " + email );
+    
     }
+    
+    
+     @Override
+    public String toString() {
+        return "Utilizador{" + "username=" + username + ", password=" + password + ", nome=" + nome + ", morada=" + morada + ", telefone=" + telefone + ", email=" + email + '}';
+    }
+
 
 }
