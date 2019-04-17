@@ -10,6 +10,7 @@ public class Dados implements java.io.Serializable {
     //VARIÁVEIS OBJETOS
     // CAMINHO DO FICHEIRO !!!!
     public static final String FICHEIRO_UTILIZADORES = "C:/Users/User/Desktop/Paulo/Universidade/Paradigmas/Projeto Grupo/utilizadores.dat";
+    public static final String FICHEIRO_PROJETOS = "C:/Users/User/Desktop/Paulo/Universidade/Paradigmas/Projeto Grupo/projetos.dat";
     
     private Utilizador utilizador;
     private Utilizador utilizadorligado;
@@ -21,6 +22,8 @@ public class Dados implements java.io.Serializable {
     private Tarefa tarefa;
 
     private ListaUtilizadores listautilizadores;
+    private ListaColaboradores listacolaboradores;
+    private ListaGestor listagestor;
     private ListaProjetos listaprojetos;
     private ListaTarefas listatarefas;
     private ListaTarefasProjeto listatarefasprojeto;
@@ -36,6 +39,8 @@ public class Dados implements java.io.Serializable {
     public Dados() {
 
         listautilizadores = new ListaUtilizadores();
+        listacolaboradores = new ListaColaboradores();
+        listagestor = new ListaGestor();
 
         listaprojetos = new ListaProjetos();
         listatarefas = new ListaTarefas();
@@ -44,7 +49,7 @@ public class Dados implements java.io.Serializable {
         listatarefas = new ListaTarefas();
         listatarefasprojeto = new ListaTarefasProjeto();
 
-       arraylistacolaborador = new ArrayList<Colaborador>();
+      // arraylistacolaborador = new ArrayList<Colaborador>();
         
         if (!new File(FICHEIRO_UTILIZADORES).exists()) {
             //inicializaManual();
@@ -93,6 +98,14 @@ public class Dados implements java.io.Serializable {
         return listautilizadores;
     }
 
+    public ListaColaboradores getListacolaboradores() {
+        return listacolaboradores;
+    }
+
+    public ListaGestor getListagestor() {
+        return listagestor;
+    }
+
     public ListaProjetos getListaprojetos() {
         return listaprojetos;
     }
@@ -130,22 +143,24 @@ public class Dados implements java.io.Serializable {
         {
         listautilizadores.inserirUtilizador(u2);
         }
-        //Utilizador c1 = new Colaborador("admin", "admin", "", "", "", "");
        
+        Colaborador c1 = new Colaborador("Colaborador", "Colaborador", "", "", "", "");
+        listacolaboradores.inserirColaborador(c1);
+        Colaborador c2 = new Colaborador("Colaborador2", "Colaborador2", "", "", "", "");
+        listacolaboradores.inserirColaborador(c2);
         
-        
-        //Utilizador c2 = new Colaborador(u2.getUser(), u2.getPassword() , u2.getNome(), u2.getMorada(), u2.getTelefone(), u2.getEmail());
-        
-        Gestor g1 = new Gestor("admin", "admin", "", "", "", "");
-        Gestor g2 = new Gestor("1", "2", "", "", "", "");
-         Projeto p1 = new Projeto(1, "1º Projeto", "Descrição do 1º Projeto", LocalDate.MIN, g1 , estado);
+        Gestor g1 = new Gestor("Gestor", "Gestor", "", "", "", "");
+        listagestor.inserirGestor(g1);
+        Gestor g2 = new Gestor("Gestor2", "Gestor2", "", "", "", "");
+        listagestor.inserirGestor(g2);
+         Projeto p1 = new Projeto(1, "1º Projeto", "Descrição do 1º Projeto", LocalDate.MIN, g1 , Estado.getIniciado());
         listaprojetos.inserirProjeto(p1);
-        Projeto p2 = new Projeto(1, "2º Projeto", "Descrição do 2º Projeto", LocalDate.MIN, g2, estado);
+        Projeto p2 = new Projeto(1, "2º Projeto", "Descrição do 2º Projeto", LocalDate.MIN, g2, Estado.getIniciado());
         listaprojetos.inserirProjeto(p2);
                 
-        Tarefa t1 = new Tarefa("Tarefa 1",getUtilizadorLigado(), "Tarefa 1 teste", Estado.Iniciado, LocalDate.MIN, PrioridadeTarefas.Media);
+        Tarefa t1 = new Tarefa("Tarefa 1",getUtilizadorLigado(), "Tarefa 1 teste", Estado.getIniciado(), LocalDate.MIN, PrioridadeTarefas.Media);
         listatarefas.InserirTarefa(t1);
-        Tarefa t2 = new Tarefa("Tarefa 2",getUtilizadorLigado(), "Tarefa 2 teste", Estado.Iniciado, LocalDate.MIN, PrioridadeTarefas.Media);
+        Tarefa t2 = new Tarefa("Tarefa 2",getUtilizadorLigado(), "Tarefa 2 teste", Estado.getIniciado(), LocalDate.MIN, PrioridadeTarefas.Media);
         listatarefas.InserirTarefa(t2);
     }
       //Cria o metodo Login com e obriga a ter um username e uma password
@@ -178,6 +193,7 @@ public class Dados implements java.io.Serializable {
     
      public void guardarObjectos() {
         boolean utilizadoresOk = Serializacao.guardarObjecto(listautilizadores.getArraylistautilizador(), FICHEIRO_UTILIZADORES);
+        boolean projetoOk = Serializacao.guardarObjecto(listaprojetos.getArraylistaprojeto(), FICHEIRO_PROJETOS);
        
 
         if (!utilizadoresOk ) {
@@ -189,12 +205,19 @@ public class Dados implements java.io.Serializable {
     
      public void lerObjectos() {
         Object utilizadores = Serializacao.lerObjecto(FICHEIRO_UTILIZADORES);
+        Object projetos = Serializacao.lerObjecto(FICHEIRO_PROJETOS);
 
         if (utilizadores != null) {
             listautilizadores.setArraylistautilizador((ArrayList<Utilizador>) utilizadores );
             System.out.println("lista de utilizadores carregada");
         } else {
             System.out.println("Ocorreu um erro ao ler o ficheiro de utilizadores");
+        }
+          if (projetos != null) {
+            listaprojetos.setArraylistaprojeto((ArrayList<Projeto>) projetos );
+            System.out.println("lista de projetos carregada");
+        } else {
+            System.out.println("Ocorreu um erro ao ler o ficheiro de projetos");
         }
 
           

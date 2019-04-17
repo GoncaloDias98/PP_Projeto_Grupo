@@ -23,6 +23,7 @@ public class Principal extends javax.swing.JFrame {
         btnListaUtilizador = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnGravar = new javax.swing.JButton();
+        btnNovoProjeto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +61,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnNovoProjeto.setText("Novo Projeto");
+        btnNovoProjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoProjetoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,15 +82,17 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(btnteste)
                             .addComponent(txtteste, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(btnAlterarPerfil)
                         .addGap(18, 18, 18)
-                        .addComponent(btnListaUtilizador)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnNovoProjeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnListaUtilizador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(btnGravar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel1)))
+                        .addComponent(btnGravar)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,7 +106,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lblteste))
                 .addGap(18, 18, 18)
                 .addComponent(btnteste)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addComponent(btnNovoProjeto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterarPerfil)
                     .addComponent(btnListaUtilizador)
@@ -126,12 +138,18 @@ public class Principal extends javax.swing.JFrame {
         dados.guardarObjectos();
     }//GEN-LAST:event_btnGravarActionPerformed
 
+    private void btnNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjetoActionPerformed
+  RegistarProjeto registarprojeto = new RegistarProjeto();
+        registarprojeto.setVisible(true);
+    }//GEN-LAST:event_btnNovoProjetoActionPerformed
+
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarPerfil;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnListaUtilizador;
+    private javax.swing.JButton btnNovoProjeto;
     private javax.swing.JButton btnteste;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblteste;

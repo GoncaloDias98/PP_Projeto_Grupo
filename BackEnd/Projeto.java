@@ -13,7 +13,9 @@ public class Projeto implements java.io.Serializable {
     private LocalDate datainicio;
     private LocalDate datafim;
     private ListaTarefasProjeto tarefas;
-    private Gestor gestor;
+//ALTERAR O UTILIZADOR PELO GESTOR !!!!! VER COMO SE FAZ     
+   private Gestor gestor; 
+    private Utilizador utilizador;
     private Estado estadoprojeto;
 
     //criação do Construtor
@@ -21,12 +23,16 @@ public class Projeto implements java.io.Serializable {
     }
     //criação do construtor com titulo, descrição, data de inicio, gestor e estado . 
     //A data de fim e tarefas não fazem sentido na criação do projeto
-    public Projeto(int numprojeto,String titulo, String descricao, LocalDate datainicio, Gestor gestor, Estado estadoprojeto) {
+//TROCAR ESTA LINHA PELA DEBAIXO , ESTÁ SÓ A DEBAIXO POR CAUSA DO UTILIZADOR E GESTOR !!!   
+// public Projeto(int numprojeto,String titulo, String descricao, LocalDate datainicio, Gestor gestor, Estado estadoprojeto) {
+        public Projeto(int numprojeto,String titulo, String descricao, LocalDate datainicio, Utilizador utilizador, Estado estadoprojeto) {
         this.numprojeto = numprojeto;
         this.titulo = titulo;
         this.descricao = descricao;
         this.datainicio = datainicio; 
-        this.gestor = gestor;
+//ALTERAR ESTA LINHA PELA DEBAIXO , ESTÁ ASSIM POR CAUSA DO GESTOR E UTILIZADOR        
+//this.gestor = gestor;
+this.utilizador = utilizador;
         this.estadoprojeto = estadoprojeto;
     }
 
