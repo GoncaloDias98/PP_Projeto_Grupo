@@ -42,6 +42,14 @@ this.utilizador = utilizador;
         return numprojeto;
     }
 
+    public void setUtilizador(Utilizador utilizador) {
+        this.utilizador = utilizador;
+    }
+
+    public Utilizador getUtilizador() {
+        return utilizador;
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -107,16 +115,17 @@ this.utilizador = utilizador;
     
     
      public void ConsultaProjeto() {
-        System.out.println("Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", gestor=" + gestor + ", estadoprojeto=" + estadoprojeto + '}');
-    
+       
+         System.out.println("Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", gestor=" + gestor + ", utilizador=" + utilizador + ", estadoprojeto=" + estadoprojeto );
     }
    //metodo To String 
 
     @Override
     public String toString() {
-        return "Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", gestor=" + gestor + ", estadoprojeto=" + estadoprojeto + '}';
+        return "Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", gestor=" + gestor + ", utilizador=" + utilizador + ", estadoprojeto=" + estadoprojeto + '}';
     }
 
+   
   
 
 }
