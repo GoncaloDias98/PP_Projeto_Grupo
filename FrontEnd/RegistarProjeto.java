@@ -2,11 +2,12 @@ package FrontEnd;
 
 import FrontEnd.*;
 import BackEnd.*;
-import java.time.Instant;
+import java.time.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.HashSet;
 import javax.swing.JOptionPane;
+import java.time.format.DateTimeFormatter;
 
 public class RegistarProjeto extends javax.swing.JFrame {
    
@@ -26,7 +27,13 @@ public class RegistarProjeto extends javax.swing.JFrame {
         Projeto novop = new Projeto();
         String titulo = this.txtTitulo.getText();
         String descricao = this.txaDescricao.getText();
-        LocalDate inicio =   LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
+        
+        //CRIO O OBJETO formatodata com o formato ("d/MM/yyyy")
+        DateTimeFormatter formatodata = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        //Crio a varaiável datadeinicio onde carrego a informação introduzida pelo utilizador
+        String datainicio = this.ftxInicio.getText();
+        //crio o objeto localdate que formata a informação intoduzida para o formato que eu paremetrizei em formatodata
+        LocalDate localDate = LocalDate.parse(datainicio, formatodata);
       
         if (this.txtTitulo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o titulo do Projeto!");
@@ -47,7 +54,9 @@ public class RegistarProjeto extends javax.swing.JFrame {
         }
         novop.setUtilizador(dados.getUtilizadorLigado());
         
-        novop.setDatainicio(LocalDate.now());
+        //novop.setDatainicio(LocalDate.now());
+        novop.setDatainicio(localDate);
+        
         
         novop.setTitulo(titulo);
         novop.setDescricao(descricao);
@@ -66,7 +75,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
         
         
 
-//COLOCAR O NUMERO DO PROJETO A SER SEQUENCIAL !!!!
+        //COLOCAR O NUMERO DO PROJETO A SER SEQUENCIAL !!!!
         dados.getListaprojetos().inserirProjeto(novop);
         dados.guardarObjectos();
         JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);

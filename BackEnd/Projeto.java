@@ -1,11 +1,9 @@
 package BackEnd;
 
-
-
 import java.time.LocalDate;
 
 public class Projeto implements java.io.Serializable {
-    
+
     //Declaração das variáveis
     private int numprojeto;
     private String titulo;
@@ -14,30 +12,30 @@ public class Projeto implements java.io.Serializable {
     private LocalDate datafim;
     private ListaTarefasProjeto tarefas;
 //ALTERAR O UTILIZADOR PELO GESTOR !!!!! VER COMO SE FAZ     
-   private Gestor gestor; 
+    private Gestor gestor;
     private Utilizador utilizador;
     private Estado estadoprojeto;
 
     //criação do Construtor
     public Projeto() {
     }
+
     //criação do construtor com titulo, descrição, data de inicio, gestor e estado . 
     //A data de fim e tarefas não fazem sentido na criação do projeto
 //TROCAR ESTA LINHA PELA DEBAIXO , ESTÁ SÓ A DEBAIXO POR CAUSA DO UTILIZADOR E GESTOR !!!   
 // public Projeto(int numprojeto,String titulo, String descricao, LocalDate datainicio, Gestor gestor, Estado estadoprojeto) {
-        public Projeto(int numprojeto,String titulo, String descricao, LocalDate datainicio, Utilizador utilizador, Estado estadoprojeto) {
+    public Projeto(int numprojeto, String titulo, String descricao, LocalDate datainicio, Utilizador utilizador, Estado estadoprojeto) {
         this.numprojeto = numprojeto;
         this.titulo = titulo;
         this.descricao = descricao;
-        this.datainicio = datainicio; 
+        this.datainicio = datainicio;
 //ALTERAR ESTA LINHA PELA DEBAIXO , ESTÁ ASSIM POR CAUSA DO GESTOR E UTILIZADOR        
 //this.gestor = gestor;
-this.utilizador = utilizador;
+        this.utilizador = utilizador;
         this.estadoprojeto = estadoprojeto;
     }
 
     //Metodos GET !!
-
     public int getNumprojeto() {
         return numprojeto;
     }
@@ -70,21 +68,19 @@ this.utilizador = utilizador;
         return tarefas;
     }
 
-    public Gestor getGestor() {
+    /* public Gestor getGestor() {
         return gestor;
     }
-
+     */
     public Estado getEstadoprojeto() {
         return estadoprojeto;
     }
-    
-    //Metodos SET !
 
+    //Metodos SET !
     public void setNumprojeto(int numprojeto) {
         this.numprojeto = numprojeto;
     }
 
-    
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
@@ -105,27 +101,24 @@ this.utilizador = utilizador;
         this.tarefas = tarefas;
     }
 
+    /*
     public void setGestor(Gestor gestor) {
         this.gestor = gestor;
     }
-
+     */
     public void setEstadoprojeto(Estado estadoprojeto) {
         this.estadoprojeto = estadoprojeto;
     }
-    
-    
-     public void ConsultaProjeto() {
-       
-         System.out.println("Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", gestor=" + gestor + ", utilizador=" + utilizador + ", estadoprojeto=" + estadoprojeto );
+
+    public void ConsultaProjeto() {
+
+        System.out.println("Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", utilizador=" + utilizador + ", estadoprojeto=" + estadoprojeto);
     }
-   //metodo To String 
+    //metodo To String 
 
     @Override
     public String toString() {
-        return "Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", gestor=" + gestor + ", utilizador=" + utilizador + ", estadoprojeto=" + estadoprojeto + '}';
+        return "Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ",  utilizador=" + utilizador + ", estadoprojeto=" + estadoprojeto + '}';
     }
-
-   
-  
 
 }
