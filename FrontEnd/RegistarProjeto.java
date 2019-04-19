@@ -27,13 +27,9 @@ public class RegistarProjeto extends javax.swing.JFrame {
         Projeto novop = new Projeto();
         String titulo = this.txtTitulo.getText();
         String descricao = this.txaDescricao.getText();
-        
-        //CRIO O OBJETO formatodata com o formato ("d/MM/yyyy")
-        DateTimeFormatter formatodata = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        //Crio a varaiável datadeinicio onde carrego a informação introduzida pelo utilizador
         String datainicio = this.ftxInicio.getText();
-        //crio o objeto localdate que formata a informação intoduzida para o formato que eu paremetrizei em formatodata
-        LocalDate localDate = LocalDate.parse(datainicio, formatodata);
+        
+        
       
         if (this.txtTitulo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o titulo do Projeto!");
@@ -55,7 +51,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
         novop.setUtilizador(dados.getUtilizadorLigado());
         
         //novop.setDatainicio(LocalDate.now());
-        novop.setDatainicio(localDate);
+        novop.setDatainicio(dados.Data(datainicio));
         
         
         novop.setTitulo(titulo);
