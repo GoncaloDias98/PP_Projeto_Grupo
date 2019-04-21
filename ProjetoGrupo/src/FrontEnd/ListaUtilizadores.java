@@ -20,7 +20,7 @@ public class ListaUtilizadores extends javax.swing.JFrame {
     private void initComponents() {
 
         btnCancelar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        spUtilizadores = new javax.swing.JScrollPane();
         tblListaUtilizadores = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
@@ -49,7 +49,7 @@ public class ListaUtilizadores extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblListaUtilizadores);
+        spUtilizadores.setViewportView(tblListaUtilizadores);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 204));
@@ -66,7 +66,7 @@ public class ListaUtilizadores extends javax.swing.JFrame {
                         .addComponent(btnCancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(spUtilizadores, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(186, 186, 186)
                         .addComponent(jLabel2)))
@@ -78,7 +78,7 @@ public class ListaUtilizadores extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spUtilizadores, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCancelar))
         );
@@ -115,7 +115,7 @@ private void listarUtilizadores() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane spUtilizadores;
     private javax.swing.JTable tblListaUtilizadores;
     // End of variables declaration//GEN-END:variables
 }

@@ -137,7 +137,7 @@ public class Dados implements java.io.Serializable {
             listautilizadores.inserirUtilizador(u2);
         }
 
-        Colaborador c1 = new Colaborador("Colaborador", "Colaborador", "", "", "", "");
+        /*Colaborador c1 = new Colaborador("Colaborador", "Colaborador", "", "", "", "");
         listacolaboradores.inserirColaborador(c1);
         Colaborador c2 = new Colaborador("Colaborador2", "Colaborador2", "", "", "", "");
         listacolaboradores.inserirColaborador(c2);
@@ -154,7 +154,7 @@ public class Dados implements java.io.Serializable {
         Tarefa t1 = new Tarefa("Tarefa 1", getUtilizadorLigado(), "Tarefa 1 teste", Estado.getIniciado(), LocalDate.MIN, PrioridadeTarefas.Media);
         listatarefas.InserirTarefa(t1);
         Tarefa t2 = new Tarefa("Tarefa 2", getUtilizadorLigado(), "Tarefa 2 teste", Estado.getIniciado(), LocalDate.MIN, PrioridadeTarefas.Media);
-        listatarefas.InserirTarefa(t2);
+        listatarefas.InserirTarefa(t2);*/
     }
     //Cria o metodo Login com e obriga a ter um username e uma password
 

@@ -3,8 +3,7 @@ package BackEnd;
 import java.util.ArrayList;
 
 public class ListaProjetos implements java.io.Serializable {
-    
-    private Projeto projetos = new Projeto();
+
     private ArrayList<Projeto> arraylistaprojeto = new ArrayList<Projeto>();
     private Utilizador utilizador;
     private Gestor gestor;
@@ -30,13 +29,14 @@ public class ListaProjetos implements java.io.Serializable {
         }
     }
     
-    public void alterarNomeProjeto(String titulo){
-        projetos.setTitulo(titulo);
+    public int NumeroProjeto(){
+        int numeroprojeto=0;
+    for (Projeto p : arraylistaprojeto) {
+            numeroprojeto = p.getNumprojeto();
+        }
+    return numeroprojeto;
     }
-    
-    public void alterarDescricaoProjeto(String descricao){
-        projetos.setDescricao(descricao);
-    }
+}
     
 
-}
+

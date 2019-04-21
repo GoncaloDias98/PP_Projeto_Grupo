@@ -28,9 +28,12 @@ public class RegistarProjeto extends javax.swing.JFrame {
         String titulo = this.txtTitulo.getText();
         String descricao = this.txaDescricao.getText();
         String datainicio = this.ftxInicio.getText();
+        int numeroprojeto = dados.getListaprojetos().NumeroProjeto() + 1;
         
         
       
+           novop.setNumprojeto(numeroprojeto);
+        
         if (this.txtTitulo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o titulo do Projeto!");
             txtTitulo.requestFocus();
@@ -48,7 +51,8 @@ public class RegistarProjeto extends javax.swing.JFrame {
             ftxInicio.requestFocus();
             return;
         }
-        novop.setUtilizador(dados.getUtilizadorLigado());
+        Gestor g = new Gestor(dados.getUtilizadorLigado().getUser(), dados.getUtilizadorLigado().getPassword(), dados.getUtilizadorLigado().getNome(), dados.getUtilizadorLigado().getMorada(), dados.getUtilizadorLigado().getTelefone(), dados.getUtilizadorLigado().getEmail());
+        novop.setGestor(g);
         
         //novop.setDatainicio(LocalDate.now());
         novop.setDatainicio(dados.Data(datainicio));
