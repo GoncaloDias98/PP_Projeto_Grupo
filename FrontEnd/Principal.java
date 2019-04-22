@@ -24,6 +24,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnGravar = new javax.swing.JButton();
         btnNovoProjeto = new javax.swing.JButton();
+        btnListarProjetos = new javax.swing.JButton();
+        btnAlterarProjeto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +70,20 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnListarProjetos.setText("Listar Projetos");
+        btnListarProjetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarProjetosActionPerformed(evt);
+            }
+        });
+
+        btnAlterarProjeto.setText("Alterar Projeto");
+        btnAlterarProjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarProjetoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,14 +102,18 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(btnAlterarPerfil)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnNovoProjeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnListaUtilizador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnAlterarPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(btnGravar)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnListaUtilizador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnListarProjetos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGravar)
+                            .addComponent(btnAlterarProjeto))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,9 +126,12 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lblteste))
                 .addGap(18, 18, 18)
                 .addComponent(btnteste)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                .addComponent(btnNovoProjeto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNovoProjeto)
+                    .addComponent(btnListarProjetos)
+                    .addComponent(btnAlterarProjeto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterarPerfil)
                     .addComponent(btnListaUtilizador)
@@ -139,16 +162,28 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjetoActionPerformed
-  RegistarProjeto registarprojeto = new RegistarProjeto();
+  RegistarProjeto registarprojeto = new RegistarProjeto(dados);
         registarprojeto.setVisible(true);
     }//GEN-LAST:event_btnNovoProjetoActionPerformed
+
+    private void btnListarProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarProjetosActionPerformed
+       ListaProjetos listaprojetos = new ListaProjetos(dados);
+        listaprojetos.setVisible(true);
+    }//GEN-LAST:event_btnListarProjetosActionPerformed
+
+    private void btnAlterarProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProjetoActionPerformed
+      AlterarProjeto alterarprojeto = new AlterarProjeto(dados);
+        alterarprojeto.setVisible(true);
+    }//GEN-LAST:event_btnAlterarProjetoActionPerformed
 
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarPerfil;
+    private javax.swing.JButton btnAlterarProjeto;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnListaUtilizador;
+    private javax.swing.JButton btnListarProjetos;
     private javax.swing.JButton btnNovoProjeto;
     private javax.swing.JButton btnteste;
     private javax.swing.JLabel jLabel1;

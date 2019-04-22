@@ -2,6 +2,7 @@ package BackEnd;
 
 import BackEnd.*;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -137,7 +138,7 @@ public class Dados implements java.io.Serializable {
             listautilizadores.inserirUtilizador(u2);
         }
 
-        Colaborador c1 = new Colaborador("Colaborador", "Colaborador", "", "", "", "");
+        /*Colaborador c1 = new Colaborador("Colaborador", "Colaborador", "", "", "", "");
         listacolaboradores.inserirColaborador(c1);
         Colaborador c2 = new Colaborador("Colaborador2", "Colaborador2", "", "", "", "");
         listacolaboradores.inserirColaborador(c2);
@@ -154,7 +155,7 @@ public class Dados implements java.io.Serializable {
         Tarefa t1 = new Tarefa("Tarefa 1", getUtilizadorLigado(), "Tarefa 1 teste", Estado.getIniciado(), LocalDate.MIN, PrioridadeTarefas.Media);
         listatarefas.InserirTarefa(t1);
         Tarefa t2 = new Tarefa("Tarefa 2", getUtilizadorLigado(), "Tarefa 2 teste", Estado.getIniciado(), LocalDate.MIN, PrioridadeTarefas.Media);
-        listatarefas.InserirTarefa(t2);
+        listatarefas.InserirTarefa(t2);*/
     }
     //Cria o metodo Login com e obriga a ter um username e uma password
 
@@ -229,6 +230,16 @@ public class Dados implements java.io.Serializable {
 
         return localDate;
     }
+    
+    public String Datatexto(LocalDate data){
+        DateTimeFormatter formatodata = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
+        //crio o objeto localdate que formata a informação intoduzida para o formato que eu paremetrizei em formatodata
+        String date = formatodata.format(data);
+
+        return date;
+    }
+           
 
     //Fecha a aplicação
     public void terminar() {
