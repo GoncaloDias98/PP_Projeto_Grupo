@@ -50,10 +50,13 @@
                           <Component id="btnListarProjetos" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnGravar" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnGravar" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAlterarProjeto" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,6 +76,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnNovoProjeto" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnListarProjetos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAlterarProjeto" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -151,6 +155,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListarProjetosActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAlterarProjeto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Alterar Projeto"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

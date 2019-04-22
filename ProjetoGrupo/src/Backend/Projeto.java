@@ -16,6 +16,7 @@ public class Projeto implements java.io.Serializable {
     private Utilizador utilizador;
     private Colaborador colaborador;
     private Estado estadoprojeto;
+    
 
     //criação do Construtor
     public Projeto() {
@@ -24,16 +25,17 @@ public class Projeto implements java.io.Serializable {
     //criação do construtor com titulo, descrição, data de inicio, gestor e estado . 
     //A data de fim e tarefas não fazem sentido na criação do projeto
 //TROCAR ESTA LINHA PELA DEBAIXO , ESTÁ SÓ A DEBAIXO POR CAUSA DO UTILIZADOR E GESTOR !!!   
-public Projeto(int numprojeto,String titulo, String descricao, LocalDate datainicio, Gestor gestor, Estado estadoprojeto) {
-   // public Projeto(int numprojeto, String titulo, String descricao, LocalDate datainicio, Utilizador utilizador, Estado estadoprojeto) {
+    public Projeto(int numprojeto, String titulo, String descricao, LocalDate datainicio,LocalDate datafim, Gestor gestor, Estado estadoprojeto) {
+        // public Projeto(int numprojeto, String titulo, String descricao, LocalDate datainicio, Utilizador utilizador, Estado estadoprojeto) {
         this.numprojeto = numprojeto;
         this.titulo = titulo;
         this.descricao = descricao;
         this.datainicio = datainicio;
-//ALTERAR ESTA LINHA PELA DEBAIXO , ESTÁ ASSIM POR CAUSA DO GESTOR E UTILIZADOR        
-this.gestor = gestor;
+        this.datafim = datafim;
+        this.gestor = gestor;
         this.utilizador = utilizador;
         this.estadoprojeto = estadoprojeto;
+        
     }
 
     public void setColaborador(Colaborador colaborador) {
@@ -77,10 +79,10 @@ this.gestor = gestor;
         return tarefas;
     }
 
-     public Gestor getGestor() {
+    public Gestor getGestor() {
         return gestor;
     }
-   
+
     public Estado getEstadoprojeto() {
         return estadoprojeto;
     }
@@ -110,11 +112,10 @@ this.gestor = gestor;
         this.tarefas = tarefas;
     }
 
-   
     public void setGestor(Gestor gestor) {
         this.gestor = gestor;
     }
-    
+
     public void setEstadoprojeto(Estado estadoprojeto) {
         this.estadoprojeto = estadoprojeto;
     }

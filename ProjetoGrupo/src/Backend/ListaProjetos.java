@@ -20,23 +20,23 @@ public class ListaProjetos implements java.io.Serializable {
     public void inserirProjeto(Projeto p) {
         arraylistaprojeto.add(p);
     }
-   
-    
+
     public void ConsultaProjetos() {
 
         for (Projeto p : arraylistaprojeto) {
             p.ConsultaProjeto();
         }
     }
-    
-    public int NumeroProjeto(){
-        int numeroprojeto=0;
-    for (Projeto p : arraylistaprojeto) {
+
+    public int NumeroProjeto() {
+        //inicializa o numero de projeto a 0
+        int numeroprojeto = 0;
+        //percorre todo o array de projetos 
+        for (Projeto p : arraylistaprojeto) {
+            //numero do projeto toma o valor do projeto
             numeroprojeto = p.getNumprojeto();
         }
-    return numeroprojeto;
+        //retorna o ultimo numero de projeto !!
+        return numeroprojeto;
     }
 }
-    
-
-

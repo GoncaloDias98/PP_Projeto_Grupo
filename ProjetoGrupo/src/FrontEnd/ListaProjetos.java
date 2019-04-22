@@ -88,7 +88,7 @@ public class ListaProjetos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 private void listarProjetos() {
         DefaultTableModel tm = (DefaultTableModel) this.tblListaProjetos.getModel();
-
+        //Cria as colunas da tabela
         tm.setColumnCount(0);
         tm.setRowCount(0);
         tm.addColumn("Número");
@@ -97,15 +97,17 @@ private void listarProjetos() {
         tm.addColumn("Data Inicio");
         tm.addColumn("Data Fim");
         tm.addColumn("Estado");
-
+        //percorre todo o array de projetos
         for (int i = 0; i < dados.getListaprojetos().getArraylistaprojeto().size(); i++) {
+            //apanha o valor do array !
             Projeto p = dados.getListaprojetos().getArraylistaprojeto().get(i);
-            if (dados.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())){
-            tm.addRow(new Object[]{p.getNumprojeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDatafim(), p.getEstadoprojeto().getDescricao()});
+            //valida se o utilizador autenticado é gestor do projeto
+            if (dados.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
+                //se for gestor mostra na linha, senão for, passa à frente !!
+                tm.addRow(new Object[]{p.getNumprojeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDatafim(), p.getEstadoprojeto().getDescricao()});
             }
-            }
+        }
 
-        
         this.tblListaProjetos.setModel(tm);
     }
 
