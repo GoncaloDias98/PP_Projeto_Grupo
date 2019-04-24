@@ -25,8 +25,7 @@ public class Inicio {
          }
       Login login = new Login(dados);
         login.setVisible(true);
-        
-     
+
     }
     //METODO MAIN - INICIO O PROGRAMA, CHAMO A FUNCÃO INICIALIZAR E ABRO A JANELA DE LOGIN
 }

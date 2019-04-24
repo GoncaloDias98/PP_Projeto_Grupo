@@ -40,6 +40,12 @@ public class Login extends javax.swing.JFrame {
             dispose();
             Principal principal = new Principal(dados);
             principal.setVisible(true);
+        }else {
+           
+            JOptionPane.showMessageDialog(this, "O Nome de Utilizador e/ou Password estão errados",
+                    "Autenticação", JOptionPane.WARNING_MESSAGE);
+            txtUsername.requestFocus();
+            
         }
         /*if (dados.login(txtUsername.getText(), new String(txtPassword.getPassword()))) {
             //Devolve o controlo da aplicação para o método main
@@ -230,6 +236,8 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //APENAS PARA TESTE DE CONTROLO DE UTILIZADORES, CONSULTA OS UTILIZADORES EM ARRAY
         dados.getListautilizadores().ConsultaUtilizadores();
+        dados.getListacolaboradores().ConsultaColaborador();
+        dados.getListagestor().ConsultaGestor();
         dados.getListaprojetos().ConsultaProjetos();
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -1,4 +1,5 @@
 package FrontEnd;
+
 import BackEnd.Utilizador;
 import BackEnd.*;
 import FrontEnd.*;
@@ -6,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class RegistarUtilizador extends javax.swing.JFrame {
+
     //CRIAÇÃO DE VARIÁVEIS 
     private Dados dados;
     private Utilizador utilizador;
@@ -17,6 +19,43 @@ public class RegistarUtilizador extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
+
+    private void guardar() {
+        //VALIDA DE A PASSWORD E O CONFIRMA PASSWORD SÃO IGUAIS !
+        if (txtPassword.getText().equals(txtConfirmarPassword.getText())) {
+            //VALIDA SE O EMAIL E O CONFIRMA EMAIL SÃO IGUAIS !
+            if (txtEmail.getText().equals(txtConfirmarEmail.getText())) {
+
+                //CARREGA PARA VARIÁVEIS O INTRODUZIDO NO REGISTO
+                String username = this.txtUsername.getText();
+                String password = new String(txtPassword.getPassword());
+                String morada = this.txtMorada.getText();
+                String nome = this.txtNome.getText();
+                String email = this.txtEmail.getText();
+                String telefone = this.txtTelefone.getText();
+
+                if (dados.getListautilizadores().ExisteUtilizador(username) == false) {
+                    //CRIA NOVO UTILIZADOR COM OS DADOS INTRODUZIDOS                
+                    Utilizador u = new Utilizador(username, password, nome, morada, telefone, email);
+                    dados.getListautilizadores().inserirUtilizador(u);
+                    dados.guardarObjectos();
+                    JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Utilizador já exoste !",
+                            "Autenticação", JOptionPane.WARNING_MESSAGE);
+                    txtUsername.requestFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Email's diferentes !", "Erro !", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Passwords diferentes paulo!", "Erro !", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+    }
+
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -76,15 +115,24 @@ public class RegistarUtilizador extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel10.setText("Registo");
+        jLabel10.setText("Registar Utilizador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGravar)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelar)
+                .addGap(51, 51, 51))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel10))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(28, 28, 28)
@@ -120,16 +168,6 @@ public class RegistarUtilizador extends javax.swing.JFrame {
                     .addComponent(txtConfirmarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtConfirmarPassword))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGravar)
-                .addGap(18, 18, 18)
-                .addComponent(btnCancelar)
-                .addGap(51, 51, 51))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(218, 218, 218)
-                .addComponent(jLabel10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,45 +218,10 @@ public class RegistarUtilizador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
-           //VALIDA DE A PASSWORD E O CONFIRMA PASSWORD SÃO IGUAIS !
-        if (txtPassword.getText().equals(txtConfirmarPassword.getText())) {
-           //VALIDA SE O EMAIL E O CONFIRMA EMAIL SÃO IGUAIS !
-            if (txtEmail.getText().equals(txtConfirmarEmail.getText())) {
-                
-                //CARREGA PARA VARIÁVEIS O INTRODUZIDO NO REGISTO
-                String username = this.txtUsername.getText();
-                String password = new String(txtPassword.getPassword());
-                String morada = this.txtMorada.getText();
-                String nome = this.txtNome.getText();
-                String email = this.txtEmail.getText();
-                String telefone = this.txtTelefone.getText();
-                
-                if (dados.getListautilizadores().ExisteUtilizador(username)==false)
-         {
-                //CRIA NOVO UTILIZADOR COM OS DADOS INTRODUZIDOS                
-                Utilizador u = new Utilizador(username, password, nome, morada,telefone , email);
-                dados.getListautilizadores().inserirUtilizador(u);
-                dados.guardarObjectos();
-                JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
-         }else{
-              JOptionPane.showMessageDialog(this, "Utilizador já exoste !",
-                    "Autenticação", JOptionPane.WARNING_MESSAGE);
-            txtUsername.requestFocus();
-         }   
-         } else {
-                JOptionPane.showMessageDialog(null, "Email's diferentes !", "Erro !", JOptionPane.INFORMATION_MESSAGE);
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Passwords diferentes paulo!", "Erro !", JOptionPane.INFORMATION_MESSAGE);
-
-        }
-               
-
-
+        guardar();
     }//GEN-LAST:event_btnGravarActionPerformed
 
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGravar;

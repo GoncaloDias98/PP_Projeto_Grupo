@@ -2,14 +2,141 @@ package FrontEnd;
 
 import FrontEnd.*;
 import BackEnd.*;
+import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.HashSet;
+import java.util.Set;
+import javax.swing.JOptionPane;
+import java.time.format.DateTimeFormatter;
+import java.time.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 public class AlterarProjeto extends javax.swing.JFrame {
 
     private Dados dados;
+    private Projeto projeto;
 
-   public AlterarProjeto(Dados dados) {
+    public AlterarProjeto(Dados dados, Projeto projeto) {
         initComponents();
         this.dados = dados;
+        this.projeto = projeto;
+        carregar();
+
+    }
+
+    public AlterarProjeto(Dados dados) {
+        initComponents();
+        this.dados = dados;
+
+    }
+
+    private void carregar() {
+        //Carrega para os objetos os dados do projeto
+        //Converte a data de inicio e data de fim para texto !!
+        this.ftxInicio.setText(dados.Datatexto(projeto.getDatainicio()));
+        this.ftxFim.setText(dados.Datatexto(projeto.getDatafim()));
+        this.txaDescricao.setText(projeto.getDescricao());
+        this.txtTitulo.setText(projeto.getTitulo());
+        this.cmbEstado.setSelectedItem(projeto.getEstadoprojeto().getDescricao());
+
+        DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
+
+        for (Colaborador c : projeto.getArraylistcolaborador()) {
+            tm.addRow(new Object[]{c.getUser(), c.getNome()});
+        }
+        this.tblListaColaboradores.setModel(tm);
+    }
+
+    private void guardar() {
+
+        //Cria as variáveis com os dados dos objetos
+        String titulo = this.txtTitulo.getText();
+        String descricao = this.txaDescricao.getText();
+        String datainicio = this.ftxInicio.getText();
+        String datafim = this.ftxFim.getText();
+
+        //valida se o campo Titulo está preenchido
+        if (this.txtTitulo.getText().isEmpty()) {
+            //Se tiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o titulo do Projeto!");
+            txtTitulo.requestFocus();
+            return;
+        }
+        //verifica se a descrição está preenchida
+        if (this.txaDescricao.getText().isEmpty()) {
+            //Se tiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Introduza p.f. a descrição do Projeto!");
+            txaDescricao.requestFocus();
+            return;
+        }
+        //Valida se a data de inicio está preenchida
+        if (this.ftxInicio.getText().isEmpty()) {
+            //Se estiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Introduza p.f. a Data de Inicio Projeto!");
+            ftxInicio.requestFocus();
+            return;
+        }
+        //Valida se a data de Fim está preenchida
+        if (this.ftxFim.getText().isEmpty()) {
+            //Se estiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Introduza p.f. a Data de Fim Projeto!");
+            ftxFim.requestFocus();
+            return;
+        }
+
+        projeto.setNumprojeto(projeto.getNumprojeto());
+        projeto.setTitulo(titulo);
+        projeto.setDescricao(descricao);
+
+        if (dados.Data(datainicio).isAfter(dados.Data(datafim))) {
+            JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
+            ftxInicio.requestFocus();
+            return;
+
+        }
+
+        projeto.setDatainicio(dados.Data(datainicio));
+        projeto.setDatafim(dados.Data(datafim));
+        if (this.cmbEstado.getSelectedItem() == dados.getEstado().concluido.getDescricao()) {
+            //se for toma o valor Concluido
+            projeto.setEstadoprojeto(dados.getEstado().concluido);
+        }
+        //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
+        if (this.cmbEstado.getSelectedItem() == dados.getEstado().iniciado.getDescricao()) {
+            //se for toma o valor Iniciado
+            projeto.setEstadoprojeto(dados.getEstado().iniciado);
+        }
+        //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
+        if (this.cmbEstado.getSelectedItem() == dados.getEstado().naoiniciado.getDescricao()) {
+            //se for toma o valor Não Iniciado
+            projeto.setEstadoprojeto(dados.getEstado().naoiniciado);
+        }
+
+         for (int i = 0; i < this.tblListaColaboradores.getRowCount(); i++) {
+            DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
+
+            String user = tm.getValueAt(i, 0).toString();
+
+            for (int j = 0; j < dados.getListautilizadores().getArraylistautilizador().size(); j++) {
+                //apanha o valor do array !
+                Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(j);
+                //valida se o utilizador autenticado é gestor do projeto
+                if (u.getUser().equals(user)) {
+                    Colaborador c = new Colaborador(u.getUser(), u.getPassword(), u.getNome(), u.getMorada(), u.getTelefone(), u.getEmail());
+                    dados.getListacolaboradores().inserirColaborador(c);
+                }
+            }
+        }
+        projeto.setArraylistcolaborador(dados.getListacolaboradores().getarraylistcolaborador());
+        
+        
+        dados.guardarObjectos();
+        JOptionPane.showMessageDialog(this, "Projeto Alterado com sucesso !",
+                "Alteração", JOptionPane.INFORMATION_MESSAGE);
+        //Guarda para ficheiro !!
+
+
     }
 
     @SuppressWarnings("unchecked")
@@ -35,12 +162,17 @@ public class AlterarProjeto extends javax.swing.JFrame {
         lblEstado = new javax.swing.JLabel();
         btnGravar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
-        txtNumeroProjeto = new javax.swing.JTextField();
+        btnF4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AlterarProjeto");
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -60,7 +192,13 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel11.setText("Registar Projeto");
+        jLabel11.setText("Alterar Projeto");
+
+        txtTitulo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTituloKeyPressed(evt);
+            }
+        });
 
         tblListaColaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,7 +226,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
         lblColaborador.setText("Colaboradores");
 
-        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Iniciado", "Concluido" }));
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Iniciado", "Concluído" }));
 
         lblEstado.setText("Estado");
 
@@ -101,14 +239,10 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
         lblTitulo.setText("Titulo");
 
-        txtNumeroProjeto.addActionListener(new java.awt.event.ActionListener() {
+        btnF4.setText("F4");
+        btnF4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroProjetoActionPerformed(evt);
-            }
-        });
-        txtNumeroProjeto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNumeroProjetoKeyPressed(evt);
+                btnF4ActionPerformed(evt);
             }
         });
 
@@ -117,33 +251,21 @@ public class AlterarProjeto extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(389, 389, 389)
+                        .addGap(426, 426, 426)
                         .addComponent(btnGravar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar)
-                        .addGap(306, 306, 306))
+                        .addGap(309, 309, 309))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDescricao)
                             .addComponent(lblTitulo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtNumeroProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel11)
-                                .addGap(308, 308, 308))
                             .addComponent(spUtilizadores, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblColaborador)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnAdicionar)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblInicio)
                                 .addGap(18, 18, 18)
@@ -152,32 +274,48 @@ public class AlterarProjeto extends javax.swing.JFrame {
                                 .addComponent(lblFim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ftxFim, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblEstado)
                                 .addGap(18, 18, 18)
                                 .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1)
-                            .addComponent(txtTitulo))))
-                .addGap(38, 38, 38))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblColaborador)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(28, 28, 28)
+                                    .addComponent(btnAdicionar))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(jLabel11)
+                                    .addGap(260, 260, 260)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnF4)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(txtNumeroProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTitulo)
-                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTitulo)
+                            .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnF4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblDescricao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,27 +349,61 @@ public class AlterarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+ DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
 
+        //Percorre o array de ulizadores até à ultima posição !
+        for (int i = 0; i < dados.getListautilizadores().getArraylistautilizador().size(); i++) {
+            //Utilizador toma o valor da posição do array !
+            Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(i);
+            //Adiciona o valor do utilizador e do nome na linha da tabela !
+            if (this.cmbColaborador.getSelectedItem() == u.getUser()) {
+
+                tm.addRow(new Object[]{u.getUser(), u.getNome()});
+
+            }
+        }
+
+        this.tblListaColaboradores.setModel(tm);
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
-
+        guardar();
     }//GEN-LAST:event_btnGravarActionPerformed
 
-    private void txtNumeroProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroProjetoActionPerformed
+    private void btnF4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnF4ActionPerformed
+        ListaProjetos listaprojetos = new ListaProjetos(dados);
+        listaprojetos.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnF4ActionPerformed
 
-    }//GEN-LAST:event_txtNumeroProjetoActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+          DefaultComboBoxModel mod = new DefaultComboBoxModel();
+        for (int i = 0; i < dados.getListautilizadores().getArraylistautilizador().size(); i++) {
+            //Utilizador toma o valor da posição do array !
+            Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(i);
+            //Adiciona o valor do utilizador e do nome na linha da tabela !
+            mod.addElement(u.getUser());
 
-    private void txtNumeroProjetoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroProjetoKeyPressed
-               
-                   
-    }//GEN-LAST:event_txtNumeroProjetoKeyPressed
+        }
+        this.cmbColaborador.setModel(mod);
+
+
+    }//GEN-LAST:event_formWindowOpened
+
+    private void txtTituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTituloKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_F4) {
+            ListaProjetos listaprojetos = new ListaProjetos(dados);
+            listaprojetos.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_txtTituloKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnF4;
     private javax.swing.JButton btnGravar;
     private javax.swing.JComboBox<String> cmbColaborador;
     private javax.swing.JComboBox<String> cmbEstado;
@@ -248,7 +420,6 @@ public class AlterarProjeto extends javax.swing.JFrame {
     private javax.swing.JScrollPane spUtilizadores;
     private javax.swing.JTable tblListaColaboradores;
     private javax.swing.JTextArea txaDescricao;
-    private javax.swing.JTextField txtNumeroProjeto;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

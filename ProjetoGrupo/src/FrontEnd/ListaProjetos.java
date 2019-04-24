@@ -2,6 +2,7 @@ package FrontEnd;
 
 import BackEnd.*;
 import FrontEnd.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ListaProjetos extends javax.swing.JFrame {
@@ -22,6 +23,8 @@ public class ListaProjetos extends javax.swing.JFrame {
         tblListaProjetos = new javax.swing.JTable();
         btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnAlterar = new javax.swing.JButton();
+        txtTeste = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -52,35 +55,54 @@ public class ListaProjetos extends javax.swing.JFrame {
 
         jLabel1.setText("Projetos");
 
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+
+        txtTeste.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(349, Short.MAX_VALUE)
+                .addContainerGap(433, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnAlterar)
+                        .addGap(36, 36, 36)
                         .addComponent(btnCancelar)
                         .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(342, 342, 342))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(txtTeste, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(spProjetos, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)))
+                    .addComponent(spProjetos, javax.swing.GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
-                .addComponent(btnCancelar))
+                .addGap(27, 27, 27)
+                .addComponent(txtTeste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 434, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnAlterar)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(34, 34, 34)
-                    .addComponent(spProjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(87, 87, 87)
+                    .addComponent(spProjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(31, Short.MAX_VALUE)))
         );
 
@@ -100,14 +122,26 @@ private void listarProjetos() {
         //percorre todo o array de projetos
         for (int i = 0; i < dados.getListaprojetos().getArraylistaprojeto().size(); i++) {
             //apanha o valor do array !
+           
+            
             Projeto p = dados.getListaprojetos().getArraylistaprojeto().get(i);
             //valida se o utilizador autenticado é gestor do projeto
-            if (dados.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
+            if (dados.getUtilizadorLigado().getUser().equals(p.getGestor().getUser()) ) {
                 //se for gestor mostra na linha, senão for, passa à frente !!
                 tm.addRow(new Object[]{p.getNumprojeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDatafim(), p.getEstadoprojeto().getDescricao()});
-            }
-        }
+            }else{
+                 for (Colaborador c : p.getArraylistcolaborador()) {
+                            if (dados.getUtilizadorLigado().getUser().equals(c.getUser()) ) {
+                                tm.addRow(new Object[]{p.getNumprojeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDatafim(), p.getEstadoprojeto().getDescricao()});
 
+                            }
+                 
+                //se for gestor mostra na linha, senão for, passa à frente !!
+                
+            }
+            
+        }
+        }
         this.tblListaProjetos.setModel(tm);
     }
 
@@ -120,10 +154,44 @@ private void listarProjetos() {
         listarProjetos();
     }//GEN-LAST:event_formWindowActivated
 
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        DefaultTableModel tm = (DefaultTableModel) this.tblListaProjetos.getModel();
+        int numlinha = tblListaProjetos.getSelectedRow();
+        Projeto projeto = new Projeto();
+        int numprojeto = tm.getValueAt(numlinha, 0).hashCode();
+        
+
+        for (int i = 0; i < dados.getListaprojetos().getArraylistaprojeto().size(); i++) {
+            //apanha o valor do array !
+            Projeto p = dados.getListaprojetos().getArraylistaprojeto().get(i);
+            //valida se o utilizador autenticado é gestor do projeto
+            if (p.getNumprojeto() == numprojeto){
+                projeto = p;
+            }
+              if (dados.getUtilizadorLigado() instanceof Gestor){
+        AlterarProjeto alterarprojeto = new AlterarProjeto(dados, projeto);
+        alterarprojeto.setVisible(true);
+        this.dispose();
+           }else{
+                JOptionPane.showMessageDialog(null, "Não tem permissões !", "Erro !", JOptionPane.INFORMATION_MESSAGE);
+           }
+           
+                }
+                    
+                
+            
+            
+        
+        
+         
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane spProjetos;
     private javax.swing.JTable tblListaProjetos;
+    private javax.swing.JTextField txtTeste;
     // End of variables declaration//GEN-END:variables
 }

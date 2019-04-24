@@ -78,6 +78,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnAlterarProjeto.setText("Alterar Projeto");
+        btnAlterarProjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarProjetoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,6 +170,11 @@ public class Principal extends javax.swing.JFrame {
        ListaProjetos listaprojetos = new ListaProjetos(dados);
         listaprojetos.setVisible(true);
     }//GEN-LAST:event_btnListarProjetosActionPerformed
+
+    private void btnAlterarProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProjetoActionPerformed
+      AlterarProjeto alterarprojeto = new AlterarProjeto(dados);
+        alterarprojeto.setVisible(true);
+    }//GEN-LAST:event_btnAlterarProjetoActionPerformed
 
   
 

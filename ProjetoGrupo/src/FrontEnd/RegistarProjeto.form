@@ -183,7 +183,7 @@
           <StringArray count="3">
             <StringItem index="0" value="N&#xe3;o Iniciado"/>
             <StringItem index="1" value="Iniciado"/>
-            <StringItem index="2" value="Concluido"/>
+            <StringItem index="2" value="Conclu&#xed;do"/>
           </StringArray>
         </Property>
       </Properties>

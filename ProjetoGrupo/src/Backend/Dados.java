@@ -2,6 +2,7 @@ package BackEnd;
 
 import BackEnd.*;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -229,6 +230,16 @@ public class Dados implements java.io.Serializable {
 
         return localDate;
     }
+    
+    public String Datatexto(LocalDate data){
+        DateTimeFormatter formatodata = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
+        //crio o objeto localdate que formata a informação intoduzida para o formato que eu paremetrizei em formatodata
+        String date = formatodata.format(data);
+
+        return date;
+    }
+           
 
     //Fecha a aplicação
     public void terminar() {

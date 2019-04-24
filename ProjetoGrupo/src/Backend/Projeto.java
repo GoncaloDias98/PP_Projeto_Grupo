@@ -1,6 +1,7 @@
 package BackEnd;
-
+import BackEnd.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Projeto implements java.io.Serializable {
 
@@ -16,6 +17,9 @@ public class Projeto implements java.io.Serializable {
     private Utilizador utilizador;
     private Colaborador colaborador;
     private Estado estadoprojeto;
+    private Dados dados;
+    private ArrayList<Colaborador> arraylistcolaborador = new ArrayList<Colaborador>();
+    private ListaColaboradores listacolaboradores;
     
 
     //criação do Construtor
@@ -25,7 +29,7 @@ public class Projeto implements java.io.Serializable {
     //criação do construtor com titulo, descrição, data de inicio, gestor e estado . 
     //A data de fim e tarefas não fazem sentido na criação do projeto
 //TROCAR ESTA LINHA PELA DEBAIXO , ESTÁ SÓ A DEBAIXO POR CAUSA DO UTILIZADOR E GESTOR !!!   
-    public Projeto(int numprojeto, String titulo, String descricao, LocalDate datainicio,LocalDate datafim, Gestor gestor, Estado estadoprojeto) {
+    public Projeto(int numprojeto, String titulo, String descricao, LocalDate datainicio,LocalDate datafim, Gestor gestor,ArrayList<Colaborador> arraylistcolaborador,ListaColaboradores listacolaboradores , Estado estadoprojeto) {
         // public Projeto(int numprojeto, String titulo, String descricao, LocalDate datainicio, Utilizador utilizador, Estado estadoprojeto) {
         this.numprojeto = numprojeto;
         this.titulo = titulo;
@@ -33,9 +37,20 @@ public class Projeto implements java.io.Serializable {
         this.datainicio = datainicio;
         this.datafim = datafim;
         this.gestor = gestor;
-        this.utilizador = utilizador;
         this.estadoprojeto = estadoprojeto;
+        this.listacolaboradores = listacolaboradores;
         
+        this.arraylistcolaborador = arraylistcolaborador;
+    
+        
+    }
+
+    public void setListacolaboradores(ListaColaboradores listacolaboradores) {
+        this.listacolaboradores = listacolaboradores;
+    }
+
+    public ListaColaboradores getListacolaboradores() {
+        return listacolaboradores;
     }
 
     public void setColaborador(Colaborador colaborador) {
@@ -120,9 +135,21 @@ public class Projeto implements java.io.Serializable {
         this.estadoprojeto = estadoprojeto;
     }
 
+    public ArrayList<Colaborador> getArraylistcolaborador() {
+        return arraylistcolaborador;
+    }
+
+    public void setArraylistcolaborador(ArrayList<Colaborador> arraylistcolaborador) {
+        this.arraylistcolaborador = arraylistcolaborador;
+    }
+    
+    public void inserirColaborador(Colaborador c) {
+        arraylistcolaborador.add(c);
+    }
+
     public void ConsultaProjeto() {
 
-        System.out.println("Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", Gestor=" + gestor + ", Colaborador=" + colaborador + ", estadoprojeto=" + estadoprojeto);
+        System.out.println("Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", Gestor=" + gestor + ", Colaborador=" + arraylistcolaborador + ", estadoprojeto=" + estadoprojeto);
     }
     //metodo To String 
 
