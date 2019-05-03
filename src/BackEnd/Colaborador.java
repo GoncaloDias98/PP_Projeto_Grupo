@@ -1,6 +1,6 @@
 package BackEnd;
 
-//VAI PARA O CARALHO
+
 public class Colaborador extends Utilizador {
 
     public Colaborador() {
