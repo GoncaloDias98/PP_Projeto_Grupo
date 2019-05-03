@@ -1,6 +1,6 @@
 package BackEnd;
 
-//vai pro caralho!
+
 
 public class Colaborador extends Utilizador {
 
