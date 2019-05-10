@@ -27,6 +27,28 @@ public class RegistarUtilizador extends javax.swing.JFrame {
             if (txtEmail.getText().equals(txtConfirmarEmail.getText())) {
 
                 //CARREGA PARA VARIÁVEIS O INTRODUZIDO NO REGISTO
+                if (txtUsername.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o Username!");
+            txtUsername.requestFocus();
+            return;
+        }
+                if (new String(txtPassword.getPassword()).isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. a Password!");
+            txtPassword.requestFocus();
+            return;
+        }
+                if (txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o seu Nome!");
+            txtNome.requestFocus();
+            return;
+        }
+                if (txtEmail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o seu Email!");
+            txtEmail.requestFocus();
+            return;
+        }
+                
+                
                 String username = this.txtUsername.getText();
                 String password = new String(txtPassword.getPassword());
                 String morada = this.txtMorada.getText();
