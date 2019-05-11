@@ -85,12 +85,12 @@ public class AlterarProjeto extends javax.swing.JFrame {
             ftxFim.requestFocus();
             return;
         }
-        if (this.txtNumero.getText().isEmpty()){
-          JOptionPane.showMessageDialog(this, "Tem de escolher um projeto para ser alterado");
+        if (this.txtNumero.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tem de escolher um projeto para ser alterado");
             ftxFim.requestFocus();
-            return;  
-        }else{
-        projeto.setNumprojeto(projeto.getNumprojeto());
+            return;
+        } else {
+            projeto.setNumprojeto(projeto.getNumprojeto());
         }
         projeto.setTitulo(titulo);
         projeto.setDescricao(descricao);
@@ -168,6 +168,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         btnF4 = new javax.swing.JButton();
         txtNumero = new javax.swing.JTextField();
+        btnRemover = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AlterarProjeto");
@@ -255,6 +256,13 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
         txtNumero.setEnabled(false);
 
+        btnRemover.setText("Remover");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -300,7 +308,9 @@ public class AlterarProjeto extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(28, 28, 28)
-                                        .addComponent(btnAdicionar))
+                                        .addComponent(btnAdicionar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnRemover))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -344,7 +354,8 @@ public class AlterarProjeto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblColaborador)
                     .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdicionar))
+                    .addComponent(btnAdicionar)
+                    .addComponent(btnRemover))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(spUtilizadores, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -412,12 +423,26 @@ public class AlterarProjeto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtTituloKeyPressed
 
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+
+        DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
+        if (tblListaColaboradores.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione um colaborador da Tabela !",
+                    "Erro", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            tm.removeRow(tblListaColaboradores.getSelectedRow());
+
+            this.tblListaColaboradores.setModel(tm);
+        }
+    }//GEN-LAST:event_btnRemoverActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnF4;
     private javax.swing.JButton btnGravar;
+    private javax.swing.JButton btnRemover;
     private javax.swing.JComboBox<String> cmbColaborador;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JFormattedTextField ftxFim;

@@ -17,29 +17,27 @@ public class RegistarProjeto extends javax.swing.JFrame {
     private Sistema dados;
     private Estado estado;
     private ListaUtilizadores listautilizadores;
-    
 
     //Cria as colunas abaixo na tabela
     public RegistarProjeto(Sistema dados) {
         initComponents();
         this.dados = dados;
-        this.ftxInicio.setText(dados.Datatexto(LocalDate.now())) ;
-        this.ftxFim.setText(dados.Datatexto(LocalDate.now())) ;
-        
-        //Não permite o redimensionamento da janela
-      //  this.setResizable(false);
+        this.ftxInicio.setText(dados.Datatexto(LocalDate.now()));
+        this.ftxFim.setText(dados.Datatexto(LocalDate.now()));
 
+        //Não permite o redimensionamento da janela
+        //  this.setResizable(false);
         //Mostra a centralização da janela
         this.setLocationRelativeTo(null);
 
         //O processo de fecho da janela será controlado pelo programa
-      //  this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        //  this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
 
     private void guardar() {
-          
+
         //Declara as variáveis necessárias à criação do Projeto
         Projeto novop = new Projeto();
         ListaColaboradores tmplist = new ListaColaboradores();
@@ -87,16 +85,16 @@ public class RegistarProjeto extends javax.swing.JFrame {
         novop.setGestor(g);
 
         //novop.setDatainicio(LocalDate.now());
-         if (dados.Data(datainicio).isAfter(dados.Data(datafim))) {
+        if (dados.Data(datainicio).isAfter(dados.Data(datafim))) {
             JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
             ftxInicio.requestFocus();
             return;
 
-        }else{
-            
-        novop.setDatainicio(dados.Data(datainicio));
-        novop.setDatafim(dados.Data(datafim));
-         }
+        } else {
+
+            novop.setDatainicio(dados.Data(datainicio));
+            novop.setDatafim(dados.Data(datafim));
+        }
 
         novop.setTitulo(titulo);
         novop.setDescricao(descricao);
@@ -115,12 +113,10 @@ public class RegistarProjeto extends javax.swing.JFrame {
             //se for toma o valor Não Iniciado
             novop.setEstadoprojeto(dados.getEstado().naoiniciado);
         }
-        
-        
+
         DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
-        
+
         for (int i = 0; i < this.tblListaColaboradores.getRowCount(); i++) {
-            
 
             String user = tm.getValueAt(i, 0).toString();
 
@@ -134,10 +130,9 @@ public class RegistarProjeto extends javax.swing.JFrame {
                 }
             }
         }
-        
+
         novop.setArraylistcolaborador(tmplist.getarraylistcolaborador());
-        
-        
+
         //Insere os dados do projeto com o valor de novop !!!
         dados.getListaprojetos().inserirProjeto(novop);
         tm.setRowCount(0);
@@ -145,7 +140,6 @@ public class RegistarProjeto extends javax.swing.JFrame {
         //Guarda para ficheiro !!
         dados.guardarObjectos();
         JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
-      
 
     }
 
@@ -172,6 +166,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
         spUtilizadores = new javax.swing.JScrollPane();
         tblListaColaboradores = new javax.swing.JTable();
         btnAdicionar = new javax.swing.JButton();
+        btnRemover = new javax.swing.JButton();
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 204));
@@ -248,6 +243,13 @@ public class RegistarProjeto extends javax.swing.JFrame {
             }
         });
 
+        btnRemover.setText("Remover");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -266,6 +268,8 @@ public class RegistarProjeto extends javax.swing.JFrame {
                         .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(btnAdicionar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRemover)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblInicio)
@@ -324,7 +328,8 @@ public class RegistarProjeto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblColaborador)
                     .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdicionar))
+                    .addComponent(btnAdicionar)
+                    .addComponent(btnRemover))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(spUtilizadores, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -382,11 +387,25 @@ public class RegistarProjeto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ftxInicioActionPerformed
 
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+           DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
+        if (tblListaColaboradores.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione um colaborador da Tabela !",
+                    "Erro", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            tm.removeRow(tblListaColaboradores.getSelectedRow());
+
+            this.tblListaColaboradores.setModel(tm);
+        }
+       
+    }//GEN-LAST:event_btnRemoverActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGravar;
+    private javax.swing.JButton btnRemover;
     private javax.swing.JComboBox<String> cmbColaborador;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JFormattedTextField ftxFim;
