@@ -166,7 +166,22 @@ public class AlterarPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
+if (new String(this.txtPassword.getPassword()).isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. uma Password!");
+            txtPassword.requestFocus();
+            return;
+        }
+if (this.txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o seu Nome!");
+            txtNome.requestFocus();
+            return;
+        }
 
+if (this.txtEmail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o seu Email!");
+            txtEmail.requestFocus();
+            return;
+        }
         String username = this.txtUsername.getText();
         String password = new String(this.txtPassword.getPassword());
         String nome = this.txtNome.getText();
