@@ -14,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class AlterarProjeto extends javax.swing.JFrame {
 
-    private Sistema dados;
+    private Sistema sistema;
     private Projeto projeto;
 
     public AlterarProjeto(Sistema dados, Projeto projeto) {
         initComponents();
-        this.dados = dados;
+        this.sistema = dados;
         this.projeto = projeto;
         carregar();
 
@@ -27,15 +27,15 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
     public AlterarProjeto(Sistema dados) {
         initComponents();
-        this.dados = dados;
+        this.sistema = dados;
 
     }
 
     private void carregar() {
-        //Carrega para os objetos os dados do projeto
+        //Carrega para os objetos os sistema do projeto
         //Converte a data de inicio e data de fim para texto !!
-        this.ftxInicio.setText(dados.Datatexto(projeto.getDatainicio()));
-        this.ftxFim.setText(dados.Datatexto(projeto.getDatafim()));
+        this.ftxInicio.setText(sistema.Datatexto(projeto.getDatainicio()));
+        this.ftxFim.setText(sistema.Datatexto(projeto.getDatafim()));
         this.txaDescricao.setText(projeto.getDescricao());
         this.txtTitulo.setText(projeto.getTitulo());
         this.cmbEstado.setSelectedItem(projeto.getEstadoprojeto().getDescricao());
@@ -51,7 +51,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
     private void guardar() {
 
-        //Cria as variáveis com os dados dos objetos
+        //Cria as variáveis com os sistema dos objetos
         String titulo = this.txtTitulo.getText();
         String descricao = this.txaDescricao.getText();
         String datainicio = this.ftxInicio.getText();
@@ -95,28 +95,28 @@ public class AlterarProjeto extends javax.swing.JFrame {
         projeto.setTitulo(titulo);
         projeto.setDescricao(descricao);
 
-        if (dados.Data(datainicio).isAfter(dados.Data(datafim))) {
+        if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
             JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
             ftxInicio.requestFocus();
             return;
 
         }
 
-        projeto.setDatainicio(dados.Data(datainicio));
-        projeto.setDatafim(dados.Data(datafim));
-        if (this.cmbEstado.getSelectedItem() == dados.getEstado().concluido.getDescricao()) {
+        projeto.setDatainicio(sistema.Data(datainicio));
+        projeto.setDatafim(sistema.Data(datafim));
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
             //se for toma o valor Concluido
-            projeto.setEstadoprojeto(dados.getEstado().concluido);
+            projeto.setEstadoprojeto(sistema.getEstado().concluido);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
-        if (this.cmbEstado.getSelectedItem() == dados.getEstado().iniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().iniciado.getDescricao()) {
             //se for toma o valor Iniciado
-            projeto.setEstadoprojeto(dados.getEstado().iniciado);
+            projeto.setEstadoprojeto(sistema.getEstado().iniciado);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
-        if (this.cmbEstado.getSelectedItem() == dados.getEstado().naoiniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
             //se for toma o valor Não Iniciado
-            projeto.setEstadoprojeto(dados.getEstado().naoiniciado);
+            projeto.setEstadoprojeto(sistema.getEstado().naoiniciado);
         }
 
         for (int i = 0; i < this.tblListaColaboradores.getRowCount(); i++) {
@@ -124,19 +124,19 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
             String user = tm.getValueAt(i, 0).toString();
 
-            for (int j = 0; j < dados.getListautilizadores().getArraylistautilizador().size(); j++) {
+            for (int j = 0; j < sistema.getListautilizadores().getArraylistautilizador().size(); j++) {
                 //apanha o valor do array !
-                Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(j);
+                Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(j);
                 //valida se o utilizador autenticado é gestor do projeto
                 if (u.getUser().equals(user)) {
                     Colaborador c = new Colaborador(u.getUser(), u.getPassword(), u.getNome(), u.getMorada(), u.getTelefone(), u.getEmail());
-                    dados.getListacolaboradores().inserirColaborador(c);
+                    sistema.getListacolaboradores().inserirColaborador(c);
                 }
             }
         }
-        projeto.setArraylistcolaborador(dados.getListacolaboradores().getarraylistcolaborador());
+        projeto.setArraylistcolaborador(sistema.getListacolaboradores().getarraylistcolaborador());
 
-        dados.guardarObjectos();
+        sistema.guardarObjectos();
         JOptionPane.showMessageDialog(this, "Projeto Alterado com sucesso !",
                 "Alteração", JOptionPane.INFORMATION_MESSAGE);
         //Guarda para ficheiro !!
@@ -369,6 +369,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -376,9 +377,9 @@ public class AlterarProjeto extends javax.swing.JFrame {
         DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
 
         //Percorre o array de ulizadores até à ultima posição !
-        for (int i = 0; i < dados.getListautilizadores().getArraylistautilizador().size(); i++) {
+        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
             if (this.cmbColaborador.getSelectedItem() == u.getUser()) {
 
@@ -397,28 +398,26 @@ public class AlterarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnF4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnF4ActionPerformed
-        ListaProjetos listaprojetos = new ListaProjetos(dados);
+        ListaProjetos listaprojetos = new ListaProjetos(sistema);
         listaprojetos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnF4ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        DefaultComboBoxModel mod = new DefaultComboBoxModel();
-        for (int i = 0; i < dados.getListautilizadores().getArraylistautilizador().size(); i++) {
+         this.cmbColaborador.removeAllItems();
+         for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
-            mod.addElement(u.getUser());
+            this.cmbColaborador.addItem(u.getUser());
 
         }
-        this.cmbColaborador.setModel(mod);
-
 
     }//GEN-LAST:event_formWindowOpened
 
     private void txtTituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTituloKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_F4) {
-            ListaProjetos listaprojetos = new ListaProjetos(dados);
+            ListaProjetos listaprojetos = new ListaProjetos(sistema);
             listaprojetos.setVisible(true);
             this.dispose();
         }

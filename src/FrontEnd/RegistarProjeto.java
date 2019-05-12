@@ -14,14 +14,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class RegistarProjeto extends javax.swing.JFrame {
 
-    private Sistema dados;
+    private Sistema sistema;
     private Estado estado;
     private ListaUtilizadores listautilizadores;
 
     //Cria as colunas abaixo na tabela
     public RegistarProjeto(Sistema dados) {
         initComponents();
-        this.dados = dados;
+        this.sistema = dados;
         this.ftxInicio.setText(dados.Datatexto(LocalDate.now()));
         this.ftxFim.setText(dados.Datatexto(LocalDate.now()));
 
@@ -45,9 +45,9 @@ public class RegistarProjeto extends javax.swing.JFrame {
         String descricao = this.txaDescricao.getText();
         String datainicio = this.ftxInicio.getText();
         String datafim = this.ftxFim.getText();
-        //JComboBox comboBox = new JComboBox(dados.getListautilizadores());
+        //JComboBox comboBox = new JComboBox(sistema.getListautilizadores());
         //verifica qual o numero do projeto e soma + 1 
-        int numeroprojeto = dados.getListaprojetos().NumeroProjeto() + 1;
+        int numeroprojeto = sistema.getListaprojetos().NumeroProjeto() + 1;
         //O numero do Projeto toma o valor da variavel numeroprojeto
         novop.setNumprojeto(numeroprojeto);
 
@@ -80,38 +80,38 @@ public class RegistarProjeto extends javax.swing.JFrame {
             return;
         }
 
-        //Cria o Gestor do projeot com os dados do utilizadorLigado !!
-        Gestor g = new Gestor(dados.getUtilizadorLigado().getUser(), dados.getUtilizadorLigado().getPassword(), dados.getUtilizadorLigado().getNome(), dados.getUtilizadorLigado().getMorada(), dados.getUtilizadorLigado().getTelefone(), dados.getUtilizadorLigado().getEmail());
+        //Cria o Gestor do projeot com os sistema do utilizadorLigado !!
+        Gestor g = new Gestor(sistema.getUtilizadorLigado().getUser(), sistema.getUtilizadorLigado().getPassword(), sistema.getUtilizadorLigado().getNome(), sistema.getUtilizadorLigado().getMorada(), sistema.getUtilizadorLigado().getTelefone(), sistema.getUtilizadorLigado().getEmail());
         novop.setGestor(g);
 
         //novop.setDatainicio(LocalDate.now());
-        if (dados.Data(datainicio).isAfter(dados.Data(datafim))) {
+        if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
             JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
             ftxInicio.requestFocus();
             return;
 
         } else {
 
-            novop.setDatainicio(dados.Data(datainicio));
-            novop.setDatafim(dados.Data(datafim));
+            novop.setDatainicio(sistema.Data(datainicio));
+            novop.setDatafim(sistema.Data(datafim));
         }
 
         novop.setTitulo(titulo);
         novop.setDescricao(descricao);
         //Verifica se o valor da combo Estado é igual à descrição do Estado Concluído
-        if (this.cmbEstado.getSelectedItem() == dados.getEstado().concluido.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
             //se for toma o valor Concluido
-            novop.setEstadoprojeto(dados.getEstado().concluido);
+            novop.setEstadoprojeto(sistema.getEstado().concluido);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
-        if (this.cmbEstado.getSelectedItem() == dados.getEstado().iniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().iniciado.getDescricao()) {
             //se for toma o valor Iniciado
-            novop.setEstadoprojeto(dados.getEstado().iniciado);
+            novop.setEstadoprojeto(sistema.getEstado().iniciado);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
-        if (this.cmbEstado.getSelectedItem() == dados.getEstado().naoiniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
             //se for toma o valor Não Iniciado
-            novop.setEstadoprojeto(dados.getEstado().naoiniciado);
+            novop.setEstadoprojeto(sistema.getEstado().naoiniciado);
         }
 
         DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
@@ -120,9 +120,9 @@ public class RegistarProjeto extends javax.swing.JFrame {
 
             String user = tm.getValueAt(i, 0).toString();
 
-            for (int j = 0; j < dados.getListautilizadores().getArraylistautilizador().size(); j++) {
+            for (int j = 0; j < sistema.getListautilizadores().getArraylistautilizador().size(); j++) {
                 //apanha o valor do array !
-                Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(j);
+                Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(j);
                 //valida se o utilizador autenticado é gestor do projeto
                 if (u.getUser().equals(user)) {
                     Colaborador c = new Colaborador(u.getUser(), u.getPassword(), u.getNome(), u.getMorada(), u.getTelefone(), u.getEmail());
@@ -133,12 +133,12 @@ public class RegistarProjeto extends javax.swing.JFrame {
 
         novop.setArraylistcolaborador(tmplist.getarraylistcolaborador());
 
-        //Insere os dados do projeto com o valor de novop !!!
-        dados.getListaprojetos().inserirProjeto(novop);
+        //Insere os sistema do projeto com o valor de novop !!!
+        sistema.getListaprojetos().inserirProjeto(novop);
         tm.setRowCount(0);
-        dados.getListacolaboradores().limparArrayColaboradores();
+        sistema.getListacolaboradores().limparArrayColaboradores();
         //Guarda para ficheiro !!
-        dados.guardarObjectos();
+        sistema.guardarObjectos();
         JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
 
     }
@@ -351,15 +351,14 @@ public class RegistarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        DefaultComboBoxModel mod = new DefaultComboBoxModel();
-        for (int i = 0; i < dados.getListautilizadores().getArraylistautilizador().size(); i++) {
+        this.cmbColaborador.removeAllItems();
+         for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
-            mod.addElement(u.getUser());
+            this.cmbColaborador.addItem(u.getUser());
 
         }
-        this.cmbColaborador.setModel(mod);
 
 
     }//GEN-LAST:event_formWindowOpened
@@ -368,9 +367,9 @@ public class RegistarProjeto extends javax.swing.JFrame {
         DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
 
         //Percorre o array de ulizadores até à ultima posição !
-        for (int i = 0; i < dados.getListautilizadores().getArraylistautilizador().size(); i++) {
+        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
             if (this.cmbColaborador.getSelectedItem() == u.getUser()) {
 
