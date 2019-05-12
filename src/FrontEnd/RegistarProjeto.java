@@ -38,6 +38,38 @@ public class RegistarProjeto extends javax.swing.JFrame {
 
     private void guardar() {
 
+        //valida se o campo Titulo está preenchido
+        if (this.txtTitulo.getText().isEmpty()) {
+            //Se tiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o titulo do Projeto!");
+            txtTitulo.requestFocus();
+            return;
+        }
+        
+        //verifica se a descrição está preenchida
+        if (this.txaDescricao.getText().isEmpty()) {
+            //Se tiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Introduza p.f. a descrição do Projeto!");
+            txaDescricao.requestFocus();
+            return;
+        }
+        
+        //Valida se a data de inicio está preenchida
+        if (this.ftxInicio.getText().isEmpty()) {
+            //Se estiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Introduza p.f. a Data de Inicio Projeto!");
+            ftxInicio.requestFocus();
+            return;
+        }
+        
+        //Valida se a data de Fim está preenchida
+        if (this.ftxFim.getText().isEmpty()) {
+            //Se estiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Introduza p.f. a Data de Fim Projeto!");
+            ftxFim.requestFocus();
+            return;
+        }
+
         //Declara as variáveis necessárias à criação do Projeto
         Projeto novop = new Projeto();
         ListaColaboradores tmplist = new ListaColaboradores();
@@ -51,40 +83,11 @@ public class RegistarProjeto extends javax.swing.JFrame {
         //O numero do Projeto toma o valor da variavel numeroprojeto
         novop.setNumprojeto(numeroprojeto);
 
-        //valida se o campo Titulo está preenchido
-        if (this.txtTitulo.getText().isEmpty()) {
-            //Se tiver dá aviso !!
-            JOptionPane.showMessageDialog(this, "Introduza p.f. o titulo do Projeto!");
-            txtTitulo.requestFocus();
-            return;
-        }
-        //verifica se a descrição está preenchida
-        if (this.txaDescricao.getText().isEmpty()) {
-            //Se tiver dá aviso !!
-            JOptionPane.showMessageDialog(this, "Introduza p.f. a descrição do Projeto!");
-            txaDescricao.requestFocus();
-            return;
-        }
-        //Valida se a data de inicio está preenchida
-        if (this.ftxInicio.getText().isEmpty()) {
-            //Se estiver dá aviso !!
-            JOptionPane.showMessageDialog(this, "Introduza p.f. a Data de Inicio Projeto!");
-            ftxInicio.requestFocus();
-            return;
-        }
-        //Valida se a data de Fim está preenchida
-        if (this.ftxFim.getText().isEmpty()) {
-            //Se estiver dá aviso !!
-            JOptionPane.showMessageDialog(this, "Introduza p.f. a Data de Fim Projeto!");
-            ftxFim.requestFocus();
-            return;
-        }
-
         //Cria o Gestor do projeot com os sistema do utilizadorLigado !!
         Gestor g = new Gestor(sistema.getUtilizadorLigado().getUser(), sistema.getUtilizadorLigado().getPassword(), sistema.getUtilizadorLigado().getNome(), sistema.getUtilizadorLigado().getMorada(), sistema.getUtilizadorLigado().getTelefone(), sistema.getUtilizadorLigado().getEmail());
         novop.setGestor(g);
 
-        //novop.setDatainicio(LocalDate.now());
+        
         if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
             JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
             ftxInicio.requestFocus();
@@ -347,19 +350,19 @@ public class RegistarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        if (JOptionPane.showConfirmDialog(null, 
-                "Deseja Sair ?", 
-                "Terminar", 
+        if (JOptionPane.showConfirmDialog(null,
+                "Deseja Sair ?",
+                "Terminar",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-           
-           this.dispose();
+
+            this.dispose();
         }
-        
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.cmbColaborador.removeAllItems();
-         for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
+        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
             Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
@@ -391,7 +394,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void ftxInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxInicioActionPerformed
-  
+
     }//GEN-LAST:event_ftxInicioActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed

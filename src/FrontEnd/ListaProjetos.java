@@ -7,11 +7,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class ListaProjetos extends javax.swing.JFrame {
 
-    private Sistema dados;
+    private Sistema sistema;
 
-    public ListaProjetos(Sistema dados) {
+    public ListaProjetos(Sistema sistema) {
         initComponents();
-        this.dados = dados;
+        this.sistema = sistema;
 
     }
 
@@ -120,17 +120,17 @@ private void listarProjetos() {
         tm.addColumn("Data Fim");
         tm.addColumn("Estado");
         //percorre todo o array de projetos
-        for (int i = 0; i < dados.getListaprojetos().getArraylistaprojeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             //apanha o valor do array !
 
-            Projeto p = dados.getListaprojetos().getArraylistaprojeto().get(i);
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
             //valida se o utilizador autenticado é gestor do projeto
-            if (dados.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
+            if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 //se for gestor mostra na linha, senão for, passa à frente !!
                 tm.addRow(new Object[]{p.getNumprojeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDatafim(), p.getEstadoprojeto().getDescricao()});
             } else {
                 for (Colaborador c : p.getArraylistcolaborador()) {
-                    if (dados.getUtilizadorLigado().getUser().equals(c.getUser())) {
+                    if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
                         tm.addRow(new Object[]{p.getNumprojeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDatafim(), p.getEstadoprojeto().getDescricao()});
 
                     }
@@ -158,28 +158,19 @@ private void listarProjetos() {
         Projeto projeto = new Projeto();
         int numprojeto = tm.getValueAt(numlinha, 0).hashCode();
 
-        for (int i = 0; i < dados.getListaprojetos().getArraylistaprojeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             //apanha o valor do array !
-            Projeto p = dados.getListaprojetos().getArraylistaprojeto().get(i);
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
             //valida se o utilizador autenticado é gestor do projeto
             if (p.getNumprojeto() == numprojeto) {
                 projeto = p;
 
-                AlterarProjeto alterarprojeto = new AlterarProjeto(dados, projeto);
-               // alterarprojeto.setExtendedState(alterarprojeto.MAXIMIZED_BOTH);
-                // alterarprojeto.setSize(Toolkit.getDefaultToolkit().getScreenSize());  
+                AlterarProjeto alterarprojeto = new AlterarProjeto(sistema, projeto);
                 alterarprojeto.setVisible(true);
                 alterarprojeto.setResizable(false);
                 this.dispose();
             }
 
-            /* if (dados.getUtilizadorLigado() instanceof Gestor){
-        AlterarProjeto alterarprojeto = new AlterarProjeto(dados, projeto);
-        alterarprojeto.setVisible(true);
-        this.dispose();
-           }else{
-                JOptionPane.showMessageDialog(null, "Não tem permissões !", "Erro !", JOptionPane.INFORMATION_MESSAGE);
-           }*/
         }
 
 

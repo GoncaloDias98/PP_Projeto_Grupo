@@ -17,9 +17,9 @@ public class AlterarProjeto extends javax.swing.JFrame {
     private Sistema sistema;
     private Projeto projeto;
 
-    public AlterarProjeto(Sistema dados, Projeto projeto) {
+    public AlterarProjeto(Sistema sistema, Projeto projeto) {
         initComponents();
-        this.sistema = dados;
+        this.sistema = sistema;
         this.projeto = projeto;
         carregar();
 

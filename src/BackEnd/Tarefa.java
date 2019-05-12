@@ -2,7 +2,7 @@ package BackEnd;
 
 import java.time.LocalDate;
 
-public class Tarefa {
+public class Tarefa implements java.io.Serializable {
 
     private int numtarefa;
     private String titulo;
@@ -12,11 +12,12 @@ public class Tarefa {
     private LocalDate datafim;
     private Estado estadotarefa;
     private PrioridadeTarefas prioridade;
+    private Projeto projeto;
 
     public Tarefa() {
     }
 
-    public Tarefa(int numtarefa, String titulo, Utilizador criadopor, String descricao, LocalDate datainicio, LocalDate datafim, Estado estadotarefa, PrioridadeTarefas prioridade) {
+    public Tarefa(int numtarefa, String titulo, Utilizador criadopor, String descricao, LocalDate datainicio, LocalDate datafim, Estado estadotarefa, PrioridadeTarefas prioridade, Projeto projeto) {
         this.numtarefa = numtarefa;
         this.titulo = titulo;
         this.criadopor = criadopor;
@@ -25,6 +26,11 @@ public class Tarefa {
         this.datafim = datafim;
         this.estadotarefa = estadotarefa;
         this.prioridade = prioridade;
+        this.projeto = projeto;
+    }
+
+    public Projeto getProjeto() {
+        return projeto;
     }
 
     public int getNumtarefa() {
@@ -57,6 +63,10 @@ public class Tarefa {
 
     public PrioridadeTarefas getPrioridade() {
         return prioridade;
+    }
+
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
     }
 
     public void setNumtarefa(int numtarefa) {

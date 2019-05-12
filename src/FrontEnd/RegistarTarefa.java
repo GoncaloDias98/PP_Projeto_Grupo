@@ -3,6 +3,7 @@ package FrontEnd;
 import FrontEnd.*;
 import BackEnd.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
 
 public class RegistarTarefa extends javax.swing.JFrame {
@@ -187,9 +188,83 @@ public class RegistarTarefa extends javax.swing.JFrame {
     }//GEN-LAST:event_ftxInicioActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
-
+        gravar();
     }//GEN-LAST:event_btnGravarActionPerformed
+    public void gravar() {
+        Tarefa novat = new Tarefa();
 
+        String titulo = this.txtTitulo.getText();
+        String descricao = this.txaDescricao.getText();
+        String datainicio = this.ftxInicio.getText();
+        String datafim = this.ftxFim.getText();
+
+        //JComboBox comboBox = new JComboBox(sistema.getListautilizadores());
+        //verifica qual o numero do projeto e soma + 1 
+        int numerotarefa = sistema.getListatarefas().NumeroTarefa() + 1;
+        //O numero do Projeto toma o valor da variavel numeroprojeto
+        novat.setNumtarefa(numerotarefa);
+
+        if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
+            JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
+            ftxInicio.requestFocus();
+            return;
+
+        } else {
+
+            novat.setDatainicio(sistema.Data(datainicio));
+            novat.setDatafim(sistema.Data(datafim));
+        }
+
+        novat.setTitulo(titulo);
+        novat.setDescricao(descricao);
+        novat.setCriadopor(sistema.getUtilizadorLigado());
+
+        //Verifica se o valor da combo Estado é igual à descrição do Estado Concluído
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
+            //se for toma o valor Concluido
+            novat.setEstadotarefa(sistema.getEstado().concluido);
+        }
+        //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().iniciado.getDescricao()) {
+            //se for toma o valor Iniciado
+            novat.setEstadotarefa(sistema.getEstado().iniciado);
+        }
+        //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
+            //se for toma o valor Não Iniciado
+            novat.setEstadotarefa(sistema.getEstado().naoiniciado);
+        }
+
+        //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Alta
+        if (this.cmbPrioridadeTarefas.getSelectedItem() == sistema.getPrioridadestarefas().alta.getDescricao()) {
+            //se for toma o valor Alta
+            novat.setPrioridade(sistema.getPrioridadestarefas().alta);
+        }
+        //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Média
+        if (this.cmbPrioridadeTarefas.getSelectedItem() == sistema.getPrioridadestarefas().media.getDescricao()) {
+            //se for toma o valor Média
+            novat.setPrioridade(sistema.getPrioridadestarefas().media);
+        }
+        //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Baixa
+        if (this.cmbPrioridadeTarefas.getSelectedItem() == sistema.getPrioridadestarefas().baixa.getDescricao()) {
+            //se for toma o valor Baixa
+            novat.setPrioridade(sistema.getPrioridadestarefas().baixa);
+        }
+
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+            //apanha o valor do array !
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+
+            if (this.cmbProjeto.getSelectedItem() == p.getTitulo()) {
+                novat.setProjeto(p);
+            }
+        }
+
+        sistema.getListatarefas().InserirTarefa(novat);
+        sistema.guardarObjectos();
+        JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
+
+    }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if (JOptionPane.showConfirmDialog(null,
                 "Deseja Sair ?",
@@ -204,20 +279,25 @@ public class RegistarTarefa extends javax.swing.JFrame {
         this.cmbProjeto.removeAllItems();
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
-            for (int j = 0; j < p.getArraylistcolaborador().size(); j++) {
-                Colaborador c = p.getArraylistcolaborador().get(j);
-                //Utilizador toma o valor da posição do array !
-                System.out.println("Colaborador" + c.getUser());
-                System.out.println("Gestor" + p.getGestor().getUser());
-                System.out.println("Utilizador Ligado" + sistema.getUtilizadorLigado().getUser());
-                if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser()) || (sistema.getUtilizadorLigado().getUser().equals(c.getUser()) ) ){
-                    this.cmbProjeto.addItem(p.getTitulo());
+            if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
+                this.cmbProjeto.addItem(p.getTitulo());
+            } else {
+                for (int j = 0; j < p.getArraylistcolaborador().size(); j++) {
+
+                    Colaborador c = p.getArraylistcolaborador().get(j);
+                    if ((sistema.getUtilizadorLigado().getUser().equals(c.getUser()))) {
+                        this.cmbProjeto.addItem(p.getTitulo());
+                    }
+                    //Utilizador toma o valor da posição do array !
+                    System.out.println("Colaborador" + c.getUser());
+                    System.out.println("Gestor" + p.getGestor().getUser());
+                    System.out.println("Utilizador Ligado" + sistema.getUtilizadorLigado().getUser());
+
                 }
             }
+
+            //Adiciona o valor do utilizador e do nome na linha da tabela !
         }
-
-        //Adiciona o valor do utilizador e do nome na linha da tabela !
-
     }//GEN-LAST:event_formWindowOpened
 
 

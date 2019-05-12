@@ -27,6 +27,9 @@ public class Principal extends javax.swing.JFrame {
         btnListarProjetos = new javax.swing.JButton();
         btnAlterarProjeto = new javax.swing.JButton();
         btnTarefa = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        btnListarTarefas = new javax.swing.JButton();
+        btnAlterarTarefas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +95,27 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnListarTarefas.setText("Listar Tarefas");
+        btnListarTarefas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarTarefasActionPerformed(evt);
+            }
+        });
+
+        btnAlterarTarefas.setText("Alterar Tarefas");
+        btnAlterarTarefas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarTarefasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,7 +135,10 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnTarefa)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnTarefa)
+                                .addGap(22, 22, 22)
+                                .addComponent(btnListarTarefas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnNovoProjeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -119,12 +146,14 @@ public class Principal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnListaUtilizador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnListarProjetos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnGravar)
-                                    .addComponent(btnAlterarProjeto))))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                                    .addComponent(btnListarProjetos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGravar)
+                            .addComponent(btnAlterarProjeto)
+                            .addComponent(jButton1)
+                            .addComponent(btnAlterarTarefas))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,8 +166,13 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lblteste))
                 .addGap(18, 18, 18)
                 .addComponent(btnteste)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(btnTarefa)
+                .addGap(9, 9, 9)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTarefa)
+                    .addComponent(btnListarTarefas)
+                    .addComponent(btnAlterarTarefas))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovoProjeto)
@@ -194,17 +228,34 @@ public class Principal extends javax.swing.JFrame {
         registartarefa.setVisible(true);
     }//GEN-LAST:event_btnTarefaActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        sistema.getListatarefas().ConsultaTarefas();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnListarTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTarefasActionPerformed
+         ListaTarefas listatarefas = new ListaTarefas(sistema);
+        listatarefas.setVisible(true);
+    }//GEN-LAST:event_btnListarTarefasActionPerformed
+
+    private void btnAlterarTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarTarefasActionPerformed
+      AlterarTarefa alterartarefa = new AlterarTarefa(sistema);
+        alterartarefa.setVisible(true);
+    }//GEN-LAST:event_btnAlterarTarefasActionPerformed
+
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarPerfil;
     private javax.swing.JButton btnAlterarProjeto;
+    private javax.swing.JButton btnAlterarTarefas;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnListaUtilizador;
     private javax.swing.JButton btnListarProjetos;
+    private javax.swing.JButton btnListarTarefas;
     private javax.swing.JButton btnNovoProjeto;
     private javax.swing.JButton btnTarefa;
     private javax.swing.JButton btnteste;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblteste;
     private javax.swing.JTextField txtteste;

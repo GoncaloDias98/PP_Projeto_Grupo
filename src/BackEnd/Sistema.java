@@ -13,6 +13,7 @@ public class Sistema implements java.io.Serializable {
     // CAMINHO DO FICHEIRO !!!!
     public static final String FICHEIRO_UTILIZADORES = "./utilizadores.dat";
     public static final String FICHEIRO_PROJETOS = "./projetos.dat";
+    public static final String FICHEIRO_TAREFAS = "./tarefas.dat";
 
     private Utilizador utilizador;
     private Utilizador utilizadorligado;
@@ -50,7 +51,21 @@ public class Sistema implements java.io.Serializable {
         listatarefasprojeto = new ListaTarefasProjeto();
 
         // arraylistacolaborador = new ArrayList<Colaborador>();
-        if (!new File(FICHEIRO_UTILIZADORES).exists()) {
+        if (!new File(FICHEIRO_UTILIZADORES).exists() ) {
+            //inicializaManual();
+            guardarObjectos();
+        } else {
+            lerObjectos();
+        }
+        
+        if (!new File(FICHEIRO_PROJETOS).exists()) {
+            //inicializaManual();
+            guardarObjectos();
+        } else {
+            lerObjectos();
+        }
+        
+        if (!new File(FICHEIRO_TAREFAS).exists()) {
             //inicializaManual();
             guardarObjectos();
         } else {
@@ -171,6 +186,7 @@ public class Sistema implements java.io.Serializable {
     public void guardarObjectos() {
         boolean utilizadoresOk = Serializacao.guardarObjecto(listautilizadores.getArraylistautilizador(), FICHEIRO_UTILIZADORES);
         boolean projetoOk = Serializacao.guardarObjecto(listaprojetos.getArraylistaprojeto(), FICHEIRO_PROJETOS);
+        boolean tarefasOk = Serializacao.guardarObjecto(listatarefas.getArraylistatarefa(), FICHEIRO_TAREFAS);
 
         if (!utilizadoresOk) {
             System.out.println("Ocorreu um erro ao gravar os objetos");
@@ -182,11 +198,17 @@ public class Sistema implements java.io.Serializable {
         } else {
             System.out.println("Objectos guardados");
         }
+         if (!tarefasOk) {
+            System.out.println("Ocorreu um erro ao gravar os objetos");
+        } else {
+            System.out.println("Objectos guardados");
+        }
     }
 
     public void lerObjectos() {
         Object utilizadores = Serializacao.lerObjecto(FICHEIRO_UTILIZADORES);
         Object projetos = Serializacao.lerObjecto(FICHEIRO_PROJETOS);
+        Object tarefas = Serializacao.lerObjecto(FICHEIRO_TAREFAS);
 
         if (utilizadores != null) {
             listautilizadores.setArraylistautilizador((ArrayList<Utilizador>) utilizadores);
@@ -199,6 +221,13 @@ public class Sistema implements java.io.Serializable {
             System.out.println("lista de projetos carregada");
         } else {
             System.out.println("Ocorreu um erro ao ler o ficheiro de projetos");
+        }
+        
+        if (tarefas != null) {
+            listatarefas.setArraylistatarefa((ArrayList<Tarefa>) tarefas);
+            System.out.println("lista de tarefas carregada");
+        } else {
+            System.out.println("Ocorreu um erro ao ler o ficheiro de tarefas");
         }
 
     }
