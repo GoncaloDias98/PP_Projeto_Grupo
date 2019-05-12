@@ -369,8 +369,14 @@ public class AlterarProjeto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        
-        this.dispose();
+
+        if (JOptionPane.showConfirmDialog(null,
+                "Deseja Sair ?",
+                "Terminar",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+            this.dispose();
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
@@ -404,8 +410,8 @@ public class AlterarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnF4ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-         this.cmbColaborador.removeAllItems();
-         for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
+        this.cmbColaborador.removeAllItems();
+        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
             Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
@@ -425,7 +431,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
 
-         DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
+        DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
         if (tblListaColaboradores.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this, "Selecione um colaborador da Tabela !",
                     "Erro", JOptionPane.INFORMATION_MESSAGE);

@@ -19,11 +19,11 @@ public class RegistarProjeto extends javax.swing.JFrame {
     private ListaUtilizadores listautilizadores;
 
     //Cria as colunas abaixo na tabela
-    public RegistarProjeto(Sistema dados) {
+    public RegistarProjeto(Sistema sistema) {
         initComponents();
-        this.sistema = dados;
-        this.ftxInicio.setText(dados.Datatexto(LocalDate.now()));
-        this.ftxFim.setText(dados.Datatexto(LocalDate.now()));
+        this.sistema = sistema;
+        this.ftxInicio.setText(sistema.Datatexto(LocalDate.now()));
+        this.ftxFim.setText(sistema.Datatexto(LocalDate.now()));
 
         //Não permite o redimensionamento da janela
         //  this.setResizable(false);
@@ -347,7 +347,14 @@ public class RegistarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
+        if (JOptionPane.showConfirmDialog(null, 
+                "Deseja Sair ?", 
+                "Terminar", 
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+           
+           this.dispose();
+        }
+        
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -384,7 +391,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void ftxInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxInicioActionPerformed
-        // TODO add your handling code here:
+  
     }//GEN-LAST:event_ftxInicioActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed

@@ -1,4 +1,5 @@
 package BackEnd;
+
 import BackEnd.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,7 +13,6 @@ public class Projeto implements java.io.Serializable {
     private LocalDate datainicio;
     private LocalDate datafim;
     private ListaTarefasProjeto tarefas;
-//ALTERAR O UTILIZADOR PELO GESTOR !!!!! VER COMO SE FAZ     
     private Gestor gestor;
     private Utilizador utilizador;
     private Colaborador colaborador;
@@ -20,17 +20,13 @@ public class Projeto implements java.io.Serializable {
     private Sistema dados;
     private ArrayList<Colaborador> arraylistcolaborador = new ArrayList<Colaborador>();
     private ListaColaboradores listacolaboradores;
-    
 
     //criação do Construtor
     public Projeto() {
     }
 
-    //criação do construtor com titulo, descrição, data de inicio, gestor e estado . 
-    //A data de fim e tarefas não fazem sentido na criação do projeto
-//TROCAR ESTA LINHA PELA DEBAIXO , ESTÁ SÓ A DEBAIXO POR CAUSA DO UTILIZADOR E GESTOR !!!   
-    public Projeto(int numprojeto, String titulo, String descricao, LocalDate datainicio,LocalDate datafim, Gestor gestor,ArrayList<Colaborador> arraylistcolaborador,ListaColaboradores listacolaboradores , Estado estadoprojeto) {
-        // public Projeto(int numprojeto, String titulo, String descricao, LocalDate datainicio, Utilizador utilizador, Estado estadoprojeto) {
+    public Projeto(int numprojeto, String titulo, String descricao, LocalDate datainicio, LocalDate datafim, Gestor gestor, ArrayList<Colaborador> arraylistcolaborador, ListaColaboradores listacolaboradores, Estado estadoprojeto) {
+
         this.numprojeto = numprojeto;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -39,10 +35,9 @@ public class Projeto implements java.io.Serializable {
         this.gestor = gestor;
         this.estadoprojeto = estadoprojeto;
         this.listacolaboradores = listacolaboradores;
-        
+
         this.arraylistcolaborador = arraylistcolaborador;
-    
-        
+
     }
 
     public void setListacolaboradores(ListaColaboradores listacolaboradores) {
@@ -142,7 +137,7 @@ public class Projeto implements java.io.Serializable {
     public void setArraylistcolaborador(ArrayList<Colaborador> arraylistcolaborador) {
         this.arraylistcolaborador = arraylistcolaborador;
     }
-    
+
     public void inserirColaborador(Colaborador c) {
         arraylistcolaborador.add(c);
     }

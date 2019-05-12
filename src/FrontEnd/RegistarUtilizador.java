@@ -9,13 +9,13 @@ import javax.swing.JOptionPane;
 public class RegistarUtilizador extends javax.swing.JFrame {
 
     //CRIAÇÃO DE VARIÁVEIS 
-    private Sistema dados;
+    private Sistema sistema;
     private Utilizador utilizador;
 
     //CRIAÇÃO DO CONSTRUTOR 
     public RegistarUtilizador(Sistema dados) {
         initComponents();
-        this.dados = dados;
+        this.sistema = dados;
     }
 
     @SuppressWarnings("unchecked")
@@ -56,11 +56,11 @@ public class RegistarUtilizador extends javax.swing.JFrame {
                 String email = this.txtEmail.getText();
                 String telefone = this.txtTelefone.getText();
 
-                if (dados.getListautilizadores().ExisteUtilizador(username) == false) {
+                if (sistema.getListautilizadores().ExisteUtilizador(username) == false) {
                     //CRIA NOVO UTILIZADOR COM OS DADOS INTRODUZIDOS                
                     Utilizador u = new Utilizador(username, password, nome, morada, telefone, email);
-                    dados.getListautilizadores().inserirUtilizador(u);
-                    dados.guardarObjectos();
+                    sistema.getListautilizadores().inserirUtilizador(u);
+                    sistema.guardarObjectos();
                     JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, "Utilizador já exoste !",
@@ -233,10 +233,11 @@ public class RegistarUtilizador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         //FECHA A JANELA
         this.dispose();
+       
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
