@@ -380,6 +380,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
         }
 
         this.tblListaColaboradores.setModel(tm);
+        this.cmbColaborador.removeItem(cmbColaborador.getSelectedItem());
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -388,16 +389,21 @@ public class RegistarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_ftxInicioActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-           DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
+        DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
         if (tblListaColaboradores.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this, "Selecione um colaborador da Tabela !",
                     "Erro", JOptionPane.INFORMATION_MESSAGE);
         } else {
+            //VALIDA A LINHA SELECIONADA
+            int row = tblListaColaboradores.getSelectedRow();
+            // ADICIONA O VALOR DA COLUNA DO UTILIZADOR À COMBO
+            this.cmbColaborador.addItem(tblListaColaboradores.getValueAt(row, 0).toString());
+            //REMOVE DA TABELA A LINHA SELECIONADA
             tm.removeRow(tblListaColaboradores.getSelectedRow());
-
+            //ATUALIZA A LISTA DE COLABORADORES
             this.tblListaColaboradores.setModel(tm);
         }
-       
+
     }//GEN-LAST:event_btnRemoverActionPerformed
 
 
