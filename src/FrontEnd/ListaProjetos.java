@@ -3,7 +3,9 @@ package FrontEnd;
 import BackEnd.*;
 import FrontEnd.*;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class ListaProjetos extends javax.swing.JFrame {
 
@@ -24,7 +26,7 @@ public class ListaProjetos extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnAlterar = new javax.swing.JButton();
-        txtTeste = new javax.swing.JTextField();
+        barraProcuraTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -62,7 +64,12 @@ public class ListaProjetos extends javax.swing.JFrame {
             }
         });
 
-        txtTeste.setToolTipText("");
+        barraProcuraTxt.setToolTipText("");
+        barraProcuraTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                barraProcuraTxtKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,7 +88,7 @@ public class ListaProjetos extends javax.swing.JFrame {
                         .addGap(342, 342, 342))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(txtTeste, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(barraProcuraTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -94,7 +101,7 @@ public class ListaProjetos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
-                .addComponent(txtTeste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(barraProcuraTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 434, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
@@ -176,12 +183,25 @@ private void listarProjetos() {
 
     }//GEN-LAST:event_btnAlterarActionPerformed
 
+    private void barraProcuraTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barraProcuraTxtKeyReleased
+        String query= barraProcuraTxt.getText().toLowerCase();
+        barraProcura(query);
+    }//GEN-LAST:event_barraProcuraTxtKeyReleased
+
+    
+    private void barraProcura(String query){
+        DefaultTableModel tm = (DefaultTableModel) this.tblListaProjetos.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tm);
+        tblListaProjetos.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(query));
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField barraProcuraTxt;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane spProjetos;
     private javax.swing.JTable tblListaProjetos;
-    private javax.swing.JTextField txtTeste;
     // End of variables declaration//GEN-END:variables
 }
