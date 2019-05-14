@@ -15,6 +15,7 @@ public class ListaProjetos extends javax.swing.JFrame {
         initComponents();
         this.sistema = sistema;
 
+        ordenar();
     }
 
     @SuppressWarnings("unchecked")
@@ -188,12 +189,19 @@ private void listarProjetos() {
         barraProcura(query);
     }//GEN-LAST:event_barraProcuraTxtKeyReleased
 
-    
+ // Barra procura   
     private void barraProcura(String query){
         DefaultTableModel tm = (DefaultTableModel) this.tblListaProjetos.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tm);
         tblListaProjetos.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(query));
+    }
+    
+// Ordernação da lista
+    private void ordenar(){
+        DefaultTableModel tm = (DefaultTableModel) this.tblListaProjetos.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(tm);
+        tblListaProjetos.setRowSorter(sorter);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

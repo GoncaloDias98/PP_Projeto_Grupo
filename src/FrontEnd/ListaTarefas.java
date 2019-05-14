@@ -13,6 +13,7 @@ public class ListaTarefas extends javax.swing.JFrame {
     public ListaTarefas(Sistema sistema) {
         initComponents();
         this.sistema = sistema;
+        ordenar();
     }
 
     public void listaTarefas() {
@@ -192,6 +193,13 @@ public class ListaTarefas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_barraProcuraTxtActionPerformed
     //FIM Barra de Procura--
+    
+// Ordernação da lista
+    private void ordenar(){
+        DefaultTableModel tm = (DefaultTableModel) this.tblListaTarefa.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(tm);
+        tblListaTarefa.setRowSorter(sorter);
+    }    
     
     
     

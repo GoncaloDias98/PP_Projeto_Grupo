@@ -14,7 +14,7 @@ public class ListaUtilizadores extends javax.swing.JFrame {
     public ListaUtilizadores(Sistema dados) {
         initComponents();
         this.dados = dados;
-
+        ordenar();
     }
 
     @SuppressWarnings("unchecked")
@@ -142,12 +142,20 @@ public class ListaUtilizadores extends javax.swing.JFrame {
         }
         this.tblListaUtilizadores.setModel(tm);
     }
-
+    
+//Barra de Procura
      private void barraProcura(String query){
         DefaultTableModel tm = (DefaultTableModel) this.tblListaUtilizadores.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tm);
         tblListaUtilizadores.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(query));
+    }
+     
+// Ordernação da lista
+    private void ordenar(){
+        DefaultTableModel tm = (DefaultTableModel) this.tblListaUtilizadores.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(tm);
+        tblListaUtilizadores.setRowSorter(sorter);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
