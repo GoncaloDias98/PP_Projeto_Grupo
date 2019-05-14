@@ -119,6 +119,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel2.setText("Bem-Vindo: User");
 
         menuRegistar.setText("Registar");
 
