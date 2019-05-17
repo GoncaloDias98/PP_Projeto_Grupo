@@ -14,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class AlterarProjeto extends javax.swing.JFrame {
 
-    private Sistema dados;
+    private Sistema sistema;
     private Projeto projeto;
 
-    public AlterarProjeto(Sistema dados, Projeto projeto) {
+    public AlterarProjeto(Sistema sistema, Projeto projeto) {
         initComponents();
-        this.dados = dados;
+        this.sistema = sistema;
         this.projeto = projeto;
         carregar();
 
@@ -27,15 +27,15 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
     public AlterarProjeto(Sistema dados) {
         initComponents();
-        this.dados = dados;
+        this.sistema = dados;
 
     }
 
     private void carregar() {
-        //Carrega para os objetos os dados do projeto
+        //Carrega para os objetos os sistema do projeto
         //Converte a data de inicio e data de fim para texto !!
-        this.ftxInicio.setText(dados.Datatexto(projeto.getDatainicio()));
-        this.ftxFim.setText(dados.Datatexto(projeto.getDatafim()));
+        this.ftxInicio.setText(sistema.Datatexto(projeto.getDatainicio()));
+        this.ftxFim.setText(sistema.Datatexto(projeto.getDatafim()));
         this.txaDescricao.setText(projeto.getDescricao());
         this.txtTitulo.setText(projeto.getTitulo());
         this.cmbEstado.setSelectedItem(projeto.getEstadoprojeto().getDescricao());
@@ -51,7 +51,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
     private void guardar() {
 
-        //Cria as variáveis com os dados dos objetos
+        //Cria as variáveis com os sistema dos objetos
         String titulo = this.txtTitulo.getText();
         String descricao = this.txaDescricao.getText();
         String datainicio = this.ftxInicio.getText();
@@ -85,38 +85,38 @@ public class AlterarProjeto extends javax.swing.JFrame {
             ftxFim.requestFocus();
             return;
         }
-        if (this.txtNumero.getText().isEmpty()){
-          JOptionPane.showMessageDialog(this, "Tem de escolher um projeto para ser alterado");
+        if (this.txtNumero.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tem de escolher um projeto para ser alterado");
             ftxFim.requestFocus();
-            return;  
-        }else{
-        projeto.setNumprojeto(projeto.getNumprojeto());
+            return;
+        } else {
+            projeto.setNumprojeto(projeto.getNumprojeto());
         }
         projeto.setTitulo(titulo);
         projeto.setDescricao(descricao);
 
-        if (dados.Data(datainicio).isAfter(dados.Data(datafim))) {
+        if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
             JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
             ftxInicio.requestFocus();
             return;
 
         }
 
-        projeto.setDatainicio(dados.Data(datainicio));
-        projeto.setDatafim(dados.Data(datafim));
-        if (this.cmbEstado.getSelectedItem() == dados.getEstado().concluido.getDescricao()) {
+        projeto.setDatainicio(sistema.Data(datainicio));
+        projeto.setDatafim(sistema.Data(datafim));
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
             //se for toma o valor Concluido
-            projeto.setEstadoprojeto(dados.getEstado().concluido);
+            projeto.setEstadoprojeto(sistema.getEstado().concluido);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
-        if (this.cmbEstado.getSelectedItem() == dados.getEstado().iniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().iniciado.getDescricao()) {
             //se for toma o valor Iniciado
-            projeto.setEstadoprojeto(dados.getEstado().iniciado);
+            projeto.setEstadoprojeto(sistema.getEstado().iniciado);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
-        if (this.cmbEstado.getSelectedItem() == dados.getEstado().naoiniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
             //se for toma o valor Não Iniciado
-            projeto.setEstadoprojeto(dados.getEstado().naoiniciado);
+            projeto.setEstadoprojeto(sistema.getEstado().naoiniciado);
         }
 
         for (int i = 0; i < this.tblListaColaboradores.getRowCount(); i++) {
@@ -124,19 +124,19 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
             String user = tm.getValueAt(i, 0).toString();
 
-            for (int j = 0; j < dados.getListautilizadores().getArraylistautilizador().size(); j++) {
+            for (int j = 0; j < sistema.getListautilizadores().getArraylistautilizador().size(); j++) {
                 //apanha o valor do array !
-                Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(j);
+                Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(j);
                 //valida se o utilizador autenticado é gestor do projeto
                 if (u.getUser().equals(user)) {
                     Colaborador c = new Colaborador(u.getUser(), u.getPassword(), u.getNome(), u.getMorada(), u.getTelefone(), u.getEmail());
-                    dados.getListacolaboradores().inserirColaborador(c);
+                    sistema.getListacolaboradores().inserirColaborador(c);
                 }
             }
         }
-        projeto.setArraylistcolaborador(dados.getListacolaboradores().getarraylistcolaborador());
+        projeto.setArraylistcolaborador(sistema.getListacolaboradores().getarraylistcolaborador());
 
-        dados.guardarObjectos();
+        sistema.guardarObjectos();
         JOptionPane.showMessageDialog(this, "Projeto Alterado com sucesso !",
                 "Alteração", JOptionPane.INFORMATION_MESSAGE);
         //Guarda para ficheiro !!
@@ -168,6 +168,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         btnF4 = new javax.swing.JButton();
         txtNumero = new javax.swing.JTextField();
+        btnRemover = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AlterarProjeto");
@@ -255,6 +256,13 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
         txtNumero.setEnabled(false);
 
+        btnRemover.setText("Remover");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -300,7 +308,9 @@ public class AlterarProjeto extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(28, 28, 28)
-                                        .addComponent(btnAdicionar))
+                                        .addComponent(btnAdicionar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnRemover))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -344,7 +354,8 @@ public class AlterarProjeto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblColaborador)
                     .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdicionar))
+                    .addComponent(btnAdicionar)
+                    .addComponent(btnRemover))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(spUtilizadores, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -358,16 +369,23 @@ public class AlterarProjeto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
+
+        if (JOptionPane.showConfirmDialog(null,
+                "Deseja Sair ?",
+                "Terminar",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+            this.dispose();
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
 
         //Percorre o array de ulizadores até à ultima posição !
-        for (int i = 0; i < dados.getListautilizadores().getArraylistautilizador().size(); i++) {
+        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
             if (this.cmbColaborador.getSelectedItem() == u.getUser()) {
 
@@ -377,6 +395,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
         }
 
         this.tblListaColaboradores.setModel(tm);
+        this.cmbColaborador.removeItem(cmbColaborador.getSelectedItem());
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -385,32 +404,48 @@ public class AlterarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnF4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnF4ActionPerformed
-        ListaProjetos listaprojetos = new ListaProjetos(dados);
+        ListaProjetos listaprojetos = new ListaProjetos(sistema);
         listaprojetos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnF4ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        DefaultComboBoxModel mod = new DefaultComboBoxModel();
-        for (int i = 0; i < dados.getListautilizadores().getArraylistautilizador().size(); i++) {
+        this.cmbColaborador.removeAllItems();
+        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
-            mod.addElement(u.getUser());
+            this.cmbColaborador.addItem(u.getUser());
 
         }
-        this.cmbColaborador.setModel(mod);
-
 
     }//GEN-LAST:event_formWindowOpened
 
     private void txtTituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTituloKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_F4) {
-            ListaProjetos listaprojetos = new ListaProjetos(dados);
+            ListaProjetos listaprojetos = new ListaProjetos(sistema);
             listaprojetos.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_txtTituloKeyPressed
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+
+        DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
+        if (tblListaColaboradores.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione um colaborador da Tabela !",
+                    "Erro", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            //VALIDA A LINHA SELECIONADA
+            int row = tblListaColaboradores.getSelectedRow();
+            // ADICIONA O VALOR DA COLUNA DO UTILIZADOR À COMBO
+            this.cmbColaborador.addItem(tblListaColaboradores.getValueAt(row, 0).toString());
+            //REMOVE DA TABELA A LINHA SELECIONADA
+            tm.removeRow(tblListaColaboradores.getSelectedRow());
+            //ATUALIZA A LISTA DE COLABORADORES
+            this.tblListaColaboradores.setModel(tm);
+        }
+    }//GEN-LAST:event_btnRemoverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -418,6 +453,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnF4;
     private javax.swing.JButton btnGravar;
+    private javax.swing.JButton btnRemover;
     private javax.swing.JComboBox<String> cmbColaborador;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JFormattedTextField ftxFim;

@@ -14,44 +14,29 @@ import javax.swing.table.DefaultTableModel;
 
 public class RegistarProjeto extends javax.swing.JFrame {
 
-    private Sistema dados;
+    private Sistema sistema;
     private Estado estado;
     private ListaUtilizadores listautilizadores;
-    
 
     //Cria as colunas abaixo na tabela
-    public RegistarProjeto(Sistema dados) {
+    public RegistarProjeto(Sistema sistema) {
         initComponents();
-        this.dados = dados;
-        this.ftxInicio.setText(dados.Datatexto(LocalDate.now())) ;
-        this.ftxFim.setText(dados.Datatexto(LocalDate.now())) ;
-        
-        //Não permite o redimensionamento da janela
-      //  this.setResizable(false);
+        this.sistema = sistema;
+        this.ftxInicio.setText(sistema.Datatexto(LocalDate.now()));
+        this.ftxFim.setText(sistema.Datatexto(LocalDate.now()));
 
+        //Não permite o redimensionamento da janela
+        //  this.setResizable(false);
         //Mostra a centralização da janela
         this.setLocationRelativeTo(null);
 
         //O processo de fecho da janela será controlado pelo programa
-      //  this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        //  this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
 
     private void guardar() {
-          
-        //Declara as variáveis necessárias à criação do Projeto
-        Projeto novop = new Projeto();
-        ListaColaboradores tmplist = new ListaColaboradores();
-        String titulo = this.txtTitulo.getText();
-        String descricao = this.txaDescricao.getText();
-        String datainicio = this.ftxInicio.getText();
-        String datafim = this.ftxFim.getText();
-        //JComboBox comboBox = new JComboBox(dados.getListautilizadores());
-        //verifica qual o numero do projeto e soma + 1 
-        int numeroprojeto = dados.getListaprojetos().NumeroProjeto() + 1;
-        //O numero do Projeto toma o valor da variavel numeroprojeto
-        novop.setNumprojeto(numeroprojeto);
 
         //valida se o campo Titulo está preenchido
         if (this.txtTitulo.getText().isEmpty()) {
@@ -60,6 +45,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
             txtTitulo.requestFocus();
             return;
         }
+        
         //verifica se a descrição está preenchida
         if (this.txaDescricao.getText().isEmpty()) {
             //Se tiver dá aviso !!
@@ -67,6 +53,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
             txaDescricao.requestFocus();
             return;
         }
+        
         //Valida se a data de inicio está preenchida
         if (this.ftxInicio.getText().isEmpty()) {
             //Se estiver dá aviso !!
@@ -74,6 +61,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
             ftxInicio.requestFocus();
             return;
         }
+        
         //Valida se a data de Fim está preenchida
         if (this.ftxFim.getText().isEmpty()) {
             //Se estiver dá aviso !!
@@ -82,51 +70,62 @@ public class RegistarProjeto extends javax.swing.JFrame {
             return;
         }
 
-        //Cria o Gestor do projeot com os dados do utilizadorLigado !!
-        Gestor g = new Gestor(dados.getUtilizadorLigado().getUser(), dados.getUtilizadorLigado().getPassword(), dados.getUtilizadorLigado().getNome(), dados.getUtilizadorLigado().getMorada(), dados.getUtilizadorLigado().getTelefone(), dados.getUtilizadorLigado().getEmail());
+        //Declara as variáveis necessárias à criação do Projeto
+        Projeto novop = new Projeto();
+        ListaColaboradores tmplist = new ListaColaboradores();
+        String titulo = this.txtTitulo.getText();
+        String descricao = this.txaDescricao.getText();
+        String datainicio = this.ftxInicio.getText();
+        String datafim = this.ftxFim.getText();
+        //JComboBox comboBox = new JComboBox(sistema.getListautilizadores());
+        //verifica qual o numero do projeto e soma + 1 
+        int numeroprojeto = sistema.getListaprojetos().NumeroProjeto() + 1;
+        //O numero do Projeto toma o valor da variavel numeroprojeto
+        novop.setNumprojeto(numeroprojeto);
+
+        //Cria o Gestor do projeot com os sistema do utilizadorLigado !!
+        Gestor g = new Gestor(sistema.getUtilizadorLigado().getUser(), sistema.getUtilizadorLigado().getPassword(), sistema.getUtilizadorLigado().getNome(), sistema.getUtilizadorLigado().getMorada(), sistema.getUtilizadorLigado().getTelefone(), sistema.getUtilizadorLigado().getEmail());
         novop.setGestor(g);
 
-        //novop.setDatainicio(LocalDate.now());
-         if (dados.Data(datainicio).isAfter(dados.Data(datafim))) {
+        
+        if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
             JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
             ftxInicio.requestFocus();
             return;
 
-        }else{
-            
-        novop.setDatainicio(dados.Data(datainicio));
-        novop.setDatafim(dados.Data(datafim));
-         }
+        } else {
+
+            novop.setDatainicio(sistema.Data(datainicio));
+            novop.setDatafim(sistema.Data(datafim));
+        }
 
         novop.setTitulo(titulo);
         novop.setDescricao(descricao);
         //Verifica se o valor da combo Estado é igual à descrição do Estado Concluído
-        if (this.cmbEstado.getSelectedItem() == dados.getEstado().concluido.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
             //se for toma o valor Concluido
-            novop.setEstadoprojeto(dados.getEstado().concluido);
+            novop.setEstadoprojeto(sistema.getEstado().concluido);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
-        if (this.cmbEstado.getSelectedItem() == dados.getEstado().iniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().iniciado.getDescricao()) {
             //se for toma o valor Iniciado
-            novop.setEstadoprojeto(dados.getEstado().iniciado);
+            novop.setEstadoprojeto(sistema.getEstado().iniciado);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
-        if (this.cmbEstado.getSelectedItem() == dados.getEstado().naoiniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
             //se for toma o valor Não Iniciado
-            novop.setEstadoprojeto(dados.getEstado().naoiniciado);
+            novop.setEstadoprojeto(sistema.getEstado().naoiniciado);
         }
-        
-        
+
         DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
-        
+
         for (int i = 0; i < this.tblListaColaboradores.getRowCount(); i++) {
-            
 
             String user = tm.getValueAt(i, 0).toString();
 
-            for (int j = 0; j < dados.getListautilizadores().getArraylistautilizador().size(); j++) {
+            for (int j = 0; j < sistema.getListautilizadores().getArraylistautilizador().size(); j++) {
                 //apanha o valor do array !
-                Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(j);
+                Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(j);
                 //valida se o utilizador autenticado é gestor do projeto
                 if (u.getUser().equals(user)) {
                     Colaborador c = new Colaborador(u.getUser(), u.getPassword(), u.getNome(), u.getMorada(), u.getTelefone(), u.getEmail());
@@ -134,18 +133,16 @@ public class RegistarProjeto extends javax.swing.JFrame {
                 }
             }
         }
-        
+
         novop.setArraylistcolaborador(tmplist.getarraylistcolaborador());
-        
-        
-        //Insere os dados do projeto com o valor de novop !!!
-        dados.getListaprojetos().inserirProjeto(novop);
+
+        //Insere os sistema do projeto com o valor de novop !!!
+        sistema.getListaprojetos().inserirProjeto(novop);
         tm.setRowCount(0);
-        dados.getListacolaboradores().limparArrayColaboradores();
+        sistema.getListacolaboradores().limparArrayColaboradores();
         //Guarda para ficheiro !!
-        dados.guardarObjectos();
+        sistema.guardarObjectos();
         JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
-      
 
     }
 
@@ -172,6 +169,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
         spUtilizadores = new javax.swing.JScrollPane();
         tblListaColaboradores = new javax.swing.JTable();
         btnAdicionar = new javax.swing.JButton();
+        btnRemover = new javax.swing.JButton();
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 204));
@@ -248,6 +246,13 @@ public class RegistarProjeto extends javax.swing.JFrame {
             }
         });
 
+        btnRemover.setText("Remover");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -266,6 +271,8 @@ public class RegistarProjeto extends javax.swing.JFrame {
                         .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(btnAdicionar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRemover)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblInicio)
@@ -324,7 +331,8 @@ public class RegistarProjeto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblColaborador)
                     .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdicionar))
+                    .addComponent(btnAdicionar)
+                    .addComponent(btnRemover))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(spUtilizadores, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -342,19 +350,25 @@ public class RegistarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
+        if (JOptionPane.showConfirmDialog(null,
+                "Deseja Sair ?",
+                "Terminar",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+            this.dispose();
+        }
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        DefaultComboBoxModel mod = new DefaultComboBoxModel();
-        for (int i = 0; i < dados.getListautilizadores().getArraylistautilizador().size(); i++) {
+        this.cmbColaborador.removeAllItems();
+        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
-            mod.addElement(u.getUser());
+            this.cmbColaborador.addItem(u.getUser());
 
         }
-        this.cmbColaborador.setModel(mod);
 
 
     }//GEN-LAST:event_formWindowOpened
@@ -363,9 +377,9 @@ public class RegistarProjeto extends javax.swing.JFrame {
         DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
 
         //Percorre o array de ulizadores até à ultima posição !
-        for (int i = 0; i < dados.getListautilizadores().getArraylistautilizador().size(); i++) {
+        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
             if (this.cmbColaborador.getSelectedItem() == u.getUser()) {
 
@@ -375,18 +389,38 @@ public class RegistarProjeto extends javax.swing.JFrame {
         }
 
         this.tblListaColaboradores.setModel(tm);
+        this.cmbColaborador.removeItem(cmbColaborador.getSelectedItem());
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void ftxInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxInicioActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_ftxInicioActionPerformed
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+        DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
+        if (tblListaColaboradores.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione um colaborador da Tabela !",
+                    "Erro", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            //VALIDA A LINHA SELECIONADA
+            int row = tblListaColaboradores.getSelectedRow();
+            // ADICIONA O VALOR DA COLUNA DO UTILIZADOR À COMBO
+            this.cmbColaborador.addItem(tblListaColaboradores.getValueAt(row, 0).toString());
+            //REMOVE DA TABELA A LINHA SELECIONADA
+            tm.removeRow(tblListaColaboradores.getSelectedRow());
+            //ATUALIZA A LISTA DE COLABORADORES
+            this.tblListaColaboradores.setModel(tm);
+        }
+
+    }//GEN-LAST:event_btnRemoverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGravar;
+    private javax.swing.JButton btnRemover;
     private javax.swing.JComboBox<String> cmbColaborador;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JFormattedTextField ftxFim;

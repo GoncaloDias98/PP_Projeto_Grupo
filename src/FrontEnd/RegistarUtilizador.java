@@ -9,13 +9,13 @@ import javax.swing.JOptionPane;
 public class RegistarUtilizador extends javax.swing.JFrame {
 
     //CRIAÇÃO DE VARIÁVEIS 
-    private Sistema dados;
+    private Sistema sistema;
     private Utilizador utilizador;
 
     //CRIAÇÃO DO CONSTRUTOR 
     public RegistarUtilizador(Sistema dados) {
         initComponents();
-        this.dados = dados;
+        this.sistema = dados;
     }
 
     @SuppressWarnings("unchecked")
@@ -27,6 +27,28 @@ public class RegistarUtilizador extends javax.swing.JFrame {
             if (txtEmail.getText().equals(txtConfirmarEmail.getText())) {
 
                 //CARREGA PARA VARIÁVEIS O INTRODUZIDO NO REGISTO
+                if (txtUsername.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o Username!");
+            txtUsername.requestFocus();
+            return;
+        }
+                if (new String(txtPassword.getPassword()).isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. a Password!");
+            txtPassword.requestFocus();
+            return;
+        }
+                if (txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o seu Nome!");
+            txtNome.requestFocus();
+            return;
+        }
+                if (txtEmail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o seu Email!");
+            txtEmail.requestFocus();
+            return;
+        }
+                
+                
                 String username = this.txtUsername.getText();
                 String password = new String(txtPassword.getPassword());
                 String morada = this.txtMorada.getText();
@@ -34,11 +56,11 @@ public class RegistarUtilizador extends javax.swing.JFrame {
                 String email = this.txtEmail.getText();
                 String telefone = this.txtTelefone.getText();
 
-                if (dados.getListautilizadores().ExisteUtilizador(username) == false) {
+                if (sistema.getListautilizadores().ExisteUtilizador(username) == false) {
                     //CRIA NOVO UTILIZADOR COM OS DADOS INTRODUZIDOS                
                     Utilizador u = new Utilizador(username, password, nome, morada, telefone, email);
-                    dados.getListautilizadores().inserirUtilizador(u);
-                    dados.guardarObjectos();
+                    sistema.getListautilizadores().inserirUtilizador(u);
+                    sistema.guardarObjectos();
                     JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, "Utilizador já exoste !",
@@ -99,7 +121,7 @@ public class RegistarUtilizador extends javax.swing.JFrame {
 
         jLabel9.setText("Confirmar Email");
 
-        btnGravar.setText("Gravar");
+        btnGravar.setText("Registar");
         btnGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGravarActionPerformed(evt);
@@ -211,10 +233,11 @@ public class RegistarUtilizador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         //FECHA A JANELA
         this.dispose();
+       
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed

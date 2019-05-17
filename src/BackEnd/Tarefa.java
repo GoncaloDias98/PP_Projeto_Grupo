@@ -2,75 +2,112 @@ package BackEnd;
 
 import java.time.LocalDate;
 
-public class Tarefa {
+public class Tarefa implements java.io.Serializable {
 
-    private String Titulo;
-    private Utilizador CriadoPor;
-    private String Descrição;
-    Estado EstadoTarefa;
-    LocalDate DataFim;
-    PrioridadeTarefas Prioridade;
+    private int numtarefa;
+    private String titulo;
+    private Utilizador criadopor;
+    private String descricao;
+    private LocalDate datainicio;
+    private LocalDate datafim;
+    private Estado estadotarefa;
+    private PrioridadeTarefas prioridade;
+    private Projeto projeto;
 
     public Tarefa() {
     }
 
-    public Tarefa(String Titulo, Utilizador CriadoPor, String Descrição, Estado EstadoTarefa, LocalDate DataFim, PrioridadeTarefas Prioridade) {
-        this.Titulo = Titulo;
-        this.CriadoPor = CriadoPor;
-        this.Descrição = Descrição;
-        this.EstadoTarefa = EstadoTarefa;
-        this.DataFim = DataFim;
-        this.Prioridade = Prioridade;
+    public Tarefa(int numtarefa, String titulo, Utilizador criadopor, String descricao, LocalDate datainicio, LocalDate datafim, Estado estadotarefa, PrioridadeTarefas prioridade, Projeto projeto) {
+        this.numtarefa = numtarefa;
+        this.titulo = titulo;
+        this.criadopor = criadopor;
+        this.descricao = descricao;
+        this.datainicio = datainicio;
+        this.datafim = datafim;
+        this.estadotarefa = estadotarefa;
+        this.prioridade = prioridade;
+        this.projeto = projeto;
+    }
+
+    public Projeto getProjeto() {
+        return projeto;
+    }
+
+    public int getNumtarefa() {
+        return numtarefa;
     }
 
     public String getTitulo() {
-        return Titulo;
+        return titulo;
     }
 
-    public void setTitulo(String Titulo) {
-        this.Titulo = Titulo;
+    public Utilizador getCriadopor() {
+        return criadopor;
     }
 
-    public Utilizador getCriadoPor() {
-        return CriadoPor;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setCriadoPor(Utilizador CriadoPor) {
-        this.CriadoPor = CriadoPor;
+    public LocalDate getDatainicio() {
+        return datainicio;
     }
 
-    public String getDescrição() {
-        return Descrição;
+    public LocalDate getDatafim() {
+        return datafim;
     }
 
-    public void setDescrição(String Descrição) {
-        this.Descrição = Descrição;
-    }
-
-    public Estado getEstadoTarefa() {
-        return EstadoTarefa;
-    }
-
-    public void setEstadoTarefa(Estado EstadoTarefa) {
-        this.EstadoTarefa = EstadoTarefa;
-    }
-
-    public LocalDate getDataFim() {
-        return DataFim;
-    }
-
-    public void setDataFim(LocalDate DataFim) {
-        this.DataFim = DataFim;
+    public Estado getEstadotarefa() {
+        return estadotarefa;
     }
 
     public PrioridadeTarefas getPrioridade() {
-        return Prioridade;
+        return prioridade;
     }
 
-    public void setPrioridade(PrioridadeTarefas Prioridade) {
-        this.Prioridade = Prioridade;
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
     }
 
-    
-    
+    public void setNumtarefa(int numtarefa) {
+        this.numtarefa = numtarefa;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setCriadopor(Utilizador criadopor) {
+        this.criadopor = criadopor;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setDatainicio(LocalDate datainicio) {
+        this.datainicio = datainicio;
+    }
+
+    public void setDatafim(LocalDate datafim) {
+        this.datafim = datafim;
+    }
+
+    public void setEstadotarefa(Estado estadotarefa) {
+        this.estadotarefa = estadotarefa;
+    }
+
+    public void setPrioridade(PrioridadeTarefas prioridade) {
+        this.prioridade = prioridade;
+    }
+
+    public void consultaTarefa() {
+        System.out.println("Tarefa{" + "numtarefa=" + numtarefa + ", titulo=" + titulo + ", criadopor=" + criadopor + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", estadotarefa=" + estadotarefa + ", prioridade=" + prioridade);
+    }
+
+    @Override
+    public String toString() {
+        return "Tarefa{" + "numtarefa=" + numtarefa + ", titulo=" + titulo + ", criadopor=" + criadopor + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", estadotarefa=" + estadotarefa + ", prioridade=" + prioridade + '}';
+    }
+
 }
