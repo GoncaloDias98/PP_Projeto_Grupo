@@ -2,9 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
             <file>file:/C:/Users/User/Documents/GitHub/PP_Projeto_Grupo/src/FrontEnd/ListaTarefas.java</file>
             <file>file:/C:/Users/User/Documents/GitHub/PP_Projeto_Grupo/src/BackEnd/Colaborador.java</file>
@@ -34,6 +31,5 @@
             <file>file:/C:/Users/User/Documents/GitHub/PP_Projeto_Grupo/src/BackEnd/Serializacao.java</file>
             <file>file:/C:/Users/User/Documents/GitHub/PP_Projeto_Grupo/src/FrontEnd/RegistarUtilizador.java</file>
         </group>
->>>>>>> a3e2dae06e43cf4554337d55ba9b0a8715dac5ee
     </open-files>
 </project-private>

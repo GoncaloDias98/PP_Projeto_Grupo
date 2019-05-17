@@ -350,10 +350,6 @@ public class Principal extends javax.swing.JFrame {
         registartarefa.setVisible(true);
     }//GEN-LAST:event_btnTarefaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        sistema.getListatarefas().ConsultaTarefas();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnListarTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTarefasActionPerformed
          ListaTarefas listatarefas = new ListaTarefas(sistema);
         listatarefas.setVisible(true);
@@ -393,6 +389,10 @@ public class Principal extends javax.swing.JFrame {
         AlterarTarefa alterartarefa = new AlterarTarefa(sistema);
         alterartarefa.setVisible(true);
     }//GEN-LAST:event_alterarTarefaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        sistema.getListatarefas().ConsultaTarefas();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
   
 
