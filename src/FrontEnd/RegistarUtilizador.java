@@ -121,7 +121,7 @@ public class RegistarUtilizador extends javax.swing.JFrame {
 
         jLabel9.setText("Confirmar Email");
 
-        btnGravar.setText("Gravar");
+        btnGravar.setText("Registar");
         btnGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGravarActionPerformed(evt);
