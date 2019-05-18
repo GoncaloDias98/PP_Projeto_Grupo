@@ -78,11 +78,14 @@ public class AlterarTarefa extends javax.swing.JFrame {
 
         lblInicio.setText("Data Inicio");
 
-        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        ftxFim.setText("dd/mm/yyyy");
+        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/Y"))));
+        ftxFim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftxFimActionPerformed(evt);
+            }
+        });
 
-        ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        ftxInicio.setText("dd/mm/yyyy");
+        ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/Y"))));
         ftxInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftxInicioActionPerformed(evt);
@@ -273,6 +276,10 @@ public class AlterarTarefa extends javax.swing.JFrame {
             //Adiciona o valor do utilizador e do nome na linha da tabela !
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void ftxFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxFimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftxFimActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
