@@ -5,10 +5,16 @@ import FrontEnd.*;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 
 public class ListaTarefas extends javax.swing.JFrame {
 
     private Sistema sistema;
+    private String a;
+    int atraso = 0;
 
     public ListaTarefas(Sistema sistema) {
         initComponents();
@@ -36,9 +42,15 @@ public class ListaTarefas extends javax.swing.JFrame {
             //se for gestor mostra na linha, senão for, passa à frente !!
             tm.addRow(new Object[]{t.getProjeto().getNumprojeto(), t.getProjeto().getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao()});
 
+            //------------------------------------PROJETO EM ATRASO     ------------------------------
+            a = new SimpleDateFormat("dd/MM/YYYY").format(new Date());
+            if ((sistema.Datatexto(t.getDatafim())).compareTo(a) < 0) {
+                ++atraso;
+            }
+            this.tblListaTarefa.setModel(tm);
         }
-
-        this.tblListaTarefa.setModel(tm);
+        // entra em loop infinito com a interface
+      // JOptionPane.showMessageDialog(this, "tens "+ atraso +" tarefas em atraso");
     }
 
     @SuppressWarnings("unchecked")
@@ -51,6 +63,7 @@ public class ListaTarefas extends javax.swing.JFrame {
         btnAlterar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         barraProcuraTxt = new javax.swing.JTextField();
+        tarefasAtrasoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -99,6 +112,8 @@ public class ListaTarefas extends javax.swing.JFrame {
             }
         });
 
+        tarefasAtrasoLabel.setText("Projetos em atraso");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,11 +132,13 @@ public class ListaTarefas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(barraProcuraTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tarefasAtrasoLabel)
+                .addGap(123, 123, 123))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(spTarefas, javax.swing.GroupLayout.DEFAULT_SIZE, 823, Short.MAX_VALUE)
+                    .addComponent(spTarefas, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -130,7 +147,9 @@ public class ListaTarefas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblListaTarefas)
                 .addGap(8, 8, 8)
-                .addComponent(barraProcuraTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(barraProcuraTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tarefasAtrasoLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -176,39 +195,39 @@ public class ListaTarefas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
     //--Barra de Procura
-     private void barraProcura(String query){
+    private void barraProcura(String query) {
         DefaultTableModel tm = (DefaultTableModel) this.tblListaTarefa.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tm);
         tblListaTarefa.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(query));
     }
-     
+
     private void barraProcuraTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barraProcuraTxtKeyReleased
-        String query= barraProcuraTxt.getText().toLowerCase();
+        String query = barraProcuraTxt.getText().toLowerCase();
         barraProcura(query);
-        
+
     }//GEN-LAST:event_barraProcuraTxtKeyReleased
 
     private void barraProcuraTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barraProcuraTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_barraProcuraTxtActionPerformed
     //FIM Barra de Procura--
-    
+
 // Ordernação da lista
-    private void ordenar(){
+    private void ordenar() {
         DefaultTableModel tm = (DefaultTableModel) this.tblListaTarefa.getModel();
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(tm);
         tblListaTarefa.setRowSorter(sorter);
-    }    
-    
-    
-    
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField barraProcuraTxt;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel lblListaTarefas;
     private javax.swing.JScrollPane spTarefas;
+    private javax.swing.JLabel tarefasAtrasoLabel;
     private javax.swing.JTable tblListaTarefa;
     // End of variables declaration//GEN-END:variables
 }

@@ -44,12 +44,14 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="barraProcuraTxt" min="-2" pref="153" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="tarefasAtrasoLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="spTarefas" pref="823" max="32767" attributes="0"/>
+                  <Component id="spTarefas" pref="824" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -61,7 +63,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblListaTarefas" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-              <Component id="barraProcuraTxt" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="barraProcuraTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tarefasAtrasoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="346" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnAlterar" max="32767" attributes="0"/>
@@ -154,6 +159,11 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="barraProcuraTxtActionPerformed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="barraProcuraTxtKeyReleased"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="tarefasAtrasoLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Projetos em atraso"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
