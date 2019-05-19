@@ -230,6 +230,78 @@ public class AlterarTarefa extends javax.swing.JFrame {
 
     public void gravar() {
 
+
+        String titulo = this.txtTitulo.getText();
+        String descricao = this.txaDescricao.getText();
+        String datainicio = this.ftxInicio.getText();
+        String datafim = this.ftxFim.getText();
+
+        //JComboBox comboBox = new JComboBox(sistema.getListautilizadores());
+        //verifica qual o numero do projeto e soma + 1 
+        //int numerotarefa = sistema.getListatarefas().NumeroTarefa() + 1;
+        //O numero do Projeto toma o valor da variavel numeroprojeto
+        //tarefa.setNumtarefa(numerotarefa);
+
+        if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
+            JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
+            ftxInicio.requestFocus();
+            return;
+
+        } else {
+
+            tarefa.setDatainicio(sistema.Data(datainicio));
+            tarefa.setDatafim(sistema.Data(datafim));
+        }
+
+        tarefa.setTitulo(titulo);
+        tarefa.setDescricao(descricao);
+        tarefa.setCriadopor(sistema.getUtilizadorLigado());
+
+        //Verifica se o valor da combo Estado é igual à descrição do Estado Concluído
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
+            //se for toma o valor Concluido
+            tarefa.setEstadotarefa(sistema.getEstado().concluido);
+        }
+        //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().iniciado.getDescricao()) {
+            //se for toma o valor Iniciado
+            tarefa.setEstadotarefa(sistema.getEstado().iniciado);
+        }
+        //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
+            //se for toma o valor Não Iniciado
+            tarefa.setEstadotarefa(sistema.getEstado().naoiniciado);
+        }
+
+        //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Alta
+        if (this.cmbPrioridadeTarefas.getSelectedItem() == sistema.getPrioridadestarefas().alta.getDescricao()) {
+            //se for toma o valor Alta
+            tarefa.setPrioridade(sistema.getPrioridadestarefas().alta);
+        }
+        //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Média
+        if (this.cmbPrioridadeTarefas.getSelectedItem() == sistema.getPrioridadestarefas().media.getDescricao()) {
+            //se for toma o valor Média
+            tarefa.setPrioridade(sistema.getPrioridadestarefas().media);
+        }
+        //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Baixa
+        if (this.cmbPrioridadeTarefas.getSelectedItem() == sistema.getPrioridadestarefas().baixa.getDescricao()) {
+            //se for toma o valor Baixa
+            tarefa.setPrioridade(sistema.getPrioridadestarefas().baixa);
+        }
+
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+            //apanha o valor do array !
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+
+            if (this.cmbProjeto.getSelectedItem() == p.getTitulo()) {
+                tarefa.setProjeto(p);
+            }
+        }
+
+        
+        sistema.guardarObjectos();
+        JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
+
     }
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed

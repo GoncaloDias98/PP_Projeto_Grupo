@@ -251,6 +251,14 @@ public class Sistema implements java.io.Serializable {
         return date;
     }
            
+   public String Horatexto(LocalDate data){
+        DateTimeFormatter formatodata = DateTimeFormatter.ofPattern("HH:mm");
+
+        //crio o objeto localdate que formata a informação intoduzida para o formato que eu paremetrizei em formatodata
+        String date = formatodata.format(data);
+
+        return date;
+    }
 
     //Fecha a aplicação
     public void terminar() {
