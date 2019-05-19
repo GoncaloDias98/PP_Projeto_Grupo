@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 import java.util.regex.Matcher;
@@ -249,6 +250,7 @@ public class Sistema implements java.io.Serializable {
         return localDate;
     }
     
+   
     public String Datatexto(LocalDate data){
         DateTimeFormatter formatodata = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
