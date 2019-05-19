@@ -175,7 +175,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(0, 0, 204));
         jLabel10.setText("Registar Utilizador");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
