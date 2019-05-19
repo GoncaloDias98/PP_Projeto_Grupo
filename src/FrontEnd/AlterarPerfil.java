@@ -30,10 +30,16 @@ public class AlterarPerfil extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
         txtMorada = new javax.swing.JTextField();
-        txtTelefone = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
+        txaTelefone = new javax.swing.JFormattedTextField();
+        try{
+            javax.swing.text.MaskFormatter telefone = new javax.swing.text.MaskFormatter("(+###) ### ### ###");
+
+            txaTelefone = new javax.swing.JFormattedTextField(telefone);
+        }catch(Exception e){
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -90,12 +96,12 @@ public class AlterarPerfil extends javax.swing.JFrame {
                     .addComponent(lblUsername))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTelefone)
                     .addComponent(txtMorada)
                     .addComponent(txtNome)
                     .addComponent(txtUsername)
                     .addComponent(txtEmail)
-                    .addComponent(txtPassword))
+                    .addComponent(txtPassword)
+                    .addComponent(txaTelefone))
                 .addGap(44, 44, 44))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(240, Short.MAX_VALUE)
@@ -132,7 +138,7 @@ public class AlterarPerfil extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefone)
-                    .addComponent(txtTelefone))
+                    .addComponent(txaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
@@ -159,7 +165,7 @@ public class AlterarPerfil extends javax.swing.JFrame {
         this.txtPassword.setText(password);
         this.txtNome.setText(nome);
         this.txtMorada.setText(morada);
-        this.txtTelefone.setText(telefone);
+        this.txaTelefone.setText(telefone);
         this.txtEmail.setText(email);
 
 
@@ -187,7 +193,7 @@ if (this.txtEmail.getText().isEmpty()) {
         String nome = this.txtNome.getText();
         String morada = this.txtMorada.getText();
         String email = this.txtEmail.getText();
-        String telefone = this.txtTelefone.getText();
+        String telefone = this.txaTelefone.getText();
 
         //dados.getUtilizadorLigado().setUser(username);
         dados.getUtilizadorLigado().setPassword(password);
@@ -217,11 +223,11 @@ if (this.txtEmail.getText().isEmpty()) {
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JLabel lblUsername;
+    private javax.swing.JFormattedTextField txaTelefone;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMorada;
     private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtTelefone;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
