@@ -175,7 +175,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(0, 0, 204));
         jLabel10.setText("Registar Utilizador");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -192,8 +192,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
 
         lblInicio.setText("Data Inicio Projeto");
 
-        ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        ftxInicio.setText("dd/mm/yyyy");
+        ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/Y"))));
         ftxInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftxInicioActionPerformed(evt);
@@ -226,8 +225,12 @@ public class RegistarProjeto extends javax.swing.JFrame {
 
         lblFim.setText("Data Fim Projeto");
 
-        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        ftxFim.setText("dd/mm/yyyy");
+        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/Y"))));
+        ftxFim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftxFimActionPerformed(evt);
+            }
+        });
 
         tblListaColaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -414,6 +417,10 @@ public class RegistarProjeto extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnRemoverActionPerformed
+
+    private void ftxFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxFimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftxFimActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -47,15 +47,21 @@ public class RegistarUtilizador extends javax.swing.JFrame {
             txtEmail.requestFocus();
             return;
         }
-                
+                if (sistema.validaEmail(txtEmail.getText()) == false){
+                    JOptionPane.showMessageDialog(null, "Email Errado", "Erro !", JOptionPane.INFORMATION_MESSAGE);
+               txtEmail.requestFocus();
+               return;
+                }
                 
                 String username = this.txtUsername.getText();
                 String password = new String(txtPassword.getPassword());
                 String morada = this.txtMorada.getText();
                 String nome = this.txtNome.getText();
                 String email = this.txtEmail.getText();
-                String telefone = this.txtTelefone.getText();
-
+                String telefone = this.txaTelefone.getText();
+                
+                
+                
                 if (sistema.getListautilizadores().ExisteUtilizador(username) == false) {
                     //CRIA NOVO UTILIZADOR COM OS DADOS INTRODUZIDOS                
                     Utilizador u = new Utilizador(username, password, nome, morada, telefone, email);
@@ -63,7 +69,7 @@ public class RegistarUtilizador extends javax.swing.JFrame {
                     sistema.guardarObjectos();
                     JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Utilizador já exoste !",
+                    JOptionPane.showMessageDialog(this, "Utilizador já existe !",
                             "Autenticação", JOptionPane.WARNING_MESSAGE);
                     txtUsername.requestFocus();
                 }
@@ -95,11 +101,17 @@ public class RegistarUtilizador extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         txtMorada = new javax.swing.JTextField();
         txtConfirmarEmail = new javax.swing.JTextField();
-        txtTelefone = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         btnGravar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        txaTelefone = new javax.swing.JFormattedTextField();
+        try{
+            javax.swing.text.MaskFormatter telefone = new javax.swing.text.MaskFormatter("(+###) ### ### ###");
+
+            txaTelefone = new javax.swing.JFormattedTextField(telefone);
+        }catch(Exception e){
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registo");
@@ -169,7 +181,7 @@ public class RegistarUtilizador extends javax.swing.JFrame {
                                 .addComponent(txtEmail)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel9))
-                            .addComponent(txtTelefone)))
+                            .addComponent(txaTelefone)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -217,7 +229,7 @@ public class RegistarUtilizador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -257,13 +269,13 @@ public class RegistarUtilizador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JFormattedTextField txaTelefone;
     private javax.swing.JTextField txtConfirmarEmail;
     private javax.swing.JPasswordField txtConfirmarPassword;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMorada;
     private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtTelefone;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

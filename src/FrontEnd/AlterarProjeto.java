@@ -25,9 +25,9 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
     }
 
-    public AlterarProjeto(Sistema dados) {
+    public AlterarProjeto(Sistema sistema) {
         initComponents();
-        this.sistema = dados;
+        this.sistema = sistema;
 
     }
 
@@ -195,8 +195,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
         lblFim.setText("Data Fim Projeto");
 
-        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        ftxFim.setText("dd/mm/yyyy");
+        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/Y"))));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 204));
@@ -229,8 +228,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
             }
         });
 
-        ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        ftxInicio.setText("dd/mm/yyyy");
+        ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/Y"))));
 
         lblColaborador.setText("Colaboradores");
 
