@@ -47,7 +47,11 @@ public class RegistarUtilizador extends javax.swing.JFrame {
             txtEmail.requestFocus();
             return;
         }
-                
+                if (sistema.validaEmail(txtEmail.getText()) == false){
+                    JOptionPane.showMessageDialog(null, "Email Errado", "Erro !", JOptionPane.INFORMATION_MESSAGE);
+               txtEmail.requestFocus();
+               return;
+                }
                 
                 String username = this.txtUsername.getText();
                 String password = new String(txtPassword.getPassword());
@@ -55,7 +59,9 @@ public class RegistarUtilizador extends javax.swing.JFrame {
                 String nome = this.txtNome.getText();
                 String email = this.txtEmail.getText();
                 String telefone = this.txaTelefone.getText();
-
+                
+                
+                
                 if (sistema.getListautilizadores().ExisteUtilizador(username) == false) {
                     //CRIA NOVO UTILIZADOR COM OS DADOS INTRODUZIDOS                
                     Utilizador u = new Utilizador(username, password, nome, morada, telefone, email);
@@ -63,7 +69,7 @@ public class RegistarUtilizador extends javax.swing.JFrame {
                     sistema.guardarObjectos();
                     JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Utilizador já exoste !",
+                    JOptionPane.showMessageDialog(this, "Utilizador já existe !",
                             "Autenticação", JOptionPane.WARNING_MESSAGE);
                     txtUsername.requestFocus();
                 }

@@ -7,6 +7,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+
 public class Sistema implements java.io.Serializable {
 
     //VARIÁVEIS OBJETOS
@@ -34,6 +40,7 @@ public class Sistema implements java.io.Serializable {
     private ArrayList<Colaborador> arraylistacolaborador;
 
     private boolean utilizador_autenticado = false;
+    private boolean emailvalido = true;
 
     //FIM VARIÁVEIS OBJETOS
     //CONSTRUTOR , INICIAR OS OBJETOS
@@ -251,18 +258,26 @@ public class Sistema implements java.io.Serializable {
         return date;
     }
            
-   public String Horatexto(LocalDate data){
-        DateTimeFormatter formatodata = DateTimeFormatter.ofPattern("HH:mm");
-
-        //crio o objeto localdate que formata a informação intoduzida para o formato que eu paremetrizei em formatodata
-        String date = formatodata.format(data);
-
-        return date;
-    }
+   
 
     //Fecha a aplicação
     public void terminar() {
         System.exit(0);
     }
+    
+    
+    public boolean validaEmail(String email){	
+	emailvalido = true;
+	Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
+	Matcher m = p.matcher(email);
+	boolean matchFound = m.matches();
+
+	if (!matchFound) {
+		
+		          emailvalido=false;
+								
+	}
+        return emailvalido;
+}
 
 }

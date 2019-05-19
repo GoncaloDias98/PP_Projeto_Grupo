@@ -8,11 +8,11 @@ import javax.swing.JOptionPane;
 
 public class AlterarPerfil extends javax.swing.JFrame {
 
-    private Sistema dados;
+    private Sistema sistema;
 
-    public AlterarPerfil(Sistema dados) {
+    public AlterarPerfil(Sistema sistema) {
         initComponents();
-        this.dados = dados;
+        this.sistema = sistema;
     }
 
     @SuppressWarnings("unchecked")
@@ -154,12 +154,12 @@ public class AlterarPerfil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        String username = dados.getUtilizadorLigado().getUser();
-        String password = dados.getUtilizadorLigado().getPassword();
-        String nome = dados.getUtilizadorLigado().getNome();
-        String morada = dados.getUtilizadorLigado().getMorada();
-        String email = dados.getUtilizadorLigado().getEmail();
-        String telefone = dados.getUtilizadorLigado().getTelefone();
+        String username = sistema.getUtilizadorLigado().getUser();
+        String password = sistema.getUtilizadorLigado().getPassword();
+        String nome = sistema.getUtilizadorLigado().getNome();
+        String morada = sistema.getUtilizadorLigado().getMorada();
+        String email = sistema.getUtilizadorLigado().getEmail();
+        String telefone = sistema.getUtilizadorLigado().getTelefone();
 
         this.txtUsername.setText(username);
         this.txtPassword.setText(password);
@@ -188,6 +188,12 @@ if (this.txtEmail.getText().isEmpty()) {
             txtEmail.requestFocus();
             return;
         }
+
+if (sistema.validaEmail(txtEmail.getText()) == false){
+                    JOptionPane.showMessageDialog(null, "Email Errado", "Erro !", JOptionPane.INFORMATION_MESSAGE);
+               txtEmail.requestFocus();
+               return;
+                }
         String username = this.txtUsername.getText();
         String password = new String(this.txtPassword.getPassword());
         String nome = this.txtNome.getText();
@@ -196,15 +202,15 @@ if (this.txtEmail.getText().isEmpty()) {
         String telefone = this.txaTelefone.getText();
 
         //dados.getUtilizadorLigado().setUser(username);
-        dados.getUtilizadorLigado().setPassword(password);
-        dados.getUtilizadorLigado().setNome(nome);
-        dados.getUtilizadorLigado().setMorada(morada);
-        dados.getUtilizadorLigado().setTelefone(telefone);
-        dados.getUtilizadorLigado().setEmail(email);
+        sistema.getUtilizadorLigado().setPassword(password);
+        sistema.getUtilizadorLigado().setNome(nome);
+        sistema.getUtilizadorLigado().setMorada(morada);
+        sistema.getUtilizadorLigado().setTelefone(telefone);
+        sistema.getUtilizadorLigado().setEmail(email);
         JOptionPane.showMessageDialog(this, "Perfil Alterado com sucesso !",
                 "Alteração", JOptionPane.INFORMATION_MESSAGE);
         
-        dados.guardarObjectos();
+        sistema.guardarObjectos();
 
     }//GEN-LAST:event_btnGravarActionPerformed
 
