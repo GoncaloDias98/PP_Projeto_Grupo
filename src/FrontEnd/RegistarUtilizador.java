@@ -68,6 +68,7 @@ public class RegistarUtilizador extends javax.swing.JFrame {
                     sistema.getListautilizadores().inserirUtilizador(u);
                     sistema.guardarObjectos();
                     JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Utilizador já existe !",
                             "Autenticação", JOptionPane.WARNING_MESSAGE);

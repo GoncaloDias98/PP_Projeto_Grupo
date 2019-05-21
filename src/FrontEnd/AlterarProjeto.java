@@ -47,12 +47,33 @@ public class AlterarProjeto extends javax.swing.JFrame {
             tm.addRow(new Object[]{c.getUser(), c.getNome()});
         }
         this.tblListaColaboradores.setModel(tm);
+        this.cmbColaborador.removeAllItems();
+        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
+            //Utilizador toma o valor da posição do array !
+            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
+            //Adiciona o valor do utilizador e do nome na linha da tabela !
+
+            this.cmbColaborador.addItem(u.getUser());
+
+        }
+
+        for (Colaborador c : projeto.getArraylistcolaborador()) {
+
+            for (int i = 0; i < cmbColaborador.getItemCount(); i = i + 1) {
+                if ((cmbColaborador.getItemAt(i).equals(c.getUser())) || (cmbColaborador.getItemAt(i).equals(projeto.getGestor().getUser()))){
+
+                    this.cmbColaborador.removeItem(cmbColaborador.getItemAt(i));
+                }
+            }
+
+        }
     }
 
     private void guardar() {
 
         //Cria as variáveis com os sistema dos objetos
         String titulo = this.txtTitulo.getText();
+        ListaColaboradores tmplist = new ListaColaboradores();
         String descricao = this.txaDescricao.getText();
         String datainicio = this.ftxInicio.getText();
         String datafim = this.ftxFim.getText();
@@ -130,15 +151,16 @@ public class AlterarProjeto extends javax.swing.JFrame {
                 //valida se o utilizador autenticado é gestor do projeto
                 if (u.getUser().equals(user)) {
                     Colaborador c = new Colaborador(u.getUser(), u.getPassword(), u.getNome(), u.getMorada(), u.getTelefone(), u.getEmail());
-                    sistema.getListacolaboradores().inserirColaborador(c);
+                    tmplist.inserirColaborador(c);
                 }
             }
         }
-        projeto.setArraylistcolaborador(sistema.getListacolaboradores().getarraylistcolaborador());
+        projeto.setArraylistcolaborador(tmplist.getarraylistcolaborador());
 
         sistema.guardarObjectos();
         JOptionPane.showMessageDialog(this, "Projeto Alterado com sucesso !",
                 "Alteração", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
         //Guarda para ficheiro !!
 
     }
@@ -195,7 +217,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
         lblFim.setText("Data Fim Projeto");
 
-        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/Y"))));
+        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 204));
@@ -228,7 +250,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
             }
         });
 
-        ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/Y"))));
+        ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         lblColaborador.setText("Colaboradores");
 
@@ -408,14 +430,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnF4ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        this.cmbColaborador.removeAllItems();
-        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
-            //Utilizador toma o valor da posição do array !
-            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
-            //Adiciona o valor do utilizador e do nome na linha da tabela !
-            this.cmbColaborador.addItem(u.getUser());
 
-        }
 
     }//GEN-LAST:event_formWindowOpened
 
