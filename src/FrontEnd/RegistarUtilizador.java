@@ -13,9 +13,9 @@ public class RegistarUtilizador extends javax.swing.JFrame {
     private Utilizador utilizador;
 
     //CRIAÇÃO DO CONSTRUTOR 
-    public RegistarUtilizador(Sistema dados) {
+    public RegistarUtilizador(Sistema sistema) {
         initComponents();
-        this.sistema = dados;
+        this.sistema = sistema;
     }
 
     @SuppressWarnings("unchecked")

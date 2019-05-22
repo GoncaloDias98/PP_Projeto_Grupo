@@ -12,12 +12,12 @@ public class Tarefa implements java.io.Serializable {
     private LocalDate datafim;
     private Estado estadotarefa;
     private PrioridadeTarefas prioridade;
-    private Projeto projeto;
+    
 
     public Tarefa() {
     }
 
-    public Tarefa(int numtarefa, String titulo, Utilizador criadopor, String descricao, LocalDate datainicio, LocalDate datafim, Estado estadotarefa, PrioridadeTarefas prioridade, Projeto projeto) {
+    public Tarefa(int numtarefa, String titulo, Utilizador criadopor, String descricao, LocalDate datainicio, LocalDate datafim, Estado estadotarefa, PrioridadeTarefas prioridade) {
         this.numtarefa = numtarefa;
         this.titulo = titulo;
         this.criadopor = criadopor;
@@ -26,12 +26,12 @@ public class Tarefa implements java.io.Serializable {
         this.datafim = datafim;
         this.estadotarefa = estadotarefa;
         this.prioridade = prioridade;
-        this.projeto = projeto;
+      
     }
 
-    public Projeto getProjeto() {
-        return projeto;
-    }
+   
+
+  
 
     public int getNumtarefa() {
         return numtarefa;
@@ -65,10 +65,9 @@ public class Tarefa implements java.io.Serializable {
         return prioridade;
     }
 
-    public void setProjeto(Projeto projeto) {
-        this.projeto = projeto;
-    }
+ 
 
+  
     public void setNumtarefa(int numtarefa) {
         this.numtarefa = numtarefa;
     }

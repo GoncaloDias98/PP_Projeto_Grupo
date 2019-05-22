@@ -12,20 +12,22 @@ public class Projeto implements java.io.Serializable {
     private String descricao;
     private LocalDate datainicio;
     private LocalDate datafim;
-    private ListaTarefasProjeto tarefas;
+    private TarefasProjeto tarefas;
     private Gestor gestor;
     private Utilizador utilizador;
     private Colaborador colaborador;
     private Estado estadoprojeto;
     private Sistema dados;
     private ArrayList<Colaborador> arraylistcolaborador = new ArrayList<Colaborador>();
-    private ListaColaboradores listacolaboradores;
+
+    private TarefasProjeto listatarefasprojeto;
+    private ArrayList<TarefasProjeto> arraylistalistatarefasprojeto = new ArrayList<TarefasProjeto>();
 
     //criação do Construtor
     public Projeto() {
     }
 
-    public Projeto(int numprojeto, String titulo, String descricao, LocalDate datainicio, LocalDate datafim, Gestor gestor, ArrayList<Colaborador> arraylistcolaborador, ListaColaboradores listacolaboradores, Estado estadoprojeto) {
+    public Projeto(int numprojeto, String titulo, String descricao, LocalDate datainicio, LocalDate datafim, Gestor gestor, ArrayList<Colaborador> arraylistcolaborador, ArrayList<TarefasProjeto> arraylistalistatarefasprojeto, Estado estadoprojeto) {
 
         this.numprojeto = numprojeto;
         this.titulo = titulo;
@@ -34,18 +36,14 @@ public class Projeto implements java.io.Serializable {
         this.datafim = datafim;
         this.gestor = gestor;
         this.estadoprojeto = estadoprojeto;
-        this.listacolaboradores = listacolaboradores;
 
+        this.arraylistalistatarefasprojeto = arraylistalistatarefasprojeto;
         this.arraylistcolaborador = arraylistcolaborador;
 
     }
 
-    public void setListacolaboradores(ListaColaboradores listacolaboradores) {
-        this.listacolaboradores = listacolaboradores;
-    }
-
-    public ListaColaboradores getListacolaboradores() {
-        return listacolaboradores;
+    public ArrayList<TarefasProjeto> getArraylistalistatarefasprojeto() {
+        return arraylistalistatarefasprojeto;
     }
 
     public void setColaborador(Colaborador colaborador) {
@@ -85,7 +83,7 @@ public class Projeto implements java.io.Serializable {
         return datafim;
     }
 
-    public ListaTarefasProjeto getTarefas() {
+    public TarefasProjeto getTarefas() {
         return tarefas;
     }
 
@@ -100,6 +98,10 @@ public class Projeto implements java.io.Serializable {
     //Metodos SET !
     public void setNumprojeto(int numprojeto) {
         this.numprojeto = numprojeto;
+    }
+
+    public void setArraylistalistatarefasprojeto(ArrayList<TarefasProjeto> arraylistalistatarefasprojeto) {
+        this.arraylistalistatarefasprojeto = arraylistalistatarefasprojeto;
     }
 
     public void setTitulo(String titulo) {
@@ -118,7 +120,7 @@ public class Projeto implements java.io.Serializable {
         this.datafim = datafim;
     }
 
-    public void setTarefas(ListaTarefasProjeto tarefas) {
+    public void setTarefas(TarefasProjeto tarefas) {
         this.tarefas = tarefas;
     }
 

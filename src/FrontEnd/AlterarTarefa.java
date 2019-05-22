@@ -28,7 +28,7 @@ public class AlterarTarefa extends javax.swing.JFrame {
         this.ftxFim.setText(sistema.Datatexto(tarefa.getDatafim()));
         this.txaDescricao.setText(tarefa.getDescricao());
         this.txtTitulo.setText(tarefa.getTitulo());
-        this.cmbProjeto.setSelectedItem(tarefa.getProjeto().getTitulo());
+       /* this.cmbProjeto.setSelectedItem(tarefa.getProjeto().getTitulo());*/
         this.cmbEstado.setSelectedItem(tarefa.getEstadotarefa().getDescricao());
         this.cmbPrioridadeTarefas.setSelectedItem(tarefa.getPrioridade().getDescricao());
         this.txtNumero.setText(String.valueOf(tarefa.getNumtarefa()));
@@ -289,14 +289,14 @@ public class AlterarTarefa extends javax.swing.JFrame {
             tarefa.setPrioridade(sistema.getPrioridadestarefas().baixa);
         }
 
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+      /*  for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             //apanha o valor do array !
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
 
             if (this.cmbProjeto.getSelectedItem() == p.getTitulo()) {
                 tarefa.setProjeto(p);
             }
-        }
+        }*/
 
         
         sistema.guardarObjectos();

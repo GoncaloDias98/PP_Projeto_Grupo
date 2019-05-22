@@ -44,7 +44,7 @@ public class ListaTarefas extends javax.swing.JFrame {
 
             Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(i);
             //se for gestor mostra na linha, senão for, passa à frente !!
-            tm.addRow(new Object[]{t.getProjeto().getNumprojeto(), t.getProjeto().getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
+            tm.addRow(new Object[]{ t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
 
             //------------------------------------PROJETO EM ATRASO     ------------------------------
             a = new SimpleDateFormat("dd/MM/YYYY").format(new Date());

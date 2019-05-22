@@ -8,6 +8,7 @@ public class ListaProjetos implements java.io.Serializable {
     private Utilizador utilizador;
     private Gestor gestor;
     private Sistema dados;
+    
 
     public ArrayList<Projeto> getArraylistaprojeto() {
         return arraylistaprojeto;

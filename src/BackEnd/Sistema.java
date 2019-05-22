@@ -8,11 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-
 
 public class Sistema implements java.io.Serializable {
 
@@ -21,6 +18,7 @@ public class Sistema implements java.io.Serializable {
     public static final String FICHEIRO_UTILIZADORES = "./utilizadores.dat";
     public static final String FICHEIRO_PROJETOS = "./projetos.dat";
     public static final String FICHEIRO_TAREFAS = "./tarefas.dat";
+    public static final String FICHEIRO_TAREFASPROJETO = "./tarefasprojeto.dat";
 
     private Utilizador utilizador;
     private Utilizador utilizadorligado;
@@ -30,13 +28,13 @@ public class Sistema implements java.io.Serializable {
     private PrioridadeTarefas prioridadestarefas;
     private Projeto projeto;
     private Tarefa tarefa;
-
+    private ListaTarefasProjeto listatarefasprojeto;
     private ListaUtilizadores listautilizadores;
     private ListaColaboradores listacolaboradores;
     private ListaGestor listagestor;
     private ListaProjetos listaprojetos;
     private ListaTarefas listatarefas;
-    private ListaTarefasProjeto listatarefasprojeto;
+    private TarefasProjeto tarefasprojeto;
 
     private ArrayList<Colaborador> arraylistacolaborador;
 
@@ -56,24 +54,30 @@ public class Sistema implements java.io.Serializable {
         listatarefasprojeto = new ListaTarefasProjeto();
         listaprojetos = new ListaProjetos();
         listatarefas = new ListaTarefas();
-        listatarefasprojeto = new ListaTarefasProjeto();
+        tarefasprojeto = new TarefasProjeto();
 
         // arraylistacolaborador = new ArrayList<Colaborador>();
-        if (!new File(FICHEIRO_UTILIZADORES).exists() ) {
+        if (!new File(FICHEIRO_UTILIZADORES).exists()) {
             //inicializaManual();
             guardarObjectos();
         } else {
             lerObjectos();
         }
-        
+
         if (!new File(FICHEIRO_PROJETOS).exists()) {
             //inicializaManual();
             guardarObjectos();
         } else {
             lerObjectos();
         }
-        
+
         if (!new File(FICHEIRO_TAREFAS).exists()) {
+            //inicializaManual();
+            guardarObjectos();
+        } else {
+            lerObjectos();
+        }
+         if (!new File(FICHEIRO_TAREFASPROJETO).exists()) {
             //inicializaManual();
             guardarObjectos();
         } else {
@@ -136,15 +140,19 @@ public class Sistema implements java.io.Serializable {
         return listatarefas;
     }
 
-    public ListaTarefasProjeto getListatarefasprojeto() {
-        return listatarefasprojeto;
-    }
-
     public boolean isUtilizador_autenticado() {
         return utilizador_autenticado;
     }
 
+    public TarefasProjeto getTarefasprojeto() {
+        return tarefasprojeto;
+    }
 
+    public ListaTarefasProjeto getListatarefasprojeto() {
+        return listatarefasprojeto;
+    }
+
+    
     /* public ArrayList<Utilizador> getArraylistautilizador() {
         return arraylistautilizador;
     }*/
@@ -195,6 +203,7 @@ public class Sistema implements java.io.Serializable {
         boolean utilizadoresOk = Serializacao.guardarObjecto(listautilizadores.getArraylistautilizador(), FICHEIRO_UTILIZADORES);
         boolean projetoOk = Serializacao.guardarObjecto(listaprojetos.getArraylistaprojeto(), FICHEIRO_PROJETOS);
         boolean tarefasOk = Serializacao.guardarObjecto(listatarefas.getArraylistatarefa(), FICHEIRO_TAREFAS);
+        boolean tarefasprojetoOk = Serializacao.guardarObjecto(listatarefasprojeto.getListatarefasprojeto(), FICHEIRO_TAREFASPROJETO);
 
         if (!utilizadoresOk) {
             System.out.println("Ocorreu um erro ao gravar os objetos");
@@ -206,7 +215,12 @@ public class Sistema implements java.io.Serializable {
         } else {
             System.out.println("Objectos guardados");
         }
-         if (!tarefasOk) {
+        if (!tarefasOk) {
+            System.out.println("Ocorreu um erro ao gravar os objetos");
+        } else {
+            System.out.println("Objectos guardados");
+        }
+         if (!tarefasprojetoOk) {
             System.out.println("Ocorreu um erro ao gravar os objetos");
         } else {
             System.out.println("Objectos guardados");
@@ -217,6 +231,7 @@ public class Sistema implements java.io.Serializable {
         Object utilizadores = Serializacao.lerObjecto(FICHEIRO_UTILIZADORES);
         Object projetos = Serializacao.lerObjecto(FICHEIRO_PROJETOS);
         Object tarefas = Serializacao.lerObjecto(FICHEIRO_TAREFAS);
+        Object tarefasprojeto = Serializacao.lerObjecto(FICHEIRO_TAREFASPROJETO);
 
         if (utilizadores != null) {
             listautilizadores.setArraylistautilizador((ArrayList<Utilizador>) utilizadores);
@@ -230,12 +245,18 @@ public class Sistema implements java.io.Serializable {
         } else {
             System.out.println("Ocorreu um erro ao ler o ficheiro de projetos");
         }
-        
+
         if (tarefas != null) {
             listatarefas.setArraylistatarefa((ArrayList<Tarefa>) tarefas);
             System.out.println("lista de tarefas carregada");
         } else {
             System.out.println("Ocorreu um erro ao ler o ficheiro de tarefas");
+        }
+        if (tarefasprojeto != null) {
+            listatarefasprojeto.setListatarefasprojeto((ArrayList<TarefasProjeto>) tarefasprojeto);
+            System.out.println("lista de tarefasprojeto carregada");
+        } else {
+            System.out.println("Ocorreu um erro ao ler o ficheiro de tarefasprojeto");
         }
 
     }
@@ -249,9 +270,8 @@ public class Sistema implements java.io.Serializable {
 
         return localDate;
     }
-    
-   
-    public String Datatexto(LocalDate data){
+
+    public String Datatexto(LocalDate data) {
         DateTimeFormatter formatodata = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         //crio o objeto localdate que formata a informação intoduzida para o formato que eu paremetrizei em formatodata
@@ -259,27 +279,24 @@ public class Sistema implements java.io.Serializable {
 
         return date;
     }
-           
-   
 
     //Fecha a aplicação
     public void terminar() {
         System.exit(0);
     }
-    
-    
-    public boolean validaEmail(String email){	
-	emailvalido = true;
-	Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
-	Matcher m = p.matcher(email);
-	boolean matchFound = m.matches();
 
-	if (!matchFound) {
-		
-		          emailvalido=false;
-								
-	}
+    public boolean validaEmail(String email) {
+        emailvalido = true;
+        Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
+        Matcher m = p.matcher(email);
+        boolean matchFound = m.matches();
+
+        if (!matchFound) {
+
+            emailvalido = false;
+
+        }
         return emailvalido;
-}
+    }
 
 }

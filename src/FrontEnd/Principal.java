@@ -38,14 +38,17 @@ public class Principal extends javax.swing.JFrame {
         lblUtilizador = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         lblDataSistema = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuRegistar = new javax.swing.JMenu();
-        criarProjeto = new javax.swing.JMenuItem();
-        criarTarefa = new javax.swing.JMenuItem();
+        jmiProjeto = new javax.swing.JMenuItem();
+        jmiListaTarefas = new javax.swing.JMenuItem();
+        jmiTarefa = new javax.swing.JMenuItem();
         menuListagens = new javax.swing.JMenu();
-        listarProjetos = new javax.swing.JMenuItem();
-        listarTarefas = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmiProjetos = new javax.swing.JMenuItem();
+        jmiTarefas = new javax.swing.JMenuItem();
+        jmiListadeTarefas = new javax.swing.JMenuItem();
+        jmiUtilizadores = new javax.swing.JMenuItem();
         menuGestão = new javax.swing.JMenu();
         menuAdmin = new javax.swing.JMenu();
         jmiAlterarPerfil = new javax.swing.JMenuItem();
@@ -94,51 +97,74 @@ public class Principal extends javax.swing.JFrame {
         jToolBar1.add(lblDataSistema);
         lblDataSistema.getAccessibleContext().setAccessibleName("");
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         menuRegistar.setText("Registar");
 
-        criarProjeto.setText("Novo Projeto");
-        criarProjeto.addActionListener(new java.awt.event.ActionListener() {
+        jmiProjeto.setText("Projeto");
+        jmiProjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                criarProjetoActionPerformed(evt);
+                jmiProjetoActionPerformed(evt);
             }
         });
-        menuRegistar.add(criarProjeto);
+        menuRegistar.add(jmiProjeto);
 
-        criarTarefa.setText("Novo Tarefa");
-        criarTarefa.addActionListener(new java.awt.event.ActionListener() {
+        jmiListaTarefas.setText("Lista Tarefas");
+        jmiListaTarefas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                criarTarefaActionPerformed(evt);
+                jmiListaTarefasActionPerformed(evt);
             }
         });
-        menuRegistar.add(criarTarefa);
+        menuRegistar.add(jmiListaTarefas);
+
+        jmiTarefa.setText("Tarefa");
+        jmiTarefa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiTarefaActionPerformed(evt);
+            }
+        });
+        menuRegistar.add(jmiTarefa);
 
         jMenuBar1.add(menuRegistar);
 
         menuListagens.setText("Listagens");
 
-        listarProjetos.setText("Listar Projetos");
-        listarProjetos.addActionListener(new java.awt.event.ActionListener() {
+        jmiProjetos.setText("Projetos");
+        jmiProjetos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listarProjetosActionPerformed(evt);
+                jmiProjetosActionPerformed(evt);
             }
         });
-        menuListagens.add(listarProjetos);
+        menuListagens.add(jmiProjetos);
 
-        listarTarefas.setText("Listar Tarefas");
-        listarTarefas.addActionListener(new java.awt.event.ActionListener() {
+        jmiTarefas.setText("Tarefas");
+        jmiTarefas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listarTarefasActionPerformed(evt);
+                jmiTarefasActionPerformed(evt);
             }
         });
-        menuListagens.add(listarTarefas);
+        menuListagens.add(jmiTarefas);
 
-        jMenuItem1.setText("Listar Utilizadores");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jmiListadeTarefas.setText("Lista de Tarefas");
+        jmiListadeTarefas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jmiListadeTarefasActionPerformed(evt);
             }
         });
-        menuListagens.add(jMenuItem1);
+        menuListagens.add(jmiListadeTarefas);
+
+        jmiUtilizadores.setText("Utilizadores");
+        jmiUtilizadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiUtilizadoresActionPerformed(evt);
+            }
+        });
+        menuListagens.add(jmiUtilizadores);
 
         jMenuBar1.add(menuListagens);
 
@@ -188,11 +214,16 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addGap(167, 167, 167))
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jButton1)))
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -222,10 +253,16 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addGap(70, 70, 70)
-                .addComponent(btnGravar)
-                .addGap(31, 31, 31)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(btnGravar)
+                        .addGap(31, 31, 31)
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(71, 71, 71))))
         );
 
         pack();
@@ -240,30 +277,30 @@ public class Principal extends javax.swing.JFrame {
         alterarperfil.setVisible(true);
     }//GEN-LAST:event_jmiAlterarPerfilActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jmiUtilizadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiUtilizadoresActionPerformed
         ListaUtilizadores listautilizadores = new ListaUtilizadores(sistema);
         listautilizadores.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jmiUtilizadoresActionPerformed
 
-    private void listarTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarTarefasActionPerformed
+    private void jmiTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTarefasActionPerformed
         ListaTarefas listatarefas = new ListaTarefas(sistema);
         listatarefas.setVisible(true);
-    }//GEN-LAST:event_listarTarefasActionPerformed
+    }//GEN-LAST:event_jmiTarefasActionPerformed
 
-    private void listarProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarProjetosActionPerformed
+    private void jmiProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProjetosActionPerformed
         ListaProjetos listaprojetos = new ListaProjetos(sistema);
         listaprojetos.setVisible(true);
-    }//GEN-LAST:event_listarProjetosActionPerformed
+    }//GEN-LAST:event_jmiProjetosActionPerformed
 
-    private void criarTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarTarefaActionPerformed
+    private void jmiTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTarefaActionPerformed
         RegistarTarefa registartarefa = new RegistarTarefa(sistema);
         registartarefa.setVisible(true);
-    }//GEN-LAST:event_criarTarefaActionPerformed
+    }//GEN-LAST:event_jmiTarefaActionPerformed
 
-    private void criarProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarProjetoActionPerformed
+    private void jmiProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProjetoActionPerformed
         RegistarProjeto registarprojeto = new RegistarProjeto(sistema);
         registarprojeto.setVisible(true);
-    }//GEN-LAST:event_criarProjetoActionPerformed
+    }//GEN-LAST:event_jmiProjetoActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
        AlterarProjeto alterarprojeto = new AlterarProjeto(sistema);
@@ -275,12 +312,25 @@ public class Principal extends javax.swing.JFrame {
         alterartarefa.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jmiListaTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiListaTarefasActionPerformed
+       ResgistarListaTarefas resgistarlistatarefas = new ResgistarListaTarefas(sistema);
+        resgistarlistatarefas.setVisible(true);
+    }//GEN-LAST:event_jmiListaTarefasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      sistema.getListatarefasprojeto().listaconsulta();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jmiListadeTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiListadeTarefasActionPerformed
+         ListaTarefasProjeto listatarefasprojeto = new ListaTarefasProjeto(sistema);
+        listatarefasprojeto.setVisible(true);
+    }//GEN-LAST:event_jmiListadeTarefasActionPerformed
+
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGravar;
-    private javax.swing.JMenuItem criarProjeto;
-    private javax.swing.JMenuItem criarTarefa;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -290,7 +340,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu jPopupMenu1;
@@ -298,11 +347,16 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenuItem jmiAlterarPerfil;
+    private javax.swing.JMenuItem jmiListaTarefas;
+    private javax.swing.JMenuItem jmiListadeTarefas;
+    private javax.swing.JMenuItem jmiProjeto;
+    private javax.swing.JMenuItem jmiProjetos;
+    private javax.swing.JMenuItem jmiTarefa;
+    private javax.swing.JMenuItem jmiTarefas;
+    private javax.swing.JMenuItem jmiUtilizadores;
     private javax.swing.JLabel lblDataSistema;
     private javax.swing.JLabel lblGesProjeto;
     private javax.swing.JLabel lblUtilizador;
-    private javax.swing.JMenuItem listarProjetos;
-    private javax.swing.JMenuItem listarTarefas;
     private javax.swing.JMenu menuAdmin;
     private javax.swing.JMenu menuGestão;
     private javax.swing.JMenu menuListagens;

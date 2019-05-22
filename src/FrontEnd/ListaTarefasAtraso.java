@@ -124,7 +124,7 @@ private void listarProjetos() {
                Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(i);
              if ((sistema.Datatexto(t.getDatafim())).compareTo(a) < 0) {
             //se for gestor mostra na linha, senão for, passa à frente !!
-            tm.addRow(new Object[]{t.getProjeto().getNumprojeto(), t.getProjeto().getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao()});
+            tm.addRow(new Object[]{ t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao()});
               
         }
             this.tblListaTarefasAtraso.setModel(tm);
