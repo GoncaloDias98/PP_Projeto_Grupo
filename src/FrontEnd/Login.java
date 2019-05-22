@@ -30,8 +30,10 @@ public class Login extends javax.swing.JFrame {
         }
         //VALIDA SE ESTÁ PREECHIDA A PASSWORD
         if (txtPassword.getPassword().length == 0) {
-            JOptionPane.showMessageDialog(this, "Introduza p.f. a sua password!");
-            txtPassword.requestFocusInWindow();
+           
+            JOptionPane.showMessageDialog(this, "Introduza p.f. a password de utilizador!",
+                    "Autenticação", JOptionPane.WARNING_MESSAGE);
+            
             return;
         }
         //VALIDA SE O UTILIZADOR E A PASSWORD  EXISTE NO ARRAY !
@@ -254,7 +256,7 @@ public class Login extends javax.swing.JFrame {
     private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyPressed
      
         if (evt.getKeyCode() == KeyEvent.VK_ENTER ) {
-            this.txtUsername.requestFocusInWindow();
+            
             Autenticar();
         }
     }//GEN-LAST:event_txtUsernameKeyPressed
