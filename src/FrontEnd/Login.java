@@ -15,6 +15,7 @@ public class Login extends javax.swing.JFrame {
     public Login(Sistema sistema) {
         initComponents();
         this.sistema = sistema;
+        
     }
     //CRIAÇÃO DO CONSTRUTOR, ESTANCIO O OBJETO DADOS !
 
@@ -30,7 +31,7 @@ public class Login extends javax.swing.JFrame {
         //VALIDA SE ESTÁ PREECHIDA A PASSWORD
         if (txtPassword.getPassword().length == 0) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. a sua password!");
-            txtPassword.requestFocus();
+            txtPassword.requestFocusInWindow();
             return;
         }
         //VALIDA SE O UTILIZADOR E A PASSWORD  EXISTE NO ARRAY !
@@ -76,7 +77,6 @@ public class Login extends javax.swing.JFrame {
         lfPassword = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         lfUsername = new javax.swing.JLabel();
 
         jMenu1.setText("File");
@@ -92,6 +92,11 @@ public class Login extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(java.awt.Color.white);
         setName("frmLogin"); // NOI18N
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -141,11 +146,9 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8_Male_User_35px.png"))); // NOI18N
 
         txtUsername.setToolTipText("");
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyPressed(evt);
             }
         });
 
@@ -165,9 +168,7 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lfUsername)
                             .addComponent(lfPassword))
-                        .addGap(190, 190, 190)
-                        .addComponent(jButton1)
-                        .addGap(0, 60, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -185,7 +186,7 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnSair)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -200,12 +201,8 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lfPassword))
-                    .addComponent(jButton1))
+                .addGap(19, 19, 19)
+                .addComponent(lfPassword)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -221,14 +218,6 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //APENAS PARA TESTE DE CONTROLO DE UTILIZADORES, CONSULTA OS UTILIZADORES EM ARRAY
-        sistema.getListautilizadores().ConsultaUtilizadores();
-        sistema.getListacolaboradores().ConsultaColaborador();
-        sistema.getListagestor().ConsultaGestor();
-        sistema.getListaprojetos().ConsultaProjetos();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         //CHAMA O METODO AUTENTICAR !
@@ -252,15 +241,33 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_formKeyPressed
 
     private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
- 
+  
+        // Invoked when a key has been pressed.
+        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER ) {
+         
+            Autenticar();
+        }
+        
     }//GEN-LAST:event_txtPasswordKeyReleased
+
+    private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyPressed
+     
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER ) {
+            this.txtUsername.requestFocusInWindow();
+            Autenticar();
+        }
+    }//GEN-LAST:event_txtUsernameKeyPressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+this.txtUsername.requestFocus();
+    }//GEN-LAST:event_formWindowOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private javax.swing.JButton btnRegisto;
     private javax.swing.JButton btnSair;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
