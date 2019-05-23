@@ -7,17 +7,12 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-public class ListarUtilizadores extends javax.swing.JDialog {
+public class ListarUtilizadores extends javax.swing.JFrame {
 
     private Sistema dados;
 
     public ListarUtilizadores(Sistema dados) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        this.setModal(true); 
-        //Mostra a centralização da janela
-        this.setLocationRelativeTo(null);
         this.dados = dados;
         ordenar();
     }

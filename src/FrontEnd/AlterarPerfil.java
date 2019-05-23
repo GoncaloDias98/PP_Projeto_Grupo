@@ -6,20 +6,13 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JOptionPane;
 
-public class AlterarPerfil extends javax.swing.JDialog {
+public class AlterarPerfil extends javax.swing.JFrame {
 
     private Sistema sistema;
 
     public AlterarPerfil(Sistema sistema) {
         initComponents();
         this.sistema = sistema;
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        
-        //Mostra a centralização da janela
-        this.setLocationRelativeTo(null);
-        
-        this.setModal(true); 
     }
 
     @SuppressWarnings("unchecked")

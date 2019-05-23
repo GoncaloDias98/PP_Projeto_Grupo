@@ -10,18 +10,13 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class ListarTarefasAtraso extends javax.swing.JDialog {
+public class ListarTarefasAtraso extends javax.swing.JFrame {
 
     private Sistema sistema;
     private String a;
 
     public ListarTarefasAtraso(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        this.setModal(true); 
-        //Mostra a centralização da janela
-        this.setLocationRelativeTo(null);
         this.sistema = sistema;
         ordenar();
     }

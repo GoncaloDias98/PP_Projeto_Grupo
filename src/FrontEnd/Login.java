@@ -14,11 +14,6 @@ public class Login extends javax.swing.JFrame {
     //CRIAÇÃO DO CONSTRUTOR, ESTANCIO O OBJETO DADOS !
     public Login(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        
-        //Mostra a centralização da janela
-        this.setLocationRelativeTo(null);
         this.sistema = sistema;
         
     }

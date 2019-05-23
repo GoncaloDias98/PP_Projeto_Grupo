@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter.ComparisonType;
 
-public class ListarTarefas extends javax.swing.JDialog {
+public class ListarTarefas extends javax.swing.JFrame {
 
     private Sistema sistema;
     private String a;
@@ -21,11 +21,6 @@ public class ListarTarefas extends javax.swing.JDialog {
 
     public ListarTarefas(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        this.setModal(true); 
-        //Mostra a centralização da janela
-        this.setLocationRelativeTo(null);
         this.sistema = sistema;
         ordenar();
     }
