@@ -143,6 +143,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
         //Guarda para ficheiro !!
         sistema.guardarObjectos();
         JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
 
     }
 
