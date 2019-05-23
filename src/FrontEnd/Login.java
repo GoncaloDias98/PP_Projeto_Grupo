@@ -33,7 +33,7 @@ public class Login extends javax.swing.JFrame {
            
             JOptionPane.showMessageDialog(this, "Introduza p.f. a password de utilizador!",
                     "Autenticação", JOptionPane.WARNING_MESSAGE);
-            
+                        txtPassword.requestFocus();
             return;
         }
         //VALIDA SE O UTILIZADOR E A PASSWORD  EXISTE NO ARRAY !
@@ -48,7 +48,7 @@ public class Login extends javax.swing.JFrame {
            
             JOptionPane.showMessageDialog(this, "O Nome de Utilizador e/ou Password estão errados",
                     "Autenticação", JOptionPane.WARNING_MESSAGE);
-            txtUsername.requestFocus();
+            //txtUsername.requestFocus();
             
         }
         /*if (dados.login(txtUsername.getText(), new String(txtPassword.getPassword()))) {
@@ -134,6 +134,9 @@ public class Login extends javax.swing.JFrame {
         });
 
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtPasswordKeyReleased(evt);
             }
@@ -246,10 +249,7 @@ public class Login extends javax.swing.JFrame {
   
         // Invoked when a key has been pressed.
         
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER ) {
-         
-            Autenticar();
-        }
+       
         
     }//GEN-LAST:event_txtPasswordKeyReleased
 
@@ -257,13 +257,20 @@ public class Login extends javax.swing.JFrame {
      
         if (evt.getKeyCode() == KeyEvent.VK_ENTER ) {
             
-            Autenticar();
+           Autenticar();
         }
     }//GEN-LAST:event_txtUsernameKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 this.txtUsername.requestFocus();
     }//GEN-LAST:event_formWindowOpened
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER ) {
+         
+            Autenticar();
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
-public class RegistarProjeto extends javax.swing.JFrame {
+public class RegistarProjeto extends javax.swing.JDialog {
 
     private Sistema sistema;
     private Estado estado;
@@ -21,6 +21,14 @@ public class RegistarProjeto extends javax.swing.JFrame {
     //Cria as colunas abaixo na tabela
     public RegistarProjeto(Sistema sistema) {
         initComponents();
+        this.setModal(true);           
+        
+        //Não permite o redimensionamento da janela
+        this.setResizable(false);                        
+        
+        //Mostra a centralização da janela
+        this.setLocationRelativeTo(null);
+        
         this.sistema = sistema;
         this.ftxInicio.setText(sistema.Datatexto(LocalDate.now()));
         this.ftxFim.setText(sistema.Datatexto(LocalDate.now()));
