@@ -193,7 +193,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
 
         lblInicio.setText("Data Inicio Projeto");
 
-        ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/y"))));
         ftxInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftxInicioActionPerformed(evt);
@@ -226,7 +226,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
 
         lblFim.setText("Data Fim Projeto");
 
-        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/y"))));
         ftxFim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftxFimActionPerformed(evt);

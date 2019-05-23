@@ -393,7 +393,7 @@ public class Principal extends javax.swing.JFrame {
     private int getProjetosConcluidos() {
         return contadorProjetosConcluidos;
     }
-    
+
     private void projetosEmCurso() {
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
@@ -406,13 +406,12 @@ public class Principal extends javax.swing.JFrame {
     private int getProjetosEmCurso() {
         return contadorProjetosEmCurso;
     }
-    
+
     private void projetosAtrasados() {
-        String a;
-        a = new SimpleDateFormat("dd/MM/YYYY").format(new Date());
+        LocalDate hoje = LocalDate.now();
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-               Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
-             if ((sistema.Datatexto(p.getDatafim())).compareTo(a) > 0) {
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+            if (p.getDatafim().isBefore(hoje)) {
                 contadorProjetosAtrasados++;
             }
         }

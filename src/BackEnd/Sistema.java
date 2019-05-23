@@ -274,7 +274,7 @@ public class Sistema implements java.io.Serializable {
     public String Datatexto(LocalDate data) {
         DateTimeFormatter formatodata = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        //crio o objeto localdate que formata a informação intoduzida para o formato que eu paremetrizei em formatodata
+        //crio o objeto localdate que formata a informação intoduzida para o formato que eu parameterizei em formatodata
         String date = formatodata.format(data);
 
         return date;
