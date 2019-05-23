@@ -7,6 +7,7 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ListarTarefasAtraso extends javax.swing.JFrame {
@@ -118,11 +119,12 @@ private void listarProjetos() {
         tm.addColumn("Estado");
         //percorre todo o array de projetos
         
-            a = new SimpleDateFormat("dd/MM/YYYY").format(new Date());
         for (int i = 0; i < sistema.getListatarefas().getArraylistatarefa().size(); i++) {
+            LocalDate hoje = LocalDate.now();
             //apanha o valor do array !
                Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(i);
-             if ((sistema.Datatexto(t.getDatafim())).compareTo(a) < 0) {
+               Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+             if (t.getDatafim().isBefore(hoje)) {
             //se for gestor mostra na linha, senão for, passa à frente !!
             tm.addRow(new Object[]{ t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao()});
               

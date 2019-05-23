@@ -1,23 +1,32 @@
-
 package FrontEnd;
+
 import BackEnd.*;
 import FrontEnd.*;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
 public class Principal extends javax.swing.JFrame {
+
     private Sistema sistema;
+    private int contadorProjetosConcluidos = 0;
+    private int contadorProjetosEmCurso = 0;
+    private int contadorProjetosAtrasados = 0;
 
     public Principal(Sistema sistema) {
         initComponents();
         this.sistema = sistema;
         this.lblUtilizador.setText(sistema.getUtilizadorLigado().getNome());
-    
         this.lblDataSistema.setText(LocalDate.now().toString());
+        projetosConcluidos();
+        projetosEmCurso();
+        projetosAtrasados();
+        this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos()));
+        this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso()));
+        this.nProjetosAtrasados.setText(String.valueOf(getProjetosAtrasados()));
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,6 +48,10 @@ public class Principal extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JToolBar.Separator();
         lblDataSistema = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        nProjetosConcluidos = new javax.swing.JLabel();
+        nProjetosEmCurso = new javax.swing.JLabel();
+        nProjetosAtrasados = new javax.swing.JLabel();
+        atualizarDashboard = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuRegistar = new javax.swing.JMenu();
         jmiProjeto = new javax.swing.JMenuItem();
@@ -101,6 +114,19 @@ public class Principal extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        nProjetosConcluidos.setText("...");
+
+        nProjetosEmCurso.setText("...");
+
+        nProjetosAtrasados.setText("...");
+
+        atualizarDashboard.setText("Atualizar");
+        atualizarDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarDashboardActionPerformed(evt);
             }
         });
 
@@ -218,20 +244,31 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nProjetosConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nProjetosEmCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nProjetosAtrasados, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(jButton1)))
-                .addGap(56, 56, 56)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(atualizarDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7)
-                    .addComponent(jLabel4)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -240,15 +277,18 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(nProjetosConcluidos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(nProjetosEmCurso))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(nProjetosAtrasados))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
@@ -256,7 +296,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(btnGravar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGravar)
+                            .addComponent(atualizarDashboard))
                         .addGap(31, 31, 31)
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -303,7 +345,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiProjetoActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-       AlterarProjeto alterarprojeto = new AlterarProjeto(sistema);
+        AlterarProjeto alterarprojeto = new AlterarProjeto(sistema);
         alterarprojeto.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -313,23 +355,74 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jmiListaTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiListaTarefasActionPerformed
-       ResgistarListaTarefas resgistarlistatarefas = new ResgistarListaTarefas(sistema);
+        ResgistarListaTarefas resgistarlistatarefas = new ResgistarListaTarefas(sistema);
         resgistarlistatarefas.setVisible(true);
     }//GEN-LAST:event_jmiListaTarefasActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      sistema.getListatarefasprojeto().listaconsulta();
-      sistema.getListaprojetos().ConsultaProjetos();
+        sistema.getListatarefasprojeto().listaconsulta();
+        sistema.getListaprojetos().ConsultaProjetos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jmiListadeTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiListadeTarefasActionPerformed
-         ListarTarefasProjeto listatarefasprojeto = new ListarTarefasProjeto(sistema);
+        ListarTarefasProjeto listatarefasprojeto = new ListarTarefasProjeto(sistema);
         listatarefasprojeto.setVisible(true);
     }//GEN-LAST:event_jmiListadeTarefasActionPerformed
 
-  
+    private void atualizarDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarDashboardActionPerformed
+        contadorProjetosConcluidos = 0;
+        contadorProjetosEmCurso = 0;
+        contadorProjetosAtrasados = 0;
+        projetosConcluidos();
+        projetosEmCurso();
+        projetosAtrasados();
+        this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos()));
+        this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso()));
+        this.nProjetosAtrasados.setText(String.valueOf(getProjetosAtrasados()));
+    }//GEN-LAST:event_atualizarDashboardActionPerformed
+
+    private void projetosConcluidos() {
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+            if (p.getEstadoprojeto() == sistema.getEstado().concluido) {
+                contadorProjetosConcluidos++;
+            }
+        }
+    }
+
+    private int getProjetosConcluidos() {
+        return contadorProjetosConcluidos;
+    }
+
+    private void projetosEmCurso() {
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+            if (p.getEstadoprojeto() == sistema.getEstado().iniciado) {
+                contadorProjetosEmCurso++;
+            }
+        }
+    }
+
+    private int getProjetosEmCurso() {
+        return contadorProjetosEmCurso;
+    }
+
+    private void projetosAtrasados() {
+        LocalDate hoje = LocalDate.now();
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+            if (p.getDatafim().isBefore(hoje)) {
+                contadorProjetosAtrasados++;
+            }
+        }
+    }
+
+    private int getProjetosAtrasados() {
+        return contadorProjetosAtrasados;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atualizarDashboard;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
@@ -362,5 +455,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu menuGestão;
     private javax.swing.JMenu menuListagens;
     private javax.swing.JMenu menuRegistar;
+    private javax.swing.JLabel nProjetosAtrasados;
+    private javax.swing.JLabel nProjetosConcluidos;
+    private javax.swing.JLabel nProjetosEmCurso;
     // End of variables declaration//GEN-END:variables
 }
