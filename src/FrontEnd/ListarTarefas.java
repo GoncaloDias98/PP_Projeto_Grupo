@@ -16,7 +16,6 @@ import javax.swing.RowFilter.ComparisonType;
 public class ListarTarefas extends javax.swing.JFrame {
 
     private Sistema sistema;
-    private String a;
     int atraso = 0;
 
     public ListarTarefas(Sistema sistema) {
@@ -114,7 +113,7 @@ public class ListarTarefas extends javax.swing.JFrame {
         lblDataInico = new javax.swing.JLabel();
         ftxInicio = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);

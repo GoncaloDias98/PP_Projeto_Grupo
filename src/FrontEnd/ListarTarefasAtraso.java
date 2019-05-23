@@ -13,7 +13,6 @@ import java.util.Date;
 public class ListarTarefasAtraso extends javax.swing.JFrame {
 
     private Sistema sistema;
-    private String a;
 
     public ListarTarefasAtraso(Sistema sistema) {
         initComponents();
