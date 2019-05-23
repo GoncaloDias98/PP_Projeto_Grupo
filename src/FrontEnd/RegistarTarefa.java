@@ -98,6 +98,12 @@ public class RegistarTarefa extends javax.swing.JFrame {
 
         jLabel1.setText("Projeto");
 
+        cmbProjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProjetoActionPerformed(evt);
+            }
+        });
+
         lblListaTarefas.setText("Lista de Tarefas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,7 +214,11 @@ public class RegistarTarefa extends javax.swing.JFrame {
         gravar();
     }//GEN-LAST:event_btnGravarActionPerformed
     public void gravar() {
+        
+        
+        
         Tarefa novat = new Tarefa();
+        TarefasProjeto tmplist = new TarefasProjeto();
 
         String titulo = this.txtTitulo.getText();
         String descricao = this.txaDescricao.getText();
@@ -268,16 +278,21 @@ public class RegistarTarefa extends javax.swing.JFrame {
             novat.setPrioridade(sistema.getPrioridadestarefas().baixa);
         }
 
-       /* for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            //apanha o valor do array !
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
-
-            if (this.cmbProjeto.getSelectedItem() == p.getTitulo()) {
-                novat.setProjeto(p);
-            }
-        }*/
-
         sistema.getListatarefas().InserirTarefa(novat);
+        
+        tmplist.getArraylistalistatarefas().add(novat);
+
+        String tarefaprojeto = this.cmbListaTarefas.getSelectedItem().toString();
+
+        for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+            //apanha o valor do array !
+            TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+            //valida se o utilizador autenticado é gestor do projeto
+            if (tp.getTitulo().equals(tarefaprojeto)) {
+
+                tp.getArraylistalistatarefas().add(novat);
+            }
+        }
         sistema.guardarObjectos();
         JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
 
@@ -294,6 +309,8 @@ public class RegistarTarefa extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.cmbProjeto.removeAllItems();
+        this.cmbListaTarefas.removeAllItems();
+ this.cmbProjeto.addItem("");
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
@@ -305,17 +322,31 @@ public class RegistarTarefa extends javax.swing.JFrame {
                     if ((sistema.getUtilizadorLigado().getUser().equals(c.getUser()))) {
                         this.cmbProjeto.addItem(p.getTitulo());
                     }
-                    //Utilizador toma o valor da posição do array !
-                    System.out.println("Colaborador" + c.getUser());
-                    System.out.println("Gestor" + p.getGestor().getUser());
-                    System.out.println("Utilizador Ligado" + sistema.getUtilizadorLigado().getUser());
+                   
 
                 }
             }
 
             //Adiciona o valor do utilizador e do nome na linha da tabela !
         }
+
+
     }//GEN-LAST:event_formWindowOpened
+
+    private void cmbProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProjetoActionPerformed
+        this.cmbListaTarefas.removeAllItems();
+
+       for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+            if (cmbProjeto.getSelectedItem().equals(p.getTitulo())) {
+                for (TarefasProjeto tp : p.getArraylistalistatarefasprojeto()) {
+
+                    this.cmbListaTarefas.addItem(tp.getTitulo());
+
+                }
+            }
+        }
+    }//GEN-LAST:event_cmbProjetoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

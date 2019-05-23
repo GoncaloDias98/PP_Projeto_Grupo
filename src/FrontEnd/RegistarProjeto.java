@@ -16,7 +16,7 @@ public class RegistarProjeto extends javax.swing.JFrame {
 
     private Sistema sistema;
     private Estado estado;
-    private ListaUtilizadores listautilizadores;
+    private ListarUtilizadores listautilizadores;
 
     //Cria as colunas abaixo na tabela
     public RegistarProjeto(Sistema sistema) {

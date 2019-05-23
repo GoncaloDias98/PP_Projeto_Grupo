@@ -146,13 +146,15 @@ public class Projeto implements java.io.Serializable {
 
     public void ConsultaProjeto() {
 
-        System.out.println("Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", Gestor=" + gestor + ", Colaborador=" + arraylistcolaborador + ", estadoprojeto=" + estadoprojeto);
+        System.out.println("Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", gestor=" + gestor + ", utilizador=" + utilizador + ", colaborador=" + colaborador + ", estadoprojeto=" + estadoprojeto + ", dados=" + dados + ", arraylistcolaborador=" + arraylistcolaborador + ", listatarefasprojeto=" + listatarefasprojeto + ", arraylistalistatarefasprojeto=" + arraylistalistatarefasprojeto);
     }
     //metodo To String 
 
     @Override
     public String toString() {
-        return "Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ",  Gestor=" + gestor + ", estadoprojeto=" + estadoprojeto + '}';
+        return "Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", gestor=" + gestor + ", utilizador=" + utilizador + ", colaborador=" + colaborador + ", estadoprojeto=" + estadoprojeto + ", dados=" + dados + ", arraylistcolaborador=" + arraylistcolaborador + ", listatarefasprojeto=" + listatarefasprojeto + ", arraylistalistatarefasprojeto=" + arraylistalistatarefasprojeto + '}';
     }
+
+    
 
 }

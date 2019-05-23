@@ -119,18 +119,18 @@ public class ResgistarListaTarefas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
-   try {
-     guardar();
-     this.dispose();
-        
-         } catch (Exception ex) {
-             JOptionPane.showMessageDialog(null,
+        try {
+            guardar();
+            this.dispose();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,
                     String.format("Ocorreu um erro ao gravar o registo: %s.\nO programa será encerrado.",
                             ex.getMessage()),
                     "Erro fatal", JOptionPane.ERROR_MESSAGE);
             sistema.terminar();
-        
-         }
+
+        }
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -138,7 +138,7 @@ public class ResgistarListaTarefas extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       this.cmbProjeto.removeAllItems();
+        this.cmbProjeto.removeAllItems();
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
@@ -160,33 +160,43 @@ public class ResgistarListaTarefas extends javax.swing.JFrame {
 
             //Adiciona o valor do utilizador e do nome na linha da tabela !
         }
-        
+
         System.out.println(sistema.getListatarefasprojeto().NumeroTarefaProjeto());
     }//GEN-LAST:event_formWindowOpened
 
     public void guardar() {
-        
-        TarefasProjeto t = new TarefasProjeto();
-        int numtarefasprojeto = sistema.getListatarefasprojeto().NumeroTarefaProjeto() + 1 ;
+
+        TarefasProjeto tp = new TarefasProjeto();
+        ListaTarefasProjeto tmplist = new ListaTarefasProjeto();
+        int numtarefasprojeto = sistema.getListatarefasprojeto().NumeroTarefaProjeto() + 1;
         String titulo = this.txtTitulo.getText();
         String descricao = this.txtDescricao.getText();
         String criadopor = sistema.getUtilizadorLigado().getUser();
-        t.setNumtarefaProjeto(numtarefasprojeto);
-        t.setTitulo(titulo);
-        t.setDescricao(descricao);
-        t.setCriadapor(criadopor);
-        
-        sistema.getListatarefasprojeto().inserirTarefasProjeto(t);
-        
-        
+        tp.setNumtarefaProjeto(numtarefasprojeto);
+        tp.setTitulo(titulo);
+        tp.setDescricao(descricao);
+        tp.setCriadapor(criadopor);
 
-        
-   
+        sistema.getListatarefasprojeto().inserirTarefasProjeto(tp);
+        tmplist.getListatarefasprojeto().add(tp);
+
+        String projeto = this.cmbProjeto.getSelectedItem().toString();
+
+        for (int j = 0; j < sistema.getListaprojetos().getArraylistaprojeto().size(); j++) {
+            //apanha o valor do array !
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(j);
+            //valida se o utilizador autenticado é gestor do projeto
+            if (p.getTitulo().equals(projeto)) {
+
+                p.getArraylistalistatarefasprojeto().add(tp);
+            }
+        }
+
         //Guarda para ficheiro !!
         sistema.guardarObjectos();
-     
+
         JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
-      
+
     }
 
 

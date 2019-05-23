@@ -278,17 +278,17 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiAlterarPerfilActionPerformed
 
     private void jmiUtilizadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiUtilizadoresActionPerformed
-        ListaUtilizadores listautilizadores = new ListaUtilizadores(sistema);
+        ListarUtilizadores listautilizadores = new ListarUtilizadores(sistema);
         listautilizadores.setVisible(true);
     }//GEN-LAST:event_jmiUtilizadoresActionPerformed
 
     private void jmiTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTarefasActionPerformed
-        ListaTarefas listatarefas = new ListaTarefas(sistema);
+        ListarTarefas listatarefas = new ListarTarefas(sistema);
         listatarefas.setVisible(true);
     }//GEN-LAST:event_jmiTarefasActionPerformed
 
     private void jmiProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProjetosActionPerformed
-        ListaProjetos listaprojetos = new ListaProjetos(sistema);
+        ListarProjetos listaprojetos = new ListarProjetos(sistema);
         listaprojetos.setVisible(true);
     }//GEN-LAST:event_jmiProjetosActionPerformed
 
@@ -319,10 +319,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       sistema.getListatarefasprojeto().listaconsulta();
+      sistema.getListaprojetos().ConsultaProjetos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jmiListadeTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiListadeTarefasActionPerformed
-         ListaTarefasProjeto listatarefasprojeto = new ListaTarefasProjeto(sistema);
+         ListarTarefasProjeto listatarefasprojeto = new ListarTarefasProjeto(sistema);
         listatarefasprojeto.setVisible(true);
     }//GEN-LAST:event_jmiListadeTarefasActionPerformed
 

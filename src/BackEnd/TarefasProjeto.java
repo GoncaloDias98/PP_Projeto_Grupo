@@ -11,11 +11,11 @@ public class TarefasProjeto implements java.io.Serializable {
     private String titulo;
     private String descricao;
     private String criadapor;
-    private ArrayList<ListaTarefas> listatarefas = new ArrayList<ListaTarefas>();
+    private ArrayList<Tarefa> listatarefas = new ArrayList<Tarefa>();
     
    
 
-    public TarefasProjeto(int numtarefaprojeto, String titulo, String descricao, String criadapor, ArrayList<ListaTarefas> arraylistalistatarefas) {
+    public TarefasProjeto(int numtarefaprojeto, String titulo, String descricao, String criadapor, ArrayList<Tarefa> arraylistalistatarefas) {
         this.numtarefaprojeto =  numtarefaprojeto;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -55,11 +55,11 @@ public class TarefasProjeto implements java.io.Serializable {
         this.criadapor = criadapor;
     }
 
-    public ArrayList<ListaTarefas> getArraylistalistatarefas() {
+    public ArrayList<Tarefa> getArraylistalistatarefas() {
         return listatarefas;
     }
 
-    public void setArraylistalistatarefas(ArrayList<ListaTarefas> arraylistalistatarefas) {
+    public void setArraylistalistatarefas(ArrayList<Tarefa> arraylistalistatarefas) {
         this.listatarefas = arraylistalistatarefas;
     }
 

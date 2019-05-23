@@ -424,7 +424,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnF4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnF4ActionPerformed
-        ListaProjetos listaprojetos = new ListaProjetos(sistema);
+        ListarProjetos listaprojetos = new ListarProjetos(sistema);
         listaprojetos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnF4ActionPerformed
@@ -436,7 +436,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
     private void txtTituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTituloKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_F4) {
-            ListaProjetos listaprojetos = new ListaProjetos(sistema);
+            ListarProjetos listaprojetos = new ListarProjetos(sistema);
             listaprojetos.setVisible(true);
             this.dispose();
         }

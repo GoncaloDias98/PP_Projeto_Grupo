@@ -319,7 +319,7 @@ public class AlterarTarefa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnF4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnF4ActionPerformed
-       ListaTarefas listatarefas = new ListaTarefas(sistema);
+       ListarTarefas listatarefas = new ListarTarefas(sistema);
         listatarefas.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnF4ActionPerformed
