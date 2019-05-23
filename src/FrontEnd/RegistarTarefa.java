@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import javax.swing.JOptionPane;
 
-public class RegistarTarefa extends javax.swing.JFrame {
+public class RegistarTarefa extends javax.swing.JDialog {
 
     private Sistema sistema;
     private Estado estado;
@@ -14,6 +14,11 @@ public class RegistarTarefa extends javax.swing.JFrame {
 
     public RegistarTarefa(Sistema sistema) {
         initComponents();
+         //Não permite o redimensionamento da janela
+        this.setResizable(false);                        
+        this.setModal(true); 
+        //Mostra a centralização da janela
+        this.setLocationRelativeTo(null);
         this.sistema = sistema;
         this.ftxInicio.setText(sistema.Datatexto(LocalDate.now()));
         this.ftxFim.setText(sistema.Datatexto(LocalDate.now()));

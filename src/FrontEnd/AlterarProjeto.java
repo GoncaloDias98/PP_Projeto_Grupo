@@ -12,13 +12,19 @@ import java.time.*;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
-public class AlterarProjeto extends javax.swing.JFrame {
+public class AlterarProjeto extends javax.swing.JDialog {
 
     private Sistema sistema;
     private Projeto projeto;
 
     public AlterarProjeto(Sistema sistema, Projeto projeto) {
         initComponents();
+         //Não permite o redimensionamento da janela
+        this.setResizable(false); 
+        this.setModal(true); 
+        
+        //Mostra a centralização da janela
+        this.setLocationRelativeTo(null);
         this.sistema = sistema;
         this.projeto = projeto;
         carregar();
@@ -27,6 +33,12 @@ public class AlterarProjeto extends javax.swing.JFrame {
 
     public AlterarProjeto(Sistema sistema) {
         initComponents();
+         //Não permite o redimensionamento da janela
+        this.setResizable(false);                        
+        
+        //Mostra a centralização da janela
+        this.setLocationRelativeTo(null);
+        this.setModal(true); 
         this.sistema = sistema;
 
     }
@@ -192,7 +204,7 @@ public class AlterarProjeto extends javax.swing.JFrame {
         txtNumero = new javax.swing.JTextField();
         btnRemover = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AlterarProjeto");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);

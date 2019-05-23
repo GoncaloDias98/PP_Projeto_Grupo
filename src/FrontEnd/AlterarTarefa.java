@@ -5,19 +5,31 @@ import BackEnd.*;
 import javax.swing.JOptionPane;
 
 
-public class AlterarTarefa extends javax.swing.JFrame {
+public class AlterarTarefa extends javax.swing.JDialog {
 
     private Sistema sistema;
     private Tarefa tarefa;
 
     public AlterarTarefa(Sistema sistema) {
         initComponents();
+         //Não permite o redimensionamento da janela
+        this.setResizable(false);      
+        this.setModal(true); 
+        
+        //Mostra a centralização da janela
+        this.setLocationRelativeTo(null);
         this.sistema = sistema;
 
     }
 
     public AlterarTarefa(Sistema sistema, Tarefa tarefa) {
         initComponents();
+         //Não permite o redimensionamento da janela
+        this.setResizable(false);    
+        this.setModal(true); 
+        
+        //Mostra a centralização da janela
+        this.setLocationRelativeTo(null);
         this.sistema = sistema;
         this.tarefa = tarefa;
         carregar();

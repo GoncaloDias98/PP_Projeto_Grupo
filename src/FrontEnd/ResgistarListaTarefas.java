@@ -4,12 +4,17 @@ import FrontEnd.*;
 import BackEnd.*;
 import javax.swing.JOptionPane;
 
-public class ResgistarListaTarefas extends javax.swing.JFrame {
+public class ResgistarListaTarefas extends javax.swing.JDialog {
 
     private Sistema sistema;
 
     public ResgistarListaTarefas(Sistema sistema) {
         initComponents();
+         //Não permite o redimensionamento da janela
+        this.setResizable(false);                        
+        this.setModal(true); 
+        //Mostra a centralização da janela
+        this.setLocationRelativeTo(null);
         this.sistema = sistema;
     }
 
@@ -27,7 +32,7 @@ public class ResgistarListaTarefas extends javax.swing.JFrame {
         cmbProjeto = new javax.swing.JComboBox<>();
         lblProjeto = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
