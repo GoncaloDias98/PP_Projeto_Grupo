@@ -6,7 +6,7 @@ import FrontEnd.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class RegistarUtilizador extends javax.swing.JDialog {
+public class RegistarUtilizador extends javax.swing.JFrame {
 
     //CRIAÇÃO DE VARIÁVEIS 
     private Sistema sistema;
@@ -15,11 +15,6 @@ public class RegistarUtilizador extends javax.swing.JDialog {
     //CRIAÇÃO DO CONSTRUTOR 
     public RegistarUtilizador(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        this.setModal(true); 
-        //Mostra a centralização da janela
-        this.setLocationRelativeTo(null);
         this.sistema = sistema;
     }
 

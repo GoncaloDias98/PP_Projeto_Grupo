@@ -298,7 +298,5 @@ public class Sistema implements java.io.Serializable {
         }
         return emailvalido;
     }
-    
-    
 
 }

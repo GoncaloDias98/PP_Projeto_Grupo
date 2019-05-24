@@ -4,17 +4,12 @@ import FrontEnd.*;
 import BackEnd.*;
 import javax.swing.JOptionPane;
 
-public class ResgistarListaTarefas extends javax.swing.JDialog {
+public class ResgistarListaTarefas extends javax.swing.JFrame {
 
     private Sistema sistema;
 
     public ResgistarListaTarefas(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        this.setModal(true); 
-        //Mostra a centralização da janela
-        this.setLocationRelativeTo(null);
         this.sistema = sistema;
     }
 
