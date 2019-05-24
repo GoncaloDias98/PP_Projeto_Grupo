@@ -121,6 +121,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="SoftProject"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -152,6 +153,7 @@
               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
           </Group>
+          <Component id="jToolBar1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -174,30 +176,37 @@
                               <Component id="nProjetosAtrasados" min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="atualizarDashboard" min="-2" pref="94" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btnGravar" min="-2" pref="107" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="percentagemProjetosConcluidos" min="-2" pref="39" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="atualizarDashboard" min="-2" pref="94" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnGravar" min="-2" pref="107" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="percentagemProjetosConcluidos" min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                      <Component id="lbltop1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lbltop2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="lbltop3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
-          <Component id="jToolBar1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -224,7 +233,13 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="73" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbltop1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbltop2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbltop3" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -257,32 +272,32 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Numero de Projetos Conclu&#xed;dos:  "/>
+        <Property name="text" type="java.lang.String" value="Numero De Projetos Conclu&#xed;dos:  "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Percentagem de Projetos Conclu&#xed;dos:  "/>
+        <Property name="text" type="java.lang.String" value="Percentagem De Projetos Conclu&#xed;dos:  "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Numero de Projetos em curso:  "/>
+        <Property name="text" type="java.lang.String" value="Numero De Projetos Em Curso:  "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Numero de Projetos atrasados:  "/>
+        <Property name="text" type="java.lang.String" value="Numero De Projetos Atrasados:  "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Percentagem de Projetos em curso:  "/>
+        <Property name="text" type="java.lang.String" value="Percentagem de Projetos Em Curso:  "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Percentagem de Projetos atrasados:  "/>
+        <Property name="text" type="java.lang.String" value="Percentagem de Projetos Atrasados:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
@@ -340,17 +355,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="nProjetosConcluidos">
       <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
+        <Property name="text" type="java.lang.String" value="nPC"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="nProjetosEmCurso">
       <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
+        <Property name="text" type="java.lang.String" value="nPeC"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="nProjetosAtrasados">
       <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
+        <Property name="text" type="java.lang.String" value="nPA"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="atualizarDashboard">
@@ -363,7 +378,22 @@
     </Component>
     <Component class="javax.swing.JLabel" name="percentagemProjetosConcluidos">
       <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
+        <Property name="text" type="java.lang.String" value="pPC"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbltop1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="top1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbltop2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="top2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbltop3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="top3"/>
       </Properties>
     </Component>
   </SubComponents>
