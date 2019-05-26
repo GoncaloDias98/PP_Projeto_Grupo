@@ -21,26 +21,27 @@ public class Principal extends javax.swing.JFrame {
         this.sistema = sistema;
         this.lblUtilizador.setText(sistema.getUtilizadorLigado().getNome());
         this.lblDataSistema.setText(LocalDate.now().toString());
-        if(sistema.getListaprojetos().getArraylistaprojeto().size() > 0){
-        projetosConcluidos();
-        projetosEmCurso();
-        projetosAtrasados();
-        topProjetosAtrasados();
-        percentagemProjetosConcluidos();
-        percentagemProjetosAtrasados();
-        percentagemProjetosEmCurso();
-        projetoProblematico();
-        numeroProjetosParticipa();
-        this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos() + "/" + contadorProjetosParticipa));
-        this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso() + "/" + contadorProjetosParticipa));
-        this.nProjetosAtrasados.setText(String.valueOf(getProjetosAtrasados() + "/" + contadorProjetosParticipa));
-        this.percentagemProjetosConcluidos.setText(String.format("%.2f", percentagemProjetosConcluidos()) + "%");
-        this.percentagemProjetosAtrasados.setText(String.format("%.2f", percentagemProjetosAtrasados()) + "%");
-        this.percentagemProjetosEmCurso.setText(String.format("%.2f", percentagemProjetosEmCurso()) + "%");
 
+        if (sistema.getListaprojetos().getArraylistaprojeto().size() > 0) {
+            projetosConcluidos();
+            projetosEmCurso();
+            projetosAtrasados();
+            topProjetosAtrasados();
+            percentagemProjetosConcluidos();
+            percentagemProjetosAtrasados();
+            percentagemProjetosEmCurso();
+            projetoProblematico();
+            numeroProjetosParticipa();
+            this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos() + "/" + contadorProjetosParticipa));
+            this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso() + "/" + contadorProjetosParticipa));
+            this.nProjetosAtrasados.setText(String.valueOf(getProjetosAtrasados() + "/" + contadorProjetosParticipa));
+            this.percentagemProjetosConcluidos.setText(String.format("%.2f", percentagemProjetosConcluidos()) + "%");
+            this.percentagemProjetosAtrasados.setText(String.format("%.2f", percentagemProjetosAtrasados()) + "%");
+            this.percentagemProjetosEmCurso.setText(String.format("%.2f", percentagemProjetosEmCurso()) + "%");
+        }
         //Força a maximização da janela
         this.setExtendedState(Principal.MAXIMIZED_BOTH);
-        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -74,9 +75,8 @@ public class Principal extends javax.swing.JFrame {
         lbltop3 = new javax.swing.JLabel();
         percentagemProjetosEmCurso = new javax.swing.JLabel();
         percentagemProjetosAtrasados = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         tituloProjetoMaisProblematico = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmiMudarUtilizador = new javax.swing.JMenuItem();
@@ -146,11 +146,11 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        nProjetosConcluidos.setText("nPC");
+        nProjetosConcluidos.setText("0");
 
-        nProjetosEmCurso.setText("nPeC");
+        nProjetosEmCurso.setText("0");
 
-        nProjetosAtrasados.setText("nPA");
+        nProjetosAtrasados.setText("0");
 
         atualizarDashboard.setText("Atualizar");
         atualizarDashboard.addActionListener(new java.awt.event.ActionListener() {
@@ -159,23 +159,22 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        percentagemProjetosConcluidos.setText("pPC");
+        percentagemProjetosConcluidos.setText("0%");
 
-        lbltop1.setText("top1");
+        lbltop1.setText("Não existe");
 
-        lbltop2.setText("top2");
+        lbltop2.setText("Não existe");
 
-        lbltop3.setText("top3");
+        lbltop3.setText("Não existe");
 
-        percentagemProjetosEmCurso.setText("pPeC");
+        percentagemProjetosEmCurso.setText("0%");
 
-        percentagemProjetosAtrasados.setText("pPA");
+        percentagemProjetosAtrasados.setText("0%");
 
-        jLabel1.setText("Pessoais");
+        tituloProjetoMaisProblematico.setText("Não existe");
 
-        jLabel2.setText("Pessoais/Empresa");
-
-        tituloProjetoMaisProblematico.setText("PMPDE");
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("Estatisticas");
 
         jMenu1.setText("Sistema");
 
@@ -299,6 +298,12 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
+                .addGap(167, 167, 167))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -316,61 +321,49 @@ public class Principal extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(nProjetosConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nProjetosEmCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(nProjetosEmCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel11)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(nProjetosAtrasados, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel1))
+                                        .addComponent(nProjetosAtrasados, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lbltop1)
-                                .addGap(115, 115, 115)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(atualizarDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(percentagemProjetosEmCurso))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(percentagemProjetosConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addComponent(jLabel8)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(percentagemProjetosAtrasados)))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
                                 .addComponent(lbltop2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lbltop3)))))
-                .addContainerGap(44, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
-                .addGap(167, 167, 167))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(tituloProjetoMaisProblematico)
+                                .addGap(26, 26, 26)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(atualizarDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(percentagemProjetosConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(percentagemProjetosEmCurso)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbltop3)
+                                    .addComponent(jLabel8))
+                                .addGap(18, 18, 18)
+                                .addComponent(percentagemProjetosAtrasados))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(tituloProjetoMaisProblematico)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel11)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
@@ -395,7 +388,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lbltop2)
                     .addComponent(lbltop3)
                     .addComponent(lbltop1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -475,6 +468,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiListadeTarefasActionPerformed
 
     private void atualizarDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarDashboardActionPerformed
+        if (sistema.getListaprojetos().getArraylistaprojeto().size() > 0) {
         contadorProjetosConcluidos = 0;
         contadorProjetosEmCurso = 0;
         contadorProjetosAtrasados = 0;
@@ -494,6 +488,7 @@ public class Principal extends javax.swing.JFrame {
         this.percentagemProjetosConcluidos.setText(String.format("%.2f", percentagemProjetosConcluidos()) + "%");
         this.percentagemProjetosAtrasados.setText(String.format("%.2f", percentagemProjetosAtrasados()) + "%");
         this.percentagemProjetosEmCurso.setText(String.format("%.2f", percentagemProjetosEmCurso()) + "%");
+        }
     }//GEN-LAST:event_atualizarDashboardActionPerformed
 
     private void jmiMudarUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMudarUtilizadorActionPerformed
@@ -695,9 +690,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton atualizarDashboard;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
