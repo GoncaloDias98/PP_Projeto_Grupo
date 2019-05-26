@@ -23,10 +23,15 @@ public class Principal extends javax.swing.JFrame {
         projetosEmCurso();
         projetosAtrasados();
         topProjetosAtrasados();
+        percentagemProjetosConcluidos();
+        percentagemProjetosAtrasados();
+        percentagemProjetosEmCurso();
         this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos()));
         this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso()));
         this.nProjetosAtrasados.setText(String.valueOf(getProjetosAtrasados()));
-        this.percentagemProjetosConcluidos.setText(percentagemProjetos() + "%");
+        this.percentagemProjetosConcluidos.setText(String.format("%.2f", percentagemProjetosConcluidos()) + "%");
+        this.percentagemProjetosAtrasados.setText(String.format("%.2f",percentagemProjetosAtrasados()) + "%");
+        this.percentagemProjetosEmCurso.setText(String.format("%.2f",percentagemProjetosEmCurso()) + "%");
     }
 
     @SuppressWarnings("unchecked")
@@ -58,6 +63,8 @@ public class Principal extends javax.swing.JFrame {
         lbltop1 = new javax.swing.JLabel();
         lbltop2 = new javax.swing.JLabel();
         lbltop3 = new javax.swing.JLabel();
+        percentagemProjetosEmCurso = new javax.swing.JLabel();
+        percentagemProjetosAtrasados = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuRegistar = new javax.swing.JMenu();
         jmiProjeto = new javax.swing.JMenuItem();
@@ -144,6 +151,10 @@ public class Principal extends javax.swing.JFrame {
         lbltop2.setText("top2");
 
         lbltop3.setText("top3");
+
+        percentagemProjetosEmCurso.setText("pPeC");
+
+        percentagemProjetosAtrasados.setText("pPA");
 
         menuRegistar.setText("Registar");
 
@@ -278,8 +289,14 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(atualizarDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(percentagemProjetosEmCurso))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(percentagemProjetosAtrasados))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -309,12 +326,14 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel7)
-                    .addComponent(nProjetosEmCurso))
+                    .addComponent(nProjetosEmCurso)
+                    .addComponent(percentagemProjetosEmCurso))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel8)
-                    .addComponent(nProjetosAtrasados))
+                    .addComponent(nProjetosAtrasados)
+                    .addComponent(percentagemProjetosAtrasados))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addGap(22, 22, 22)
@@ -416,9 +435,20 @@ public class Principal extends javax.swing.JFrame {
     private void projetosConcluidos() {
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
-            if (p.getEstadoprojeto() == sistema.getEstado().concluido) {
-                contadorProjetosConcluidos++;
+            if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
+                if (p.getEstadoprojeto() == sistema.getEstado().concluido) {
+                    contadorProjetosConcluidos++;
+                }
+            } else {
+                for (Colaborador c : p.getArraylistcolaborador()) {
+                    if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
+                        if (p.getEstadoprojeto() == sistema.getEstado().concluido) {
+                            contadorProjetosConcluidos++;
+                        }
+                    }
+                }
             }
+
         }
     }
 
@@ -429,8 +459,18 @@ public class Principal extends javax.swing.JFrame {
     private void projetosEmCurso() {
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
-            if (p.getEstadoprojeto() == sistema.getEstado().iniciado) {
-                contadorProjetosEmCurso++;
+            if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
+                if (p.getEstadoprojeto() == sistema.getEstado().iniciado) {
+                    contadorProjetosEmCurso++;
+                } else {
+                    for (Colaborador c : p.getArraylistcolaborador()) {
+                        if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
+                            if (p.getEstadoprojeto() == sistema.getEstado().iniciado) {
+                                contadorProjetosEmCurso++;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -443,8 +483,18 @@ public class Principal extends javax.swing.JFrame {
         LocalDate hoje = LocalDate.now();
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
-            if (p.getDatafim().isBefore(hoje)) {
-                contadorProjetosAtrasados++;
+            if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
+                if (p.getDatafim().isBefore(hoje)) {
+                    contadorProjetosAtrasados++;
+                }
+            } else {
+                for (Colaborador c : p.getArraylistcolaborador()) {
+                    if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
+                        if (p.getDatafim().isBefore(hoje)) {
+                            contadorProjetosAtrasados++;
+                        }
+                    }
+                }
             }
         }
     }
@@ -453,11 +503,27 @@ public class Principal extends javax.swing.JFrame {
         return contadorProjetosAtrasados;
     }
 
-    private double percentagemProjetos() {
-        double percentagemProjetosConcluidos;
-        percentagemProjetosConcluidos = (float) contadorProjetosConcluidos / sistema.getListaprojetos().getArraylistaprojeto().size();
+    private double percentagemProjetosConcluidos() {
+        double percentagemProjetosConcluidos = 0 ;
+        
+        percentagemProjetosConcluidos = (float) contadorProjetosConcluidos / sistema.getListaprojetos().getArraylistaprojeto().size() * 100;
         return percentagemProjetosConcluidos;
     }
+    
+    private double percentagemProjetosAtrasados() {
+        double percentagemProjetosAtrasados = 0;
+        
+        percentagemProjetosAtrasados = (float) contadorProjetosAtrasados / sistema.getListaprojetos().getArraylistaprojeto().size() * 100;
+        return percentagemProjetosAtrasados;
+    }
+    
+    private double percentagemProjetosEmCurso() {
+        double percentagemProjetosEmCurso = 0;
+        
+        percentagemProjetosEmCurso = (float) contadorProjetosEmCurso / sistema.getListaprojetos().getArraylistaprojeto().size() * 100;
+        return percentagemProjetosEmCurso;
+    }
+    
 
     private void topProjetosAtrasados() {
         LocalDate top1 = LocalDate.now();
@@ -474,11 +540,11 @@ public class Principal extends javax.swing.JFrame {
                 }
                 if (p.getDatafim().isAfter(top1)) {
                     top3 = p.getDatafim();
-                    
+
                     System.out.println(top3);
                 }
 
-            } /*else {
+            }else {
                 for (Colaborador c : p.getArraylistcolaborador()) {
                     if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
                         if (p.getDatafim().isBefore(top1)) {
@@ -493,7 +559,7 @@ public class Principal extends javax.swing.JFrame {
                         }
                     }
                 }
-            }*/
+            }
         }
         lbltop1.setText(sistema.Datatexto(top1));
         lbltop2.setText(sistema.Datatexto(top2));
@@ -540,6 +606,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel nProjetosAtrasados;
     private javax.swing.JLabel nProjetosConcluidos;
     private javax.swing.JLabel nProjetosEmCurso;
+    private javax.swing.JLabel percentagemProjetosAtrasados;
     private javax.swing.JLabel percentagemProjetosConcluidos;
+    private javax.swing.JLabel percentagemProjetosEmCurso;
     // End of variables declaration//GEN-END:variables
 }

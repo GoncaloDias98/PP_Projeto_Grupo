@@ -183,8 +183,16 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnGravar" min="-2" pref="107" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="percentagemProjetosEmCurso" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="percentagemProjetosAtrasados" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -224,12 +232,14 @@
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nProjetosEmCurso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="percentagemProjetosEmCurso" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nProjetosAtrasados" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="percentagemProjetosAtrasados" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
@@ -394,6 +404,16 @@
     <Component class="javax.swing.JLabel" name="lbltop3">
       <Properties>
         <Property name="text" type="java.lang.String" value="top3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="percentagemProjetosEmCurso">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="pPeC"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="percentagemProjetosAtrasados">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="pPA"/>
       </Properties>
     </Component>
   </SubComponents>
