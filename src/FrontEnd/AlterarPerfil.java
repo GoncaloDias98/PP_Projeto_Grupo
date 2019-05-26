@@ -38,7 +38,6 @@ public class AlterarPerfil extends javax.swing.JDialog {
         txtNome = new javax.swing.JTextField();
         txtMorada = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         txaTelefone = new javax.swing.JFormattedTextField();
         try{
@@ -49,6 +48,7 @@ public class AlterarPerfil extends javax.swing.JDialog {
         }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar Perfil");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -84,10 +84,6 @@ public class AlterarPerfil extends javax.swing.JDialog {
 
         txtUsername.setEnabled(false);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel2.setText("Perfil");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,17 +112,11 @@ public class AlterarPerfil extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblCancelar)
                 .addGap(10, 10, 10))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsername)
                     .addComponent(txtUsername))
@@ -228,7 +218,6 @@ if (sistema.validaEmail(txtEmail.getText()) == false){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGravar;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton lblCancelar;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblMorada;

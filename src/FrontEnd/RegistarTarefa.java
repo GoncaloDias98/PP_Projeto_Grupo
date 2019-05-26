@@ -33,7 +33,6 @@ public class RegistarTarefa extends javax.swing.JDialog {
         txtTitulo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaDescricao = new javax.swing.JTextArea();
-        lblRegistarTarefa = new javax.swing.JLabel();
         cmbEstado = new javax.swing.JComboBox<>();
         lblEstado = new javax.swing.JLabel();
         lblFim = new javax.swing.JLabel();
@@ -50,6 +49,7 @@ public class RegistarTarefa extends javax.swing.JDialog {
         lblListaTarefas = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Nova Tarefa");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -63,8 +63,6 @@ public class RegistarTarefa extends javax.swing.JDialog {
         txaDescricao.setColumns(20);
         txaDescricao.setRows(5);
         jScrollPane1.setViewportView(txaDescricao);
-
-        lblRegistarTarefa.setText("Registar Tarefa");
 
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Iniciado", "Concluído" }));
 
@@ -154,22 +152,15 @@ public class RegistarTarefa extends javax.swing.JDialog {
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnGravar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCancelar)
-                                .addGap(173, 173, 173))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblRegistarTarefa)
-                                .addGap(241, 241, 241))))))
+                        .addComponent(btnGravar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar)
+                        .addGap(173, 173, 173))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(lblRegistarTarefa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
@@ -371,7 +362,6 @@ public class RegistarTarefa extends javax.swing.JDialog {
     private javax.swing.JLabel lblInicio;
     private javax.swing.JLabel lblListaTarefas;
     private javax.swing.JLabel lblPrioridade;
-    private javax.swing.JLabel lblRegistarTarefa;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextArea txaDescricao;
     private javax.swing.JTextField txtTitulo;

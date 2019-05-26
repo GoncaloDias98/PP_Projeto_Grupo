@@ -1,15 +1,9 @@
 package FrontEnd;
 
-import FrontEnd.*;
 import BackEnd.*;
+import FrontEnd.*;
 import java.awt.event.KeyEvent;
-import java.text.SimpleDateFormat;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.JOptionPane;
-import java.time.format.DateTimeFormatter;
-import java.time.*;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class AlterarProjeto extends javax.swing.JDialog {
@@ -19,28 +13,25 @@ public class AlterarProjeto extends javax.swing.JDialog {
 
     public AlterarProjeto(Sistema sistema, Projeto projeto) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false); 
-        this.setModal(true); 
-        
+        this.setResizable(false);
+        this.setModal(true);
+
         //Mostra a centralização da janela
         this.setLocationRelativeTo(null);
+
         this.sistema = sistema;
         this.projeto = projeto;
         carregar();
-
     }
 
     public AlterarProjeto(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        
+        this.setResizable(false);
+        this.setModal(true);
+
         //Mostra a centralização da janela
         this.setLocationRelativeTo(null);
-        this.setModal(true); 
         this.sistema = sistema;
-
     }
 
     private void carregar() {
@@ -72,7 +63,7 @@ public class AlterarProjeto extends javax.swing.JDialog {
         for (Colaborador c : projeto.getArraylistcolaborador()) {
 
             for (int i = 0; i < cmbColaborador.getItemCount(); i = i + 1) {
-                if ((cmbColaborador.getItemAt(i).equals(c.getUser())) || (cmbColaborador.getItemAt(i).equals(projeto.getGestor().getUser()))){
+                if ((cmbColaborador.getItemAt(i).equals(c.getUser())) || (cmbColaborador.getItemAt(i).equals(projeto.getGestor().getUser()))) {
 
                     this.cmbColaborador.removeItem(cmbColaborador.getItemAt(i));
                 }
@@ -181,65 +172,38 @@ public class AlterarProjeto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnCancelar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaDescricao = new javax.swing.JTextArea();
-        cmbColaborador = new javax.swing.JComboBox<>();
-        lblFim = new javax.swing.JLabel();
-        ftxFim = new javax.swing.JFormattedTextField();
-        jLabel11 = new javax.swing.JLabel();
         txtTitulo = new javax.swing.JTextField();
+        lblTitulo = new javax.swing.JLabel();
         spUtilizadores = new javax.swing.JScrollPane();
         tblListaColaboradores = new javax.swing.JTable();
-        lblDescricao = new javax.swing.JLabel();
-        lblInicio = new javax.swing.JLabel();
-        btnAdicionar = new javax.swing.JButton();
-        ftxInicio = new javax.swing.JFormattedTextField();
-        lblColaborador = new javax.swing.JLabel();
-        cmbEstado = new javax.swing.JComboBox<>();
-        lblEstado = new javax.swing.JLabel();
-        btnGravar = new javax.swing.JButton();
-        lblTitulo = new javax.swing.JLabel();
         btnF4 = new javax.swing.JButton();
         txtNumero = new javax.swing.JTextField();
+        lblDescricao = new javax.swing.JLabel();
         btnRemover = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        lblInicio = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaDescricao = new javax.swing.JTextArea();
+        btnAdicionar = new javax.swing.JButton();
+        ftxInicio = new javax.swing.JFormattedTextField();
+        cmbColaborador = new javax.swing.JComboBox<>();
+        lblColaborador = new javax.swing.JLabel();
+        lblFim = new javax.swing.JLabel();
+        cmbEstado = new javax.swing.JComboBox<>();
+        ftxFim = new javax.swing.JFormattedTextField();
+        lblEstado = new javax.swing.JLabel();
+        btnGravar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("AlterarProjeto");
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setUndecorated(true);
-        setResizable(false);
-        setType(java.awt.Window.Type.UTILITY);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
-
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        txaDescricao.setColumns(20);
-        txaDescricao.setRows(5);
-        jScrollPane1.setViewportView(txaDescricao);
-
-        lblFim.setText("Data Fim Projeto");
-
-        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel11.setText("Alterar Projeto");
+        setTitle("Alterar Projeto");
 
         txtTitulo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtTituloKeyPressed(evt);
             }
         });
+
+        lblTitulo.setText("Titulo");
 
         tblListaColaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -251,11 +215,38 @@ public class AlterarProjeto extends javax.swing.JDialog {
         ));
         spUtilizadores.setViewportView(tblListaColaboradores);
 
+        btnF4.setText("F4");
+        btnF4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnF4ActionPerformed(evt);
+            }
+        });
+
+        txtNumero.setEnabled(false);
+
         lblDescricao.setText("Descrição");
 
-        lblInicio.setText("Data Inicio Projeto");
+        btnRemover.setText("-");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
 
-        btnAdicionar.setText("Adicionar");
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        lblInicio.setText("Data Inicio:");
+
+        txaDescricao.setColumns(20);
+        txaDescricao.setRows(5);
+        jScrollPane1.setViewportView(txaDescricao);
+
+        btnAdicionar.setText("+");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdicionarActionPerformed(evt);
@@ -264,9 +255,13 @@ public class AlterarProjeto extends javax.swing.JDialog {
 
         ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
-        lblColaborador.setText("Colaboradores");
+        lblColaborador.setText("Inserir Colaboradores");
+
+        lblFim.setText("Data Fim:");
 
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Iniciado", "Concluído" }));
+
+        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         lblEstado.setText("Estado");
 
@@ -277,128 +272,137 @@ public class AlterarProjeto extends javax.swing.JDialog {
             }
         });
 
-        lblTitulo.setText("Titulo");
-
-        btnF4.setText("F4");
-        btnF4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnF4ActionPerformed(evt);
-            }
-        });
-
-        txtNumero.setEnabled(false);
-
-        btnRemover.setText("Remover");
-        btnRemover.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoverActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGravar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar)
-                        .addGap(309, 309, 309))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDescricao)
                             .addComponent(lblTitulo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblInicio)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(lblEstado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ftxInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addComponent(lblFim)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ftxFim, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnGravar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnCancelar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel11)
-                                .addGap(260, 260, 260))
-                            .addComponent(spUtilizadores, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblInicio)
-                                .addGap(18, 18, 18)
-                                .addComponent(ftxInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(55, 55, 55)
-                                .addComponent(lblFim)
+                                .addComponent(btnF4))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spUtilizadores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblColaborador)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ftxFim, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblEstado)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblColaborador)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(btnAdicionar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnRemover))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnF4)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(35, 35, 35))
+                                .addComponent(btnAdicionar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnRemover)))))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdicionar, btnRemover});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnF4)
+                    .addComponent(lblTitulo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblFim)
+                                .addComponent(ftxFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(ftxInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblInicio)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTitulo)
-                            .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnF4, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEstado)))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblDescricao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblEstado)
-                        .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblFim)
-                        .addComponent(ftxFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblInicio)
-                        .addComponent(ftxInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblColaborador)
                     .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdicionar)
                     .addComponent(btnRemover))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(spUtilizadores, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
+                .addComponent(spUtilizadores, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGravar)
                     .addComponent(btnCancelar))
                 .addContainerGap())
         );
 
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdicionar, btnRemover});
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtTituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTituloKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_F4) {
+            ListarProjetos listaprojetos = new ListarProjetos(sistema);
+            listaprojetos.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_txtTituloKeyPressed
+
+    private void btnF4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnF4ActionPerformed
+        ListarProjetos listaprojetos = new ListarProjetos(sistema);
+        listaprojetos.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnF4ActionPerformed
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+
+        DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
+        if (tblListaColaboradores.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione um colaborador da Tabela !",
+                    "Erro", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            //VALIDA A LINHA SELECIONADA
+            int row = tblListaColaboradores.getSelectedRow();
+            // ADICIONA O VALOR DA COLUNA DO UTILIZADOR À COMBO
+            this.cmbColaborador.addItem(tblListaColaboradores.getValueAt(row, 0).toString());
+            //REMOVE DA TABELA A LINHA SELECIONADA
+            tm.removeRow(tblListaColaboradores.getSelectedRow());
+            //ATUALIZA A LISTA DE COLABORADORES
+            this.tblListaColaboradores.setModel(tm);
+        }
+    }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
 
@@ -428,49 +432,11 @@ public class AlterarProjeto extends javax.swing.JDialog {
 
         this.tblListaColaboradores.setModel(tm);
         this.cmbColaborador.removeItem(cmbColaborador.getSelectedItem());
-
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
         guardar();
     }//GEN-LAST:event_btnGravarActionPerformed
-
-    private void btnF4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnF4ActionPerformed
-        ListarProjetos listaprojetos = new ListarProjetos(sistema);
-        listaprojetos.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnF4ActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
-
-    }//GEN-LAST:event_formWindowOpened
-
-    private void txtTituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTituloKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_F4) {
-            ListarProjetos listaprojetos = new ListarProjetos(sistema);
-            listaprojetos.setVisible(true);
-            this.dispose();
-        }
-    }//GEN-LAST:event_txtTituloKeyPressed
-
-    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-
-        DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
-        if (tblListaColaboradores.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(this, "Selecione um colaborador da Tabela !",
-                    "Erro", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            //VALIDA A LINHA SELECIONADA
-            int row = tblListaColaboradores.getSelectedRow();
-            // ADICIONA O VALOR DA COLUNA DO UTILIZADOR À COMBO
-            this.cmbColaborador.addItem(tblListaColaboradores.getValueAt(row, 0).toString());
-            //REMOVE DA TABELA A LINHA SELECIONADA
-            tm.removeRow(tblListaColaboradores.getSelectedRow());
-            //ATUALIZA A LISTA DE COLABORADORES
-            this.tblListaColaboradores.setModel(tm);
-        }
-    }//GEN-LAST:event_btnRemoverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -483,7 +449,6 @@ public class AlterarProjeto extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JFormattedTextField ftxFim;
     private javax.swing.JFormattedTextField ftxInicio;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblColaborador;
     private javax.swing.JLabel lblDescricao;

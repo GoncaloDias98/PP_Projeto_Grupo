@@ -29,10 +29,10 @@ public class ListarUtilizadores extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
         spUtilizadores = new javax.swing.JScrollPane();
         tblListaUtilizadores = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
         barraProcuraTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Utilizadores");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -58,10 +58,6 @@ public class ListarUtilizadores extends javax.swing.JDialog {
             }
         ));
         spUtilizadores.setViewportView(tblListaUtilizadores);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel2.setText("Utilizadores");
 
         barraProcuraTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,20 +85,15 @@ public class ListarUtilizadores extends javax.swing.JDialog {
                                 .addGap(391, 391, 391)
                                 .addComponent(btnCancelar))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(369, 369, 369)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
                                 .addComponent(barraProcuraTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 368, Short.MAX_VALUE)))
+                        .addGap(0, 376, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(barraProcuraTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spUtilizadores, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,7 +157,6 @@ public class ListarUtilizadores extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField barraProcuraTxt;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane spUtilizadores;
     private javax.swing.JTable tblListaUtilizadores;
     // End of variables declaration//GEN-END:variables

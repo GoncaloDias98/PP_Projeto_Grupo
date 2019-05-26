@@ -20,9 +20,9 @@ public class ListarTarefas extends javax.swing.JDialog {
 
     public ListarTarefas(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        this.setModal(true); 
+        //Não permite o redimensionamento da janela
+        this.setResizable(false);
+        this.setModal(true);
         //Mostra a centralização da janela
         this.setLocationRelativeTo(null);
         this.sistema = sistema;
@@ -51,32 +51,34 @@ public class ListarTarefas extends javax.swing.JDialog {
 
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
 
-            for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
-                //apanha o valor do array !
+            if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
 
-                TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+                for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+                    //apanha o valor do array !
 
-                for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
+                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
 
-                    if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
+                    for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
 
-                        for (int k = 0; k < sistema.getListatarefas().getArraylistatarefa().size(); k++) {
+                        if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
 
-                            Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(k);
+                            for (int k = 0; k < sistema.getListatarefas().getArraylistatarefa().size(); k++) {
 
-                            for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
+                                Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(k);
 
-                                if (t.getNumtarefa() == tmpt.getNumtarefa()) {
+                                for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
 
-                                    tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
+                                    if (t.getNumtarefa() == tmpt.getNumtarefa()) {
 
+                                        tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
+
+                                    }
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
-
                 /* //tm.addRow(new Object[]{});
                 //------------------------------------PROJETO EM ATRASO     ------------------------------
                 a = new SimpleDateFormat("dd/MM/YYYY").format(new Date());
@@ -87,6 +89,38 @@ public class ListarTarefas extends javax.swing.JDialog {
                  */
                 // entra em loop infinito com a interface
                 // JOptionPane.showMessageDialog(this, "tens "+ atraso +" tarefas em atraso");
+            } else {
+                for (Colaborador c : p.getArraylistcolaborador()) {
+
+                    if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
+for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+                    //apanha o valor do array !
+
+                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+
+                    for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
+
+                        if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
+
+                            for (int k = 0; k < sistema.getListatarefas().getArraylistatarefa().size(); k++) {
+
+                                Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(k);
+
+                                for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
+
+                                    if (t.getNumtarefa() == tmpt.getNumtarefa()) {
+
+                                        tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
+
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+                    }
+                }
             }
         }
     }
@@ -97,7 +131,6 @@ public class ListarTarefas extends javax.swing.JDialog {
 
         spTarefas = new javax.swing.JScrollPane();
         tblListaTarefa = new javax.swing.JTable();
-        lblListaTarefas = new javax.swing.JLabel();
         btnAlterar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -119,6 +152,7 @@ public class ListarTarefas extends javax.swing.JDialog {
         ftxInicio = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tarefas");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -140,9 +174,6 @@ public class ListarTarefas extends javax.swing.JDialog {
             }
         ));
         spTarefas.setViewportView(tblListaTarefa);
-
-        lblListaTarefas.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblListaTarefas.setText("ListaTarefas");
 
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -260,7 +291,7 @@ public class ListarTarefas extends javax.swing.JDialog {
                 .addGroup(jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLimpar)
                     .addComponent(btnAplicar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jpFiltroLayout.setVerticalGroup(
             jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,16 +323,10 @@ public class ListarTarefas extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblProjeto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmbProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 366, Short.MAX_VALUE)
-                                .addComponent(lblListaTarefas)
-                                .addGap(165, 165, 165)))
+                        .addComponent(lblProjeto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnAlterar)
@@ -317,9 +342,8 @@ public class ListarTarefas extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblListaTarefas)
                     .addComponent(btnAlterar)
                     .addComponent(btnCancelar))
                 .addGap(1, 1, 1)
@@ -535,7 +559,6 @@ public class ListarTarefas extends javax.swing.JDialog {
     private javax.swing.JLabel lblDataInico;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblFiltro;
-    private javax.swing.JLabel lblListaTarefas;
     private javax.swing.JLabel lblProjeto;
     private javax.swing.JScrollPane spTarefas;
     private javax.swing.JTable tblListaTarefa;

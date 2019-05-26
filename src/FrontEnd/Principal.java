@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -29,12 +30,15 @@ public class Principal extends javax.swing.JFrame {
         percentagemProjetosEmCurso();
         projetoProblematico();
         numeroProjetosParticipa();
-        this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos()+ "/" + contadorProjetosParticipa));
-        this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso()+ "/" + contadorProjetosParticipa));
+        this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos() + "/" + contadorProjetosParticipa));
+        this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso() + "/" + contadorProjetosParticipa));
         this.nProjetosAtrasados.setText(String.valueOf(getProjetosAtrasados() + "/" + contadorProjetosParticipa));
         this.percentagemProjetosConcluidos.setText(String.format("%.2f", percentagemProjetosConcluidos()) + "%");
         this.percentagemProjetosAtrasados.setText(String.format("%.2f", percentagemProjetosAtrasados()) + "%");
         this.percentagemProjetosEmCurso.setText(String.format("%.2f", percentagemProjetosEmCurso()) + "%");
+
+        //Força a maximização da janela
+        this.setExtendedState(Principal.MAXIMIZED_BOTH);
     }
 
     @SuppressWarnings("unchecked")
@@ -72,6 +76,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tituloProjetoMaisProblematico = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jmiMudarUtilizador = new javax.swing.JMenuItem();
+        jmiterminar = new javax.swing.JMenuItem();
         menuRegistar = new javax.swing.JMenu();
         jmiProjeto = new javax.swing.JMenuItem();
         jmiListaTarefas = new javax.swing.JMenuItem();
@@ -167,6 +174,26 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setText("Pessoais/Empresa");
 
         tituloProjetoMaisProblematico.setText("PMPDE");
+
+        jMenu1.setText("Sistema");
+
+        jmiMudarUtilizador.setText("Mudar de Utilizador");
+        jmiMudarUtilizador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiMudarUtilizadorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmiMudarUtilizador);
+
+        jmiterminar.setText("Terminar Sessão");
+        jmiterminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiterminarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmiterminar);
+
+        jMenuBar1.add(jMenu1);
 
         menuRegistar.setText("Registar");
 
@@ -459,13 +486,37 @@ public class Principal extends javax.swing.JFrame {
         percentagemProjetosEmCurso();
         projetoProblematico();
         numeroProjetosParticipa();
-        this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos()+ "/" + contadorProjetosParticipa));
-        this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso()+ "/" + contadorProjetosParticipa));
+        this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos() + "/" + contadorProjetosParticipa));
+        this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso() + "/" + contadorProjetosParticipa));
         this.nProjetosAtrasados.setText(String.valueOf(getProjetosAtrasados() + "/" + contadorProjetosParticipa));
         this.percentagemProjetosConcluidos.setText(String.format("%.2f", percentagemProjetosConcluidos()) + "%");
         this.percentagemProjetosAtrasados.setText(String.format("%.2f", percentagemProjetosAtrasados()) + "%");
         this.percentagemProjetosEmCurso.setText(String.format("%.2f", percentagemProjetosEmCurso()) + "%");
     }//GEN-LAST:event_atualizarDashboardActionPerformed
+
+    private void jmiMudarUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMudarUtilizadorActionPerformed
+
+        if (JOptionPane.showConfirmDialog(null,
+                "Deseja Mudar de Utilizador ?",
+                "Atenção !",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+            Login login = new Login(sistema);
+            login.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jmiMudarUtilizadorActionPerformed
+
+    private void jmiterminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiterminarActionPerformed
+        if (JOptionPane.showConfirmDialog(null,
+                "Deseja Sair ?",
+                "Terminar",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+            sistema.terminar();
+        }
+
+    }//GEN-LAST:event_jmiterminarActionPerformed
 
     private void projetosConcluidos() {
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
@@ -577,8 +628,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void topProjetosAtrasados() {
         String nometop1 = "Não existe";
-        String nometop2= "Não existe";
-        String nometop3= "Não existe";
+        String nometop2 = "Não existe";
+        String nometop3 = "Não existe";
         LocalDate top1 = LocalDate.now();
         LocalDate top2 = LocalDate.now();
         LocalDate top3 = LocalDate.now();
@@ -652,6 +703,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
@@ -662,11 +714,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiAlterarPerfil;
     private javax.swing.JMenuItem jmiListaTarefas;
     private javax.swing.JMenuItem jmiListadeTarefas;
+    private javax.swing.JMenuItem jmiMudarUtilizador;
     private javax.swing.JMenuItem jmiProjeto;
     private javax.swing.JMenuItem jmiProjetos;
     private javax.swing.JMenuItem jmiTarefa;
     private javax.swing.JMenuItem jmiTarefas;
     private javax.swing.JMenuItem jmiUtilizadores;
+    private javax.swing.JMenuItem jmiterminar;
     private javax.swing.JLabel lblDataSistema;
     private javax.swing.JLabel lblGesProjeto;
     private javax.swing.JLabel lblUtilizador;
