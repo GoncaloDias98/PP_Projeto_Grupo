@@ -366,9 +366,9 @@ public class RegistarProjeto extends javax.swing.JDialog {
 
         jLabel6.setText("Data Fim");
 
-        ftxDataInicioTarefa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        ftxDataInicioTarefa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/y"))));
 
-        ftxDataFimTarefa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        ftxDataFimTarefa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/y"))));
 
         jLabel7.setText("Estado");
 
