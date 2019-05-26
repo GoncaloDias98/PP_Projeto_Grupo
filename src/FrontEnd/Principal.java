@@ -21,6 +21,7 @@ public class Principal extends javax.swing.JFrame {
         this.sistema = sistema;
         this.lblUtilizador.setText(sistema.getUtilizadorLigado().getNome());
         this.lblDataSistema.setText(LocalDate.now().toString());
+        if(sistema.getListaprojetos().getArraylistaprojeto().size() > 0){
         projetosConcluidos();
         projetosEmCurso();
         projetosAtrasados();
@@ -39,6 +40,7 @@ public class Principal extends javax.swing.JFrame {
 
         //Força a maximização da janela
         this.setExtendedState(Principal.MAXIMIZED_BOTH);
+        }
     }
 
     @SuppressWarnings("unchecked")
