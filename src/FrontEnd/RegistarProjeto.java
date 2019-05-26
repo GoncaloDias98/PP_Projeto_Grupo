@@ -802,7 +802,7 @@ tpemedicao = tp;
         //verifica qual o numero do projeto e soma + 1 
         int numerotarefa = sistema.getListatarefas().numeroTarefa() + 1;
         //O numero do Projeto toma o valor da variavel numeroprojeto
-        novat.setNumtarefa(numerotarefa);
+        novat.setNumTarefa(numerotarefa);
 
         if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
             JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
@@ -811,28 +811,28 @@ tpemedicao = tp;
 
         } else {
 
-            novat.setDatainicio(sistema.Data(datainicio));
-            novat.setDatafim(sistema.Data(datafim));
+            novat.setDataInicio(sistema.Data(datainicio));
+            novat.setDataFim(sistema.Data(datafim));
         }
 
         novat.setTitulo(titulo);
         novat.setDescricao(descricao);
-        novat.setCriadopor(sistema.getUtilizadorLigado());
+        novat.setCriadoPor(sistema.getUtilizadorLigado());
 
         //Verifica se o valor da combo Estado é igual à descrição do Estado Concluído
         if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
             //se for toma o valor Concluido
-            novat.setEstadotarefa(sistema.getEstado().concluido);
+            novat.setEstadoTarefa(sistema.getEstado().concluido);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
         if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
             //se for toma o valor Iniciado
-            novat.setEstadotarefa(sistema.getEstado().emcurso);
+            novat.setEstadoTarefa(sistema.getEstado().emcurso);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
         if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
             //se for toma o valor Não Iniciado
-            novat.setEstadotarefa(sistema.getEstado().naoiniciado);
+            novat.setEstadoTarefa(sistema.getEstado().naoiniciado);
         }
 
         //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Alta

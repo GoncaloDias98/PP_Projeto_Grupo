@@ -34,7 +34,7 @@ public class Tarefa implements java.io.Serializable {
 
   
 
-    public int getNumtarefa() {
+    public int getNumTarefa() {
         return numtarefa;
     }
 
@@ -42,7 +42,7 @@ public class Tarefa implements java.io.Serializable {
         return titulo;
     }
 
-    public Utilizador getCriadopor() {
+    public Utilizador getCriadoPor() {
         return criadopor;
     }
 
@@ -50,15 +50,15 @@ public class Tarefa implements java.io.Serializable {
         return descricao;
     }
 
-    public LocalDate getDatainicio() {
+    public LocalDate getDataInicio() {
         return datainicio;
     }
 
-    public LocalDate getDatafim() {
+    public LocalDate getDataFim() {
         return datafim;
     }
 
-    public Estado getEstadotarefa() {
+    public Estado getEstadoTarefa() {
         return estadotarefa;
     }
 
@@ -69,7 +69,7 @@ public class Tarefa implements java.io.Serializable {
  
 
   
-    public void setNumtarefa(int numtarefa) {
+    public void setNumTarefa(int numtarefa) {
         this.numtarefa = numtarefa;
     }
 
@@ -77,7 +77,7 @@ public class Tarefa implements java.io.Serializable {
         this.titulo = titulo;
     }
 
-    public void setCriadopor(Utilizador criadopor) {
+    public void setCriadoPor(Utilizador criadopor) {
         this.criadopor = criadopor;
     }
 
@@ -85,15 +85,15 @@ public class Tarefa implements java.io.Serializable {
         this.descricao = descricao;
     }
 
-    public void setDatainicio(LocalDate datainicio) {
+    public void setDataInicio(LocalDate datainicio) {
         this.datainicio = datainicio;
     }
 
-    public void setDatafim(LocalDate datafim) {
+    public void setDataFim(LocalDate datafim) {
         this.datafim = datafim;
     }
 
-    public void setEstadotarefa(Estado estadotarefa) {
+    public void setEstadoTarefa(Estado estadotarefa) {
         this.estadotarefa = estadotarefa;
     }
 

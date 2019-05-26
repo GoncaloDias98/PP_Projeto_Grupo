@@ -29,7 +29,7 @@ public class ListaTarefas implements java.io.Serializable {
         //percorre todo o array de tarefa 
         for (Tarefa t : arraylistatarefa) {
             //numero do tarefa toma o valor da tarefa
-            numtarefa = t.getNumtarefa();
+            numtarefa = t.getNumTarefa();
         }
         //retorna o ultimo numero da tarefa !!
         return numtarefa;

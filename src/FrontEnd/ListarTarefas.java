@@ -68,9 +68,9 @@ public class ListarTarefas extends javax.swing.JDialog {
 
                                 for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
 
-                                    if (t.getNumtarefa() == tmpt.getNumtarefa()) {
+                                    if (t.getNumTarefa() == tmpt.getNumTarefa()) {
 
-                                        tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
+                                        tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumTarefa(), t.getTitulo(), t.getDataInicio(), t.getDataFim(), t.getEstadoTarefa().getDescricao(), t.getCriadoPor().getUser()});
 
                                     }
                                 }
@@ -99,9 +99,9 @@ public class ListarTarefas extends javax.swing.JDialog {
 
                                         for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
 
-                                            if (t.getNumtarefa() == tmpt.getNumtarefa()) {
+                                            if (t.getNumTarefa() == tmpt.getNumTarefa()) {
 
-                                                tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
+                                                tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumTarefa(), t.getTitulo(), t.getDataInicio(), t.getDataFim(), t.getEstadoTarefa().getDescricao(), t.getCriadoPor().getUser()});
 
                                             }
                                         }
@@ -397,7 +397,7 @@ public class ListarTarefas extends javax.swing.JDialog {
 
                             Tarefa t = sistema.getListatarefas().getListaTarefas().get(k);
 
-                            if (t.getNumtarefa() == numtarefa) {
+                            if (t.getNumTarefa() == numtarefa) {
                                 tarefa = t;
                                 this.dispose();
                                 AlterarTarefa alterartarefa = new AlterarTarefa(sistema, projeto, tarefasprojeto, tarefa);

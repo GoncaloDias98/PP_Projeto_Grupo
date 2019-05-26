@@ -39,15 +39,15 @@ public class AlterarTarefa extends javax.swing.JDialog {
     }
 
     public void carregar() {
-        this.ftxInicio.setText(sistema.Datatexto(tarefa.getDatainicio()));
-        this.ftxFim.setText(sistema.Datatexto(tarefa.getDatafim()));
+        this.ftxInicio.setText(sistema.Datatexto(tarefa.getDataInicio()));
+        this.ftxFim.setText(sistema.Datatexto(tarefa.getDataFim()));
         this.txaDescricao.setText(tarefa.getDescricao());
         this.txtTitulo.setText(tarefa.getTitulo());
         this.cmbProjeto.addItem(projeto.getTitulo());
         this.cmbListaProjeto.addItem(tarefasprojeto.getTitulo());
-        this.cmbEstado.setSelectedItem(tarefa.getEstadotarefa().getDescricao());
+        this.cmbEstado.setSelectedItem(tarefa.getEstadoTarefa().getDescricao());
         this.cmbPrioridadeTarefas.setSelectedItem(tarefa.getPrioridade().getDescricao());
-        this.txtNumero.setText(String.valueOf(tarefa.getNumtarefa()));
+        this.txtNumero.setText(String.valueOf(tarefa.getNumTarefa()));
 
     }
 
@@ -264,28 +264,28 @@ public class AlterarTarefa extends javax.swing.JDialog {
 
             } else {
 
-                tarefa.setDatainicio(sistema.Data(datainicio));
-                tarefa.setDatafim(sistema.Data(datafim));
+                tarefa.setDataInicio(sistema.Data(datainicio));
+                tarefa.setDataFim(sistema.Data(datafim));
             }
 
             tarefa.setTitulo(titulo);
             tarefa.setDescricao(descricao);
-            tarefa.setCriadopor(sistema.getUtilizadorLigado());
+            tarefa.setCriadoPor(sistema.getUtilizadorLigado());
 
             //Verifica se o valor da combo Estado é igual à descrição do Estado Concluído
             if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
                 //se for toma o valor Concluido
-                tarefa.setEstadotarefa(sistema.getEstado().concluido);
+                tarefa.setEstadoTarefa(sistema.getEstado().concluido);
             }
             //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
             if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
                 //se for toma o valor Iniciado
-                tarefa.setEstadotarefa(sistema.getEstado().emcurso);
+                tarefa.setEstadoTarefa(sistema.getEstado().emcurso);
             }
             //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
             if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
                 //se for toma o valor Não Iniciado
-                tarefa.setEstadotarefa(sistema.getEstado().naoiniciado);
+                tarefa.setEstadoTarefa(sistema.getEstado().naoiniciado);
             }
 
             //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Alta

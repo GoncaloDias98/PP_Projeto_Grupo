@@ -123,12 +123,12 @@ private void listarProjetos() {
                             for (int k = 0; k < sistema.getListatarefas().getListaTarefas().size(); k++) {
 
                                 Tarefa t = sistema.getListatarefas().getListaTarefas().get(k);
-                                if (t.getDatafim().isBefore(hoje)) {
+                                if (t.getDataFim().isBefore(hoje)) {
                                     for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
 
-                                        if (t.getNumtarefa() == tmpt.getNumtarefa()) {
+                                        if (t.getNumTarefa() == tmpt.getNumTarefa()) {
 
-                                            tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
+                                            tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumTarefa(), t.getTitulo(), t.getDataInicio(), t.getDataFim(), t.getEstadoTarefa().getDescricao(), t.getCriadoPor().getUser()});
 
                                         }
                                     }
@@ -154,12 +154,12 @@ private void listarProjetos() {
                                     for (int k = 0; k < sistema.getListatarefas().getListaTarefas().size(); k++) {
 
                                         Tarefa t = sistema.getListatarefas().getListaTarefas().get(k);
-                                        if (t.getDatafim().isBefore(hoje)) {
+                                        if (t.getDataFim().isBefore(hoje)) {
                                             for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
 
-                                                if (t.getNumtarefa() == tmpt.getNumtarefa()) {
+                                                if (t.getNumTarefa() == tmpt.getNumTarefa()) {
 
-                                                    tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
+                                                    tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumTarefa(), t.getTitulo(), t.getDataInicio(), t.getDataFim(), t.getEstadoTarefa().getDescricao(), t.getCriadoPor().getUser()});
 
                                                 }
                                             }
