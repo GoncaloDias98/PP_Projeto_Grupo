@@ -78,7 +78,7 @@ public class AlterarTarefa extends javax.swing.JDialog {
         cmbListaProjeto = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Alterar Tarefa");
+        setTitle("SoftProject - Alterar Tarefa");
 
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Em Curso", "Concluído" }));
 

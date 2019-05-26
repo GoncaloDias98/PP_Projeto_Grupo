@@ -30,7 +30,7 @@ public class ListarTarefasProjeto extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Lista de Tarefas");
+        setTitle("SoftProject - Lista de Tarefas");
 
         tblListaTarefasProjeto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
