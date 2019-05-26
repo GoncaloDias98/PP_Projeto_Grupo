@@ -20,7 +20,6 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.sistema = sistema;
         this.lblUtilizador.setText(sistema.getUtilizadorLigado().getNome());
-        this.lblDataSistema.setText(LocalDate.now().toString());
 
         if (sistema.getListaprojetos().getArraylistaprojeto().size() > 0) {
             projetosConcluidos();
@@ -38,10 +37,10 @@ public class Principal extends javax.swing.JFrame {
             this.percentagemProjetosConcluidos.setText(String.format("%.2f", percentagemProjetosConcluidos()) + "%");
             this.percentagemProjetosAtrasados.setText(String.format("%.2f", percentagemProjetosAtrasados()) + "%");
             this.percentagemProjetosEmCurso.setText(String.format("%.2f", percentagemProjetosEmCurso()) + "%");
-        }
-        //Força a maximização da janela
-        this.setExtendedState(Principal.MAXIMIZED_BOTH);
 
+            //Força a maximização da janela
+            this.setExtendedState(Principal.MAXIMIZED_BOTH);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -49,7 +48,6 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        btnGravar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -59,12 +57,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
-        lblGesProjeto = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JToolBar.Separator();
         lblUtilizador = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        lblDataSistema = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         nProjetosConcluidos = new javax.swing.JLabel();
         nProjetosEmCurso = new javax.swing.JLabel();
         nProjetosAtrasados = new javax.swing.JLabel();
@@ -75,8 +69,9 @@ public class Principal extends javax.swing.JFrame {
         lbltop3 = new javax.swing.JLabel();
         percentagemProjetosEmCurso = new javax.swing.JLabel();
         percentagemProjetosAtrasados = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         tituloProjetoMaisProblematico = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmiMudarUtilizador = new javax.swing.JMenuItem();
@@ -98,11 +93,9 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftProject");
-
-        btnGravar.setText("Gravar");
-        btnGravar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGravarActionPerformed(evt);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
@@ -125,32 +118,17 @@ public class Principal extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
         jToolBar1.setEnabled(false);
 
-        lblGesProjeto.setText("Gestão de Projetos");
-        jToolBar1.add(lblGesProjeto);
-        jToolBar1.add(jSeparator1);
-
         lblUtilizador.setText("Utilizador");
         jToolBar1.add(lblUtilizador);
         lblUtilizador.getAccessibleContext().setAccessibleName("");
 
         jToolBar1.add(jSeparator3);
 
-        lblDataSistema.setText("Data");
-        jToolBar1.add(lblDataSistema);
-        lblDataSistema.getAccessibleContext().setAccessibleName("");
+        nProjetosConcluidos.setText("nPC");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        nProjetosEmCurso.setText("nPeC");
 
-        nProjetosConcluidos.setText("0");
-
-        nProjetosEmCurso.setText("0");
-
-        nProjetosAtrasados.setText("0");
+        nProjetosAtrasados.setText("nPA");
 
         atualizarDashboard.setText("Atualizar");
         atualizarDashboard.addActionListener(new java.awt.event.ActionListener() {
@@ -159,22 +137,23 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        percentagemProjetosConcluidos.setText("0%");
+        percentagemProjetosConcluidos.setText("pPC");
 
-        lbltop1.setText("Não existe");
+        lbltop1.setText("top1");
 
-        lbltop2.setText("Não existe");
+        lbltop2.setText("top2");
 
-        lbltop3.setText("Não existe");
+        lbltop3.setText("top3");
 
-        percentagemProjetosEmCurso.setText("0%");
+        percentagemProjetosEmCurso.setText("pPeC");
 
-        percentagemProjetosAtrasados.setText("0%");
+        percentagemProjetosAtrasados.setText("pPA");
 
-        tituloProjetoMaisProblematico.setText("Não existe");
+        jLabel1.setText("Pessoais");
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("Estatisticas");
+        jLabel2.setText("Pessoais/Empresa");
+
+        tituloProjetoMaisProblematico.setText("PMPDE");
 
         jMenu1.setText("Sistema");
 
@@ -298,6 +277,53 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nProjetosConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nProjetosEmCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nProjetosAtrasados, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbltop1)
+                        .addGap(115, 115, 115)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(atualizarDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(percentagemProjetosEmCurso))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(percentagemProjetosConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(percentagemProjetosAtrasados)))
+                        .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbltop2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbltop3)))
+                .addContainerGap(44, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -305,65 +331,18 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel10))
                 .addGap(167, 167, 167))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel3))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(nProjetosConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nProjetosEmCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel11)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(nProjetosAtrasados, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lbltop1)
-                                .addGap(115, 115, 115)
-                                .addComponent(lbltop2)
-                                .addGap(26, 26, 26)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(atualizarDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(percentagemProjetosConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(percentagemProjetosEmCurso)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbltop3)
-                                    .addComponent(jLabel8))
-                                .addGap(18, 18, 18)
-                                .addComponent(percentagemProjetosAtrasados))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(tituloProjetoMaisProblematico)))
+                .addGap(220, 220, 220)
+                .addComponent(tituloProjetoMaisProblematico)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel11)
-                .addGap(40, 40, 40)
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
@@ -388,29 +367,18 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lbltop2)
                     .addComponent(lbltop3)
                     .addComponent(lbltop1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(tituloProjetoMaisProblematico)
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnGravar)
-                            .addComponent(atualizarDashboard))
-                        .addGap(31, 31, 31)
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(71, 71, 71))))
+                .addComponent(tituloProjetoMaisProblematico)
+                .addGap(38, 38, 38)
+                .addComponent(atualizarDashboard)
+                .addGap(31, 31, 31)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
-        sistema.guardarObjectos();
-    }//GEN-LAST:event_btnGravarActionPerformed
 
     private void jmiAlterarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlterarPerfilActionPerformed
         AlterarPerfil alterarperfil = new AlterarPerfil(sistema);
@@ -457,18 +425,12 @@ public class Principal extends javax.swing.JFrame {
         resgistarlistatarefas.setVisible(true);
     }//GEN-LAST:event_jmiListaTarefasActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        sistema.getListatarefasprojeto().listaconsulta();
-        sistema.getListaprojetos().ConsultaProjetos();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jmiListadeTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiListadeTarefasActionPerformed
         ListarTarefasProjeto listatarefasprojeto = new ListarTarefasProjeto(sistema);
         listatarefasprojeto.setVisible(true);
     }//GEN-LAST:event_jmiListadeTarefasActionPerformed
 
     private void atualizarDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarDashboardActionPerformed
-        if (sistema.getListaprojetos().getArraylistaprojeto().size() > 0) {
         contadorProjetosConcluidos = 0;
         contadorProjetosEmCurso = 0;
         contadorProjetosAtrasados = 0;
@@ -488,7 +450,6 @@ public class Principal extends javax.swing.JFrame {
         this.percentagemProjetosConcluidos.setText(String.format("%.2f", percentagemProjetosConcluidos()) + "%");
         this.percentagemProjetosAtrasados.setText(String.format("%.2f", percentagemProjetosAtrasados()) + "%");
         this.percentagemProjetosEmCurso.setText(String.format("%.2f", percentagemProjetosEmCurso()) + "%");
-        }
     }//GEN-LAST:event_atualizarDashboardActionPerformed
 
     private void jmiMudarUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMudarUtilizadorActionPerformed
@@ -505,6 +466,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiMudarUtilizadorActionPerformed
 
     private void jmiterminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiterminarActionPerformed
+        terminar();
+    }//GEN-LAST:event_jmiterminarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        terminar();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void terminar() {
         if (JOptionPane.showConfirmDialog(null,
                 "Deseja Sair ?",
                 "Terminar",
@@ -512,8 +481,7 @@ public class Principal extends javax.swing.JFrame {
 
             sistema.terminar();
         }
-
-    }//GEN-LAST:event_jmiterminarActionPerformed
+    }
 
     private void projetosConcluidos() {
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
@@ -688,10 +656,9 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atualizarDashboard;
-    private javax.swing.JButton btnGravar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -704,7 +671,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenuItem jmiAlterarPerfil;
@@ -717,8 +683,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiTarefas;
     private javax.swing.JMenuItem jmiUtilizadores;
     private javax.swing.JMenuItem jmiterminar;
-    private javax.swing.JLabel lblDataSistema;
-    private javax.swing.JLabel lblGesProjeto;
     private javax.swing.JLabel lblUtilizador;
     private javax.swing.JLabel lbltop1;
     private javax.swing.JLabel lbltop2;
