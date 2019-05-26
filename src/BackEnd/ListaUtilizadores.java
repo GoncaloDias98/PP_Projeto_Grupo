@@ -30,14 +30,14 @@ public class ListaUtilizadores implements java.io.Serializable {
         this.existeutilizador = existeutilizador;
     }
 
-    public void ConsultaUtilizadores() {
+    public void consultaUtilizadores() {
 
         for (Utilizador u : arraylistautilizador) {
             u.ConsultaUtilizador();
         }
     }
 
-    public boolean ExisteUtilizador(String username) {
+    public boolean existeUtilizador(String username) {
         existeutilizador=false;
         for (Utilizador u : arraylistautilizador) {
             //verifica se o utilizador do login é igual ao utilizador do array

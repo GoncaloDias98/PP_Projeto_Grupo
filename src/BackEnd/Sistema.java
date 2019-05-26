@@ -161,11 +161,11 @@ public class Sistema implements java.io.Serializable {
     public void inicializar() {
 
         Utilizador u1 = new Utilizador("admin", "admin", "", "", "", "");
-        if (listautilizadores.ExisteUtilizador("admin") == false) {
+        if (listautilizadores.existeUtilizador("admin") == false) {
             listautilizadores.inserirUtilizador(u1);
         }
         Utilizador u2 = new Utilizador("1", "2", "", "", "", "");
-        if (listautilizadores.ExisteUtilizador("1") == false) {
+        if (listautilizadores.existeUtilizador("1") == false) {
             listautilizadores.inserirUtilizador(u2);
         }
 

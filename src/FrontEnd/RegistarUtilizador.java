@@ -67,7 +67,7 @@ public class RegistarUtilizador extends javax.swing.JDialog {
                 
                 
                 
-                if (sistema.getListautilizadores().ExisteUtilizador(username) == false) {
+                if (sistema.getListautilizadores().existeUtilizador(username) == false) {
                     //CRIA NOVO UTILIZADOR COM OS DADOS INTRODUZIDOS                
                     Utilizador u = new Utilizador(username, password, nome, morada, telefone, email);
                     sistema.getListautilizadores().inserirUtilizador(u);
