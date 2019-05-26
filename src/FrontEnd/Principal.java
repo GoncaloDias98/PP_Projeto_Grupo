@@ -21,6 +21,7 @@ public class Principal extends javax.swing.JFrame {
         this.sistema = sistema;
         this.lblUtilizador.setText(sistema.getUtilizadorLigado().getNome());
         this.setLocationRelativeTo(null);
+        this.setExtendedState(Principal.MAXIMIZED_BOTH);    
         if (sistema.getListaprojetos().getArraylistaprojeto().size() > 0) {
             projetosConcluidos();
             projetosEmCurso();

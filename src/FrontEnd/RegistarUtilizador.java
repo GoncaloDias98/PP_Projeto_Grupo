@@ -63,7 +63,7 @@ public class RegistarUtilizador extends javax.swing.JDialog {
                 String morada = this.txtMorada.getText();
                 String nome = this.txtNome.getText();
                 String email = this.txtEmail.getText();
-                String telefone = this.txaTelefone.getText();
+                String telefone = this.ftxTelefone.getText();
                 
                 
                 
@@ -110,11 +110,11 @@ public class RegistarUtilizador extends javax.swing.JDialog {
         txtEmail = new javax.swing.JTextField();
         btnGravar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        txaTelefone = new javax.swing.JFormattedTextField();
+        ftxTelefone = new javax.swing.JFormattedTextField();
         try{
             javax.swing.text.MaskFormatter telefone = new javax.swing.text.MaskFormatter("(+###) ### ### ###");
 
-            txaTelefone = new javax.swing.JFormattedTextField(telefone);
+            ftxTelefone = new javax.swing.JFormattedTextField(telefone);
         }catch(Exception e){
         }
 
@@ -179,7 +179,7 @@ public class RegistarUtilizador extends javax.swing.JDialog {
                                 .addComponent(txtEmail)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel9))
-                            .addComponent(txaTelefone)))
+                            .addComponent(ftxTelefone)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -225,7 +225,7 @@ public class RegistarUtilizador extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ftxTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -256,6 +256,7 @@ public class RegistarUtilizador extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGravar;
+    private javax.swing.JFormattedTextField ftxTelefone;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -264,7 +265,6 @@ public class RegistarUtilizador extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JFormattedTextField txaTelefone;
     private javax.swing.JTextField txtConfirmarEmail;
     private javax.swing.JPasswordField txtConfirmarPassword;
     private javax.swing.JTextField txtEmail;

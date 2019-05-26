@@ -52,7 +52,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txaTelefone" max="32767" attributes="0"/>
+                          <Component id="ftxTelefone" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -113,7 +113,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txaTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ftxTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -203,9 +203,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="txaTelefone">
+    <Component class="javax.swing.JFormattedTextField" name="ftxTelefone">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="try{&#xd;&#xa;  javax.swing.text.MaskFormatter telefone = new javax.swing.text.MaskFormatter(&quot;(+###) ### ### ###&quot;);&#xd;&#xa; &#xd;&#xa;  txaTelefone = new javax.swing.JFormattedTextField(telefone);&#xd;&#xa;  }catch(Exception e){&#xd;&#xa; }"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="try{&#xd;&#xa;  javax.swing.text.MaskFormatter telefone = new javax.swing.text.MaskFormatter(&quot;(+###) ### ### ###&quot;);&#xd;&#xa; &#xd;&#xa;  ftxTelefone = new javax.swing.JFormattedTextField(telefone);&#xd;&#xa;  }catch(Exception e){&#xd;&#xa; }"/>
       </AuxValues>
     </Component>
   </SubComponents>

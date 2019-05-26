@@ -36,10 +36,13 @@ public class RegistarProjeto extends javax.swing.JDialog {
 
         this.sistema = sistema;
         this.ftxInicio.setText(sistema.Datatexto(LocalDate.now()));
+
+
         this.ftxFim.setText(sistema.Datatexto(LocalDate.now()));
         this.jplcriacaorapida.hide();
         this.jpnListaTarefas.hide();
         this.jpnTarefas.hide();
+        
 
         //O processo de fecho da janela será controlado pelo programa
         //  this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -177,11 +180,17 @@ projemedicao = novop;
         txtTitulo = new javax.swing.JTextField();
         lblDescricao = new javax.swing.JLabel();
         lblInicio = new javax.swing.JLabel();
+        try{
+            javax.swing.text.MaskFormatter telefone = new javax.swing.text.MaskFormatter("(+###) ### ### ###");
+
+            ftxInicio = new javax.swing.JFormattedTextField(telefone);
+        }catch(Exception e){
+        }
         ftxInicio = new javax.swing.JFormattedTextField();
         try{
-            javax.swing.text.MaskFormatter datainicio = new javax.swing.text.MaskFormatter("##/##/####");
+            javax.swing.text.MaskFormatter telefone = new javax.swing.text.MaskFormatter("(+###) ### ### ###");
 
-            ftxInicio = new javax.swing.JFormattedTextField(datainicio);
+            ftxInicio = new javax.swing.JFormattedTextField(telefone);
         }catch(Exception e){
         }
         cmbEstado = new javax.swing.JComboBox<>();
@@ -242,7 +251,11 @@ projemedicao = novop;
 
         lblInicio.setText("Data Inicio:");
 
-        ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/y"))));
+        try {
+            ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         ftxInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftxInicioActionPerformed(evt);
@@ -275,7 +288,11 @@ projemedicao = novop;
 
         lblFim.setText("Data Fim:");
 
-        ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/y"))));
+        try {
+            ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         ftxFim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftxFimActionPerformed(evt);
@@ -568,7 +585,7 @@ projemedicao = novop;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTitulo)
                             .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblDescricao)
@@ -579,10 +596,9 @@ projemedicao = novop;
                                     .addComponent(ftxFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblFim)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 4, Short.MAX_VALUE)
+                                .addGap(0, 12, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(63, 63, 63)))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblEstado))
