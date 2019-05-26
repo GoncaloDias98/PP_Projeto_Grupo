@@ -26,7 +26,7 @@ public class ListaGestor {
     public void consultaGestor() {
 
         for (Gestor g : arraylistgestor) {
-           g.consultaUtilizador();
+           g.ConsultaUtilizador();
         }
     }
 }

@@ -26,7 +26,7 @@ public class TarefasProjeto implements java.io.Serializable {
     public TarefasProjeto() {
     }
 
-    public int getNumTarefaProjeto() {
+    public int getNumtarefaProjeto() {
         return numtarefaprojeto;
     }
     
@@ -51,15 +51,15 @@ public class TarefasProjeto implements java.io.Serializable {
         return criadapor;
     }
 
-    public void setCriadaPor(String criadapor) {
+    public void setCriadapor(String criadapor) {
         this.criadapor = criadapor;
     }
 
-    public ArrayList<Tarefa> getArrayListaListaTarefas() {
+    public ArrayList<Tarefa> getArraylistalistatarefas() {
         return listatarefas;
     }
 
-    public void setArrayListaListaTarefas(ArrayList<Tarefa> arraylistalistatarefas) {
+    public void setArraylistalistatarefas(ArrayList<Tarefa> arraylistalistatarefas) {
         this.listatarefas = arraylistalistatarefas;
     }
 

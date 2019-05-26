@@ -91,17 +91,17 @@ public class ListarTarefasProjeto extends javax.swing.JDialog {
         tm.addColumn("Criador");
         tm.addColumn("Projeto");
 
-        for (int i = 0; i < sistema.getListaProjetos().getListasProjeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
             //apanha o valor do array !
 
-            Projeto p = sistema.getListaProjetos().getListasProjeto().get(i);
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
-                for (int j = 0; j < sistema.getListaTarefasProjeto().getListaTarefasProjeto().size(); j++) {
+                for (int j = 0; j < sistema.getListatarefasprojeto().getListaTarefasProjeto().size(); j++) {
                     //apanha o valor do array !
 
-                    TarefasProjeto tp = sistema.getListaTarefasProjeto().getListaTarefasProjeto().get(j);
+                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListaTarefasProjeto().get(j);
                     for (TarefasProjeto tptemp : p.getArraylistalistatarefasprojeto()) {
-                        if (tp.getNumTarefaProjeto() == tptemp.getNumTarefaProjeto()) {
+                        if (tp.getNumtarefaProjeto() == tptemp.getNumtarefaProjeto()) {
                             tm.addRow(new Object[]{tp.getTitulo(), tp.getDescricao(), tp.getCriadapor(), p.getTitulo()});
 
                         }
@@ -110,9 +110,9 @@ public class ListarTarefasProjeto extends javax.swing.JDialog {
                     this.tblListaTarefasProjeto.setModel(tm);
                 }
             } else {
-                for (Colaborador c : p.getArraylistColaborador()) {
+                for (Colaborador c : p.getArraylistcolaborador()) {
                     if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
-                        tm.addRow(new Object[]{p.getNumProjeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDataFim(), p.getEstadoProjeto().getDescricao()});
+                        tm.addRow(new Object[]{p.getNumprojeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDatafim(), p.getEstadoprojeto().getDescricao()});
 
                     }
 

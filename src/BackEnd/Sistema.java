@@ -120,23 +120,23 @@ public class Sistema implements java.io.Serializable {
         return tarefa;
     }
 
-    public ListaUtilizadores getListaUtilizadores() {
+    public ListaUtilizadores getListautilizadores() {
         return listautilizadores;
     }
 
-    public ListaColaboradores getListaColaboradores() {
+    public ListaColaboradores getListacolaboradores() {
         return listacolaboradores;
     }
 
-    public ListaGestor getListaGestor() {
+    public ListaGestor getListagestor() {
         return listagestor;
     }
 
-    public ListaProjetos getListaProjetos() {
+    public ListaProjetos getListaprojetos() {
         return listaprojetos;
     }
 
-    public ListaTarefas getListaTarefas() {
+    public ListaTarefas getListatarefas() {
         return listatarefas;
     }
 
@@ -144,11 +144,11 @@ public class Sistema implements java.io.Serializable {
         return utilizador_autenticado;
     }
 
-    public TarefasProjeto getTarefasProjeto() {
+    public TarefasProjeto getTarefasprojeto() {
         return tarefasprojeto;
     }
 
-    public ListaTarefasProjeto getListaTarefasProjeto() {
+    public ListaTarefasProjeto getListatarefasprojeto() {
         return listatarefasprojeto;
     }
 

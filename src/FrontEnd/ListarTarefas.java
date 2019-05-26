@@ -46,31 +46,31 @@ public class ListarTarefas extends javax.swing.JDialog {
         tm.addColumn("Criada Por");
         //percorre todo o array de projetos
 
-        for (int i = 0; i < sistema.getListaProjetos().getListasProjeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
             //apanha o valor do array !
 
-            Projeto p = sistema.getListaProjetos().getListasProjeto().get(i);
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
 
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
 
-                for (int j = 0; j < sistema.getListaTarefasProjeto().getListaTarefasProjeto().size(); j++) {
+                for (int j = 0; j < sistema.getListatarefasprojeto().getListaTarefasProjeto().size(); j++) {
                     //apanha o valor do array !
 
-                    TarefasProjeto tp = sistema.getListaTarefasProjeto().getListaTarefasProjeto().get(j);
+                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListaTarefasProjeto().get(j);
 
                     for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
 
-                        if (tp.getNumTarefaProjeto() == tpmpt.getNumTarefaProjeto()) {
+                        if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
 
-                            for (int k = 0; k < sistema.getListaTarefas().getListaTarefas().size(); k++) {
+                            for (int k = 0; k < sistema.getListatarefas().getListaTarefas().size(); k++) {
 
-                                Tarefa t = sistema.getListaTarefas().getListaTarefas().get(k);
+                                Tarefa t = sistema.getListatarefas().getListaTarefas().get(k);
 
-                                for (Tarefa tmpt : tp.getArrayListaListaTarefas()) {
+                                for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
 
                                     if (t.getNumTarefa() == tmpt.getNumTarefa()) {
 
-                                        tm.addRow(new Object[]{p.getNumProjeto(), p.getDescricao(), tp.getNumTarefaProjeto(), tp.getTitulo(), t.getNumTarefa(), t.getTitulo(), t.getDataInicio(), t.getDataFim(), t.getEstadoTarefa().getDescricao(), t.getCriadoPor().getUser()});
+                                        tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumTarefa(), t.getTitulo(), t.getDataInicio(), t.getDataFim(), t.getEstadoTarefa().getDescricao(), t.getCriadoPor().getUser()});
 
                                     }
                                 }
@@ -81,27 +81,27 @@ public class ListarTarefas extends javax.swing.JDialog {
                 }
               
             } else {
-                for (Colaborador c : p.getArraylistColaborador()) {
+                for (Colaborador c : p.getArraylistcolaborador()) {
 
                     if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
-                        for (int j = 0; j < sistema.getListaTarefasProjeto().getListaTarefasProjeto().size(); j++) {
+                        for (int j = 0; j < sistema.getListatarefasprojeto().getListaTarefasProjeto().size(); j++) {
                             //apanha o valor do array !
 
-                            TarefasProjeto tp = sistema.getListaTarefasProjeto().getListaTarefasProjeto().get(j);
+                            TarefasProjeto tp = sistema.getListatarefasprojeto().getListaTarefasProjeto().get(j);
 
                             for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
 
-                                if (tp.getNumTarefaProjeto() == tpmpt.getNumTarefaProjeto()) {
+                                if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
 
-                                    for (int k = 0; k < sistema.getListaTarefas().getListaTarefas().size(); k++) {
+                                    for (int k = 0; k < sistema.getListatarefas().getListaTarefas().size(); k++) {
 
-                                        Tarefa t = sistema.getListaTarefas().getListaTarefas().get(k);
+                                        Tarefa t = sistema.getListatarefas().getListaTarefas().get(k);
 
-                                        for (Tarefa tmpt : tp.getArrayListaListaTarefas()) {
+                                        for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
 
                                             if (t.getNumTarefa() == tmpt.getNumTarefa()) {
 
-                                                tm.addRow(new Object[]{p.getNumProjeto(), p.getDescricao(), tp.getNumTarefaProjeto(), tp.getTitulo(), t.getNumTarefa(), t.getTitulo(), t.getDataInicio(), t.getDataFim(), t.getEstadoTarefa().getDescricao(), t.getCriadoPor().getUser()});
+                                                tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumTarefa(), t.getTitulo(), t.getDataInicio(), t.getDataFim(), t.getEstadoTarefa().getDescricao(), t.getCriadoPor().getUser()});
 
                                             }
                                         }
@@ -379,23 +379,23 @@ public class ListarTarefas extends javax.swing.JDialog {
         int numprojeto = tm.getValueAt(numlinha, 0).hashCode();
         int numtp = tm.getValueAt(numlinha, 2).hashCode();
 
-        for (int i = 0; i < sistema.getListaProjetos().getListasProjeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
             //apanha o valor do array !
 
-            Projeto p = sistema.getListaProjetos().getListasProjeto().get(i);
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
 
-            if (p.getNumProjeto() == numprojeto) {
+            if (p.getNumprojeto() == numprojeto) {
                 projeto = p;
-                for (int j = 0; j < sistema.getListaTarefasProjeto().getListaTarefasProjeto().size(); j++) {
+                for (int j = 0; j < sistema.getListatarefasprojeto().getListaTarefasProjeto().size(); j++) {
                     //apanha o valor do array !
 
-                    TarefasProjeto tp = sistema.getListaTarefasProjeto().getListaTarefasProjeto().get(j);
+                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListaTarefasProjeto().get(j);
 
-                    if (tp.getNumTarefaProjeto() == numtp) {
+                    if (tp.getNumtarefaProjeto() == numtp) {
                         tarefasprojeto = tp;
-                        for (int k = 0; k < sistema.getListaTarefas().getListaTarefas().size(); k++) {
+                        for (int k = 0; k < sistema.getListatarefas().getListaTarefas().size(); k++) {
 
-                            Tarefa t = sistema.getListaTarefas().getListaTarefas().get(k);
+                            Tarefa t = sistema.getListatarefas().getListaTarefas().get(k);
 
                             if (t.getNumTarefa() == numtarefa) {
                                 tarefa = t;
@@ -476,14 +476,14 @@ public class ListarTarefas extends javax.swing.JDialog {
 
         this.cmbProjeto.removeAllItems();
         this.cmbProjeto.addItem("");
-        for (int i = 0; i < sistema.getListaProjetos().getListasProjeto().size(); i++) {
-            Projeto p = sistema.getListaProjetos().getListasProjeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 this.cmbProjeto.addItem(p.getTitulo());
             } else {
-                for (int j = 0; j < p.getArraylistColaborador().size(); j++) {
+                for (int j = 0; j < p.getArraylistcolaborador().size(); j++) {
 
-                    Colaborador c = p.getArraylistColaborador().get(j);
+                    Colaborador c = p.getArraylistcolaborador().get(j);
                     if ((sistema.getUtilizadorLigado().getUser().equals(c.getUser()))) {
                         this.cmbProjeto.addItem(p.getTitulo());
                     }
@@ -498,9 +498,9 @@ public class ListarTarefas extends javax.swing.JDialog {
         this.cmbCriadoPor.removeAllItems();
         this.cmbColaborador.addItem("");
         this.cmbCriadoPor.addItem("");
-        for (int i = 0; i < sistema.getListaUtilizadores().getArraylistautilizador().size(); i++) {
+        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = sistema.getListaUtilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
             this.cmbColaborador.addItem(u.getUser());
             this.cmbCriadoPor.addItem(u.getUser());

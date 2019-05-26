@@ -55,7 +55,7 @@ public class Projeto implements java.io.Serializable {
     }
 
     //Metodos GET !!
-    public int getNumProjeto() {
+    public int getNumprojeto() {
         return numprojeto;
     }
 
@@ -79,7 +79,7 @@ public class Projeto implements java.io.Serializable {
         return datainicio;
     }
 
-    public LocalDate getDataFim() {
+    public LocalDate getDatafim() {
         return datafim;
     }
 
@@ -91,16 +91,16 @@ public class Projeto implements java.io.Serializable {
         return gestor;
     }
 
-    public Estado getEstadoProjeto() {
+    public Estado getEstadoprojeto() {
         return estadoprojeto;
     }
 
     //Metodos SET !
-    public void setNumProjeto(int numprojeto) {
+    public void setNumprojeto(int numprojeto) {
         this.numprojeto = numprojeto;
     }
 
-    public void setArrayListaListaTarefasProjeto(ArrayList<TarefasProjeto> arraylistalistatarefasprojeto) {
+    public void setArraylistalistatarefasprojeto(ArrayList<TarefasProjeto> arraylistalistatarefasprojeto) {
         this.arraylistalistatarefasprojeto = arraylistalistatarefasprojeto;
     }
 
@@ -112,11 +112,11 @@ public class Projeto implements java.io.Serializable {
         this.descricao = descricao;
     }
 
-    public void setDataInicio(LocalDate datainicio) {
+    public void setDatainicio(LocalDate datainicio) {
         this.datainicio = datainicio;
     }
 
-    public void setDataFim(LocalDate datafim) {
+    public void setDatafim(LocalDate datafim) {
         this.datafim = datafim;
     }
 
@@ -128,15 +128,15 @@ public class Projeto implements java.io.Serializable {
         this.gestor = gestor;
     }
 
-    public void setEstadoProjeto(Estado estadoprojeto) {
+    public void setEstadoprojeto(Estado estadoprojeto) {
         this.estadoprojeto = estadoprojeto;
     }
 
-    public ArrayList<Colaborador> getArraylistColaborador() {
+    public ArrayList<Colaborador> getArraylistcolaborador() {
         return arraylistcolaborador;
     }
 
-    public void setArraylistColaborador(ArrayList<Colaborador> arraylistcolaborador) {
+    public void setArraylistcolaborador(ArrayList<Colaborador> arraylistcolaborador) {
         this.arraylistcolaborador = arraylistcolaborador;
     }
 
@@ -144,7 +144,7 @@ public class Projeto implements java.io.Serializable {
         arraylistcolaborador.add(c);
     }
 
-    public void consultaProjeto() {
+    public void ConsultaProjeto() {
 
         System.out.println("Projeto{" + "numprojeto=" + numprojeto + ", titulo=" + titulo + ", descricao=" + descricao + ", datainicio=" + datainicio + ", datafim=" + datafim + ", tarefas=" + tarefas + ", gestor=" + gestor + ", utilizador=" + utilizador + ", colaborador=" + colaborador + ", estadoprojeto=" + estadoprojeto + ", dados=" + dados + ", arraylistcolaborador=" + arraylistcolaborador + ", listatarefasprojeto=" + listatarefasprojeto + ", arraylistalistatarefasprojeto=" + arraylistalistatarefasprojeto);
     }

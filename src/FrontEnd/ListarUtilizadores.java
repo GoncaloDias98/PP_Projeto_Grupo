@@ -131,9 +131,9 @@ public class ListarUtilizadores extends javax.swing.JDialog {
         tm.addColumn("Nome");
 
         //Percorre o array de ulizadores até à ultima posição !
-        for (int i = 0; i < dados.getListaUtilizadores().getArraylistautilizador().size(); i++) {
+        for (int i = 0; i < dados.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = dados.getListaUtilizadores().getArraylistautilizador().get(i);
+            Utilizador u = dados.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
             tm.addRow(new Object[]{u.getUser(), u.getNome()});
         }

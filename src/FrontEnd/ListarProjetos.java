@@ -303,18 +303,18 @@ private void listarProjetos() {
         tm.addColumn("Data Fim");
         tm.addColumn("Estado");
         //percorre todo o array de projetos
-        for (int i = 0; i < sistema.getListaProjetos().getListasProjeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
             //apanha o valor do array !
 
-            Projeto p = sistema.getListaProjetos().getListasProjeto().get(i);
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             //valida se o utilizador autenticado é gestor do projeto
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 //se for gestor mostra na linha, senão for, passa à frente !!
-                tm.addRow(new Object[]{p.getNumProjeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDataFim(), p.getEstadoProjeto().getDescricao()});
+                tm.addRow(new Object[]{p.getNumprojeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDatafim(), p.getEstadoprojeto().getDescricao()});
             } else {
-                for (Colaborador c : p.getArraylistColaborador()) {
+                for (Colaborador c : p.getArraylistcolaborador()) {
                     if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
-                        tm.addRow(new Object[]{p.getNumProjeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDataFim(), p.getEstadoProjeto().getDescricao()});
+                        tm.addRow(new Object[]{p.getNumprojeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDatafim(), p.getEstadoprojeto().getDescricao()});
 
                     }
 
@@ -341,11 +341,11 @@ private void listarProjetos() {
         Projeto projeto = new Projeto();
         int numprojeto = tm.getValueAt(numlinha, 0).hashCode();
 
-        for (int i = 0; i < sistema.getListaProjetos().getListasProjeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
             //apanha o valor do array !
-            Projeto p = sistema.getListaProjetos().getListasProjeto().get(i);
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             //valida se o utilizador autenticado é gestor do projeto
-            if (p.getNumProjeto() == numprojeto) {
+            if (p.getNumprojeto() == numprojeto) {
                 projeto = p;
 
                 AlterarProjeto alterarprojeto = new AlterarProjeto(sistema, projeto);
@@ -429,14 +429,14 @@ private void listarProjetos() {
 
         this.cmbProjeto.removeAllItems();
         this.cmbProjeto.addItem("");
-        for (int i = 0; i < sistema.getListaProjetos().getListasProjeto().size(); i++) {
-            Projeto p = sistema.getListaProjetos().getListasProjeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 this.cmbProjeto.addItem(p.getTitulo());
             } else {
-                for (int j = 0; j < p.getArraylistColaborador().size(); j++) {
+                for (int j = 0; j < p.getArraylistcolaborador().size(); j++) {
 
-                    Colaborador c = p.getArraylistColaborador().get(j);
+                    Colaborador c = p.getArraylistcolaborador().get(j);
                     if ((sistema.getUtilizadorLigado().getUser().equals(c.getUser()))) {
                         this.cmbProjeto.addItem(p.getTitulo());
                     }
@@ -451,9 +451,9 @@ private void listarProjetos() {
         this.cmbCriadoPor.removeAllItems();
         this.cmbColaborador.addItem("");
         this.cmbCriadoPor.addItem("");
-        for (int i = 0; i < sistema.getListaUtilizadores().getArraylistautilizador().size(); i++) {
+        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = sistema.getListaUtilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
             this.cmbColaborador.addItem(u.getUser());
             this.cmbCriadoPor.addItem(u.getUser());

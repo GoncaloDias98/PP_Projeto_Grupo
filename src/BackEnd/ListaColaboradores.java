@@ -26,7 +26,7 @@ public class ListaColaboradores {
     public void consultaColaborador() {
 
         for (Colaborador c : arraylistcolaborador) {
-            c.consultaUtilizador();
+            c.ConsultaUtilizador();
         }
     }
 }

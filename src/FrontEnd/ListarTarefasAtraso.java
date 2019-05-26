@@ -104,31 +104,31 @@ private void listarProjetos() {
         tm.addColumn("Criada Por");
         //percorre todo o array de projetos
 
-        for (int i = 0; i < sistema.getListaProjetos().getListasProjeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
             //apanha o valor do array !
 
-            Projeto p = sistema.getListaProjetos().getListasProjeto().get(i);
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
 
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
 
-                for (int j = 0; j < sistema.getListaTarefasProjeto().getListaTarefasProjeto().size(); j++) {
+                for (int j = 0; j < sistema.getListatarefasprojeto().getListaTarefasProjeto().size(); j++) {
                     //apanha o valor do array !
 
-                    TarefasProjeto tp = sistema.getListaTarefasProjeto().getListaTarefasProjeto().get(j);
+                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListaTarefasProjeto().get(j);
 
                     for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
 
-                        if (tp.getNumTarefaProjeto() == tpmpt.getNumTarefaProjeto()) {
+                        if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
 
-                            for (int k = 0; k < sistema.getListaTarefas().getListaTarefas().size(); k++) {
+                            for (int k = 0; k < sistema.getListatarefas().getListaTarefas().size(); k++) {
 
-                                Tarefa t = sistema.getListaTarefas().getListaTarefas().get(k);
+                                Tarefa t = sistema.getListatarefas().getListaTarefas().get(k);
                                 if (t.getDataFim().isBefore(hoje)) {
-                                    for (Tarefa tmpt : tp.getArrayListaListaTarefas()) {
+                                    for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
 
                                         if (t.getNumTarefa() == tmpt.getNumTarefa()) {
 
-                                            tm.addRow(new Object[]{p.getNumProjeto(), p.getDescricao(), tp.getNumTarefaProjeto(), tp.getTitulo(), t.getNumTarefa(), t.getTitulo(), t.getDataInicio(), t.getDataFim(), t.getEstadoTarefa().getDescricao(), t.getCriadoPor().getUser()});
+                                            tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumTarefa(), t.getTitulo(), t.getDataInicio(), t.getDataFim(), t.getEstadoTarefa().getDescricao(), t.getCriadoPor().getUser()});
 
                                         }
                                     }
@@ -139,27 +139,27 @@ private void listarProjetos() {
 
                 }
             } else {
-                for (Colaborador c : p.getArraylistColaborador()) {
+                for (Colaborador c : p.getArraylistcolaborador()) {
 
                     if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
-                        for (int j = 0; j < sistema.getListaTarefasProjeto().getListaTarefasProjeto().size(); j++) {
+                        for (int j = 0; j < sistema.getListatarefasprojeto().getListaTarefasProjeto().size(); j++) {
                             //apanha o valor do array !
 
-                            TarefasProjeto tp = sistema.getListaTarefasProjeto().getListaTarefasProjeto().get(j);
+                            TarefasProjeto tp = sistema.getListatarefasprojeto().getListaTarefasProjeto().get(j);
 
                             for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
 
-                                if (tp.getNumTarefaProjeto() == tpmpt.getNumTarefaProjeto()) {
+                                if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
 
-                                    for (int k = 0; k < sistema.getListaTarefas().getListaTarefas().size(); k++) {
+                                    for (int k = 0; k < sistema.getListatarefas().getListaTarefas().size(); k++) {
 
-                                        Tarefa t = sistema.getListaTarefas().getListaTarefas().get(k);
+                                        Tarefa t = sistema.getListatarefas().getListaTarefas().get(k);
                                         if (t.getDataFim().isBefore(hoje)) {
-                                            for (Tarefa tmpt : tp.getArrayListaListaTarefas()) {
+                                            for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
 
                                                 if (t.getNumTarefa() == tmpt.getNumTarefa()) {
 
-                                                    tm.addRow(new Object[]{p.getNumProjeto(), p.getDescricao(), tp.getNumTarefaProjeto(), tp.getTitulo(), t.getNumTarefa(), t.getTitulo(), t.getDataInicio(), t.getDataFim(), t.getEstadoTarefa().getDescricao(), t.getCriadoPor().getUser()});
+                                                    tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumTarefa(), t.getTitulo(), t.getDataInicio(), t.getDataFim(), t.getEstadoTarefa().getDescricao(), t.getCriadoPor().getUser()});
 
                                                 }
                                             }
