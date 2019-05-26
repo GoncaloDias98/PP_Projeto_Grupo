@@ -65,6 +65,8 @@ public class Principal extends javax.swing.JFrame {
         lbltop3 = new javax.swing.JLabel();
         percentagemProjetosEmCurso = new javax.swing.JLabel();
         percentagemProjetosAtrasados = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuRegistar = new javax.swing.JMenu();
         jmiProjeto = new javax.swing.JMenuItem();
@@ -93,15 +95,15 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel3.setText("Numero De Projetos Concluídos:  ");
 
-        jLabel4.setText("Percentagem De Projetos Concluídos:  ");
+        jLabel4.setText("% De Projetos Concluídos:  ");
 
         jLabel5.setText("Numero De Projetos Em Curso:  ");
 
         jLabel6.setText("Numero De Projetos Atrasados:  ");
 
-        jLabel7.setText("Percentagem de Projetos Em Curso:  ");
+        jLabel7.setText("% De Projetos Em Curso:  ");
 
-        jLabel8.setText("Percentagem de Projetos Atrasados:");
+        jLabel8.setText("% De Projetos Atrasados:");
 
         jLabel9.setText("Top 3 Projetos mais atrasados");
 
@@ -155,6 +157,10 @@ public class Principal extends javax.swing.JFrame {
         percentagemProjetosEmCurso.setText("pPeC");
 
         percentagemProjetosAtrasados.setText("pPA");
+
+        jLabel1.setText("Pessoais");
+
+        jLabel2.setText("Pessoais/Empresa");
 
         menuRegistar.setText("Registar");
 
@@ -269,6 +275,16 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(lbltop1)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbltop2)
+                        .addGap(31, 31, 31)
+                        .addComponent(lbltop3))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -282,9 +298,11 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nProjetosAtrasados, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(nProjetosAtrasados, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(atualizarDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -300,23 +318,17 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(percentagemProjetosConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(lbltop1)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbltop2)
-                        .addGap(31, 31, 31)
-                        .addComponent(lbltop3)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                                .addComponent(percentagemProjetosConcluidos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
@@ -341,7 +353,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lbltop1)
                     .addComponent(lbltop2)
                     .addComponent(lbltop3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -570,7 +582,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton atualizarDashboard;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
