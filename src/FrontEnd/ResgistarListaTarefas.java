@@ -10,9 +10,9 @@ public class ResgistarListaTarefas extends javax.swing.JDialog {
 
     public ResgistarListaTarefas(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        this.setModal(true); 
+        //Não permite o redimensionamento da janela
+        this.setResizable(false);
+        this.setModal(true);
         //Mostra a centralização da janela
         this.setLocationRelativeTo(null);
         this.sistema = sistema;
@@ -86,14 +86,14 @@ public class ResgistarListaTarefas extends javax.swing.JDialog {
                                 .addComponent(txtTitulo))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbProjeto, 0, 149, Short.MAX_VALUE)
-                                    .addComponent(txtDescricao))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnGravar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(30, 30, 30))
+                            .addComponent(btnGravar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,18 +125,7 @@ public class ResgistarListaTarefas extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
-        try {
-            guardar();
-            this.dispose();
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,
-                    String.format("Ocorreu um erro ao gravar o registo: %s.\nO programa será encerrado.",
-                            ex.getMessage()),
-                    "Erro fatal", JOptionPane.ERROR_MESSAGE);
-            sistema.terminar();
-
-        }
+        guardar();
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -171,38 +160,54 @@ public class ResgistarListaTarefas extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     public void guardar() {
-
-        TarefasProjeto tp = new TarefasProjeto();
-        ListaTarefasProjeto tmplist = new ListaTarefasProjeto();
-        int numtarefasprojeto = sistema.getListatarefasprojeto().NumeroTarefaProjeto() + 1;
-        String titulo = this.txtTitulo.getText();
-        String descricao = this.txtDescricao.getText();
-        String criadopor = sistema.getUtilizadorLigado().getUser();
-        tp.setNumtarefaProjeto(numtarefasprojeto);
-        tp.setTitulo(titulo);
-        tp.setDescricao(descricao);
-        tp.setCriadapor(criadopor);
-
-        sistema.getListatarefasprojeto().inserirTarefasProjeto(tp);
-        tmplist.getListatarefasprojeto().add(tp);
-
-        String projeto = this.cmbProjeto.getSelectedItem().toString();
-
-        for (int j = 0; j < sistema.getListaprojetos().getArraylistaprojeto().size(); j++) {
-            //apanha o valor do array !
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(j);
-            //valida se o utilizador autenticado é gestor do projeto
-            if (p.getTitulo().equals(projeto)) {
-
-                p.getArraylistalistatarefasprojeto().add(tp);
+        if (this.cmbProjeto.getSelectedIndex()==-1) {
+            JOptionPane.showMessageDialog(this, "Selecione um Projeto para alteração !",
+                    "Atenção", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            TarefasProjeto tp = new TarefasProjeto();
+            ListaTarefasProjeto tmplist = new ListaTarefasProjeto();
+             if (this.txtTitulo.getText().isEmpty()) {
+                //Se tiver dá aviso !!
+                JOptionPane.showMessageDialog(this, "Introduza p.f. o Título da Lista!");
+                txtTitulo.requestFocus();
+                return;
             }
+              if (this.txtDescricao.getText().isEmpty()) {
+                //Se tiver dá aviso !!
+                JOptionPane.showMessageDialog(this, "Introduza p.f. uma Descrição!");
+                txtDescricao.requestFocus();
+                return;
+            }
+            int numtarefasprojeto = sistema.getListatarefasprojeto().NumeroTarefaProjeto() + 1;
+            String titulo = this.txtTitulo.getText();
+            String descricao = this.txtDescricao.getText();
+            String criadopor = sistema.getUtilizadorLigado().getUser();
+            tp.setNumtarefaProjeto(numtarefasprojeto);
+            tp.setTitulo(titulo);
+            tp.setDescricao(descricao);
+            tp.setCriadapor(criadopor);
+
+            sistema.getListatarefasprojeto().inserirTarefasProjeto(tp);
+            tmplist.getListatarefasprojeto().add(tp);
+
+            String projeto = this.cmbProjeto.getSelectedItem().toString();
+
+            for (int j = 0; j < sistema.getListaprojetos().getArraylistaprojeto().size(); j++) {
+                //apanha o valor do array !
+                Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(j);
+                //valida se o utilizador autenticado é gestor do projeto
+                if (p.getTitulo().equals(projeto)) {
+
+                    p.getArraylistalistatarefasprojeto().add(tp);
+                }
+            }
+
+            //Guarda para ficheiro !!
+            sistema.guardarObjectos();
+
+            JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         }
-
-        //Guarda para ficheiro !!
-        sistema.guardarObjectos();
-
-        JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
-
     }
 
 

@@ -79,11 +79,6 @@ public class AlterarTarefa extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alterar Tarefa");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Em Curso", "Concluído" }));
 
@@ -94,11 +89,6 @@ public class AlterarTarefa extends javax.swing.JDialog {
         lblInicio.setText("Data Inicio");
 
         ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        ftxFim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftxFimActionPerformed(evt);
-            }
-        });
 
         ftxInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         ftxInicio.addActionListener(new java.awt.event.ActionListener() {
@@ -250,80 +240,70 @@ public class AlterarTarefa extends javax.swing.JDialog {
     }//GEN-LAST:event_ftxInicioActionPerformed
 
     public void gravar() {
-
-        String titulo = this.txtTitulo.getText();
-        String descricao = this.txaDescricao.getText();
-        String datainicio = this.ftxInicio.getText();
-        String datafim = this.ftxFim.getText();
-
-        //JComboBox comboBox = new JComboBox(sistema.getListautilizadores());
-        //verifica qual o numero do projeto e soma + 1 
-        //int numerotarefa = sistema.getListatarefas().NumeroTarefa() + 1;
-        //O numero do Projeto toma o valor da variavel numeroprojeto
-        //tarefa.setNumtarefa(numerotarefa);
-        if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
-            JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
-            ftxInicio.requestFocus();
-            return;
-
+        if (this.txtNumero.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Selecione uma Tarefa para alteração !",
+                    "Atenção", JOptionPane.INFORMATION_MESSAGE);
         } else {
+            String titulo = this.txtTitulo.getText();
+            String descricao = this.txaDescricao.getText();
+            String datainicio = this.ftxInicio.getText();
+            String datafim = this.ftxFim.getText();
 
-            tarefa.setDatainicio(sistema.Data(datainicio));
-            tarefa.setDatafim(sistema.Data(datafim));
-        }
+            if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
+                JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
+                ftxInicio.requestFocus();
+                return;
 
-        tarefa.setTitulo(titulo);
-        tarefa.setDescricao(descricao);
-        tarefa.setCriadopor(sistema.getUtilizadorLigado());
+            } else {
 
-        //Verifica se o valor da combo Estado é igual à descrição do Estado Concluído
-        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
-            //se for toma o valor Concluido
-            tarefa.setEstadotarefa(sistema.getEstado().concluido);
-        }
-        //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
-        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
-            //se for toma o valor Iniciado
-            tarefa.setEstadotarefa(sistema.getEstado().emcurso);
-        }
-        //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
-        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
-            //se for toma o valor Não Iniciado
-            tarefa.setEstadotarefa(sistema.getEstado().naoiniciado);
-        }
-
-        //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Alta
-        if (this.cmbPrioridadeTarefas.getSelectedItem() == sistema.getPrioridadestarefas().alta.getDescricao()) {
-            //se for toma o valor Alta
-            tarefa.setPrioridade(sistema.getPrioridadestarefas().alta);
-        }
-        //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Média
-        if (this.cmbPrioridadeTarefas.getSelectedItem() == sistema.getPrioridadestarefas().media.getDescricao()) {
-            //se for toma o valor Média
-            tarefa.setPrioridade(sistema.getPrioridadestarefas().media);
-        }
-        //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Baixa
-        if (this.cmbPrioridadeTarefas.getSelectedItem() == sistema.getPrioridadestarefas().baixa.getDescricao()) {
-            //se for toma o valor Baixa
-            tarefa.setPrioridade(sistema.getPrioridadestarefas().baixa);
-        }
-
-        /*  for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            //apanha o valor do array !
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
-
-            if (this.cmbProjeto.getSelectedItem() == p.getTitulo()) {
-                tarefa.setProjeto(p);
+                tarefa.setDatainicio(sistema.Data(datainicio));
+                tarefa.setDatafim(sistema.Data(datafim));
             }
-        }*/
-        sistema.guardarObjectos();
-        JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
 
+            tarefa.setTitulo(titulo);
+            tarefa.setDescricao(descricao);
+            tarefa.setCriadopor(sistema.getUtilizadorLigado());
+
+            //Verifica se o valor da combo Estado é igual à descrição do Estado Concluído
+            if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
+                //se for toma o valor Concluido
+                tarefa.setEstadotarefa(sistema.getEstado().concluido);
+            }
+            //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
+            if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
+                //se for toma o valor Iniciado
+                tarefa.setEstadotarefa(sistema.getEstado().emcurso);
+            }
+            //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
+            if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
+                //se for toma o valor Não Iniciado
+                tarefa.setEstadotarefa(sistema.getEstado().naoiniciado);
+            }
+
+            //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Alta
+            if (this.cmbPrioridadeTarefas.getSelectedItem() == sistema.getPrioridadestarefas().alta.getDescricao()) {
+                //se for toma o valor Alta
+                tarefa.setPrioridade(sistema.getPrioridadestarefas().alta);
+            }
+            //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Média
+            if (this.cmbPrioridadeTarefas.getSelectedItem() == sistema.getPrioridadestarefas().media.getDescricao()) {
+                //se for toma o valor Média
+                tarefa.setPrioridade(sistema.getPrioridadestarefas().media);
+            }
+            //Verifica se o valor da combo Prioridade é igual à descrição da Prioridade Baixa
+            if (this.cmbPrioridadeTarefas.getSelectedItem() == sistema.getPrioridadestarefas().baixa.getDescricao()) {
+                //se for toma o valor Baixa
+                tarefa.setPrioridade(sistema.getPrioridadestarefas().baixa);
+            }
+
+            sistema.guardarObjectos();
+            JOptionPane.showMessageDialog(null, "Alterado com Sucesso", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
     }
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
         gravar();
-         this.dispose();
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -340,37 +320,8 @@ public class AlterarTarefa extends javax.swing.JDialog {
         this.dispose();
         ListarTarefas listatarefas = new ListarTarefas(sistema);
         listatarefas.setVisible(true);
-        
+
     }//GEN-LAST:event_btnF4ActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        /* this.cmbProjeto.removeAllItems();
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
-            if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
-                this.cmbProjeto.addItem(p.getTitulo());
-            } else {
-                for (int j = 0; j < p.getArraylistcolaborador().size(); j++) {
-
-                    Colaborador c = p.getArraylistcolaborador().get(j);
-                    if ((sistema.getUtilizadorLigado().getUser().equals(c.getUser()))) {
-                        this.cmbProjeto.addItem(p.getTitulo());
-                    }
-                    //Utilizador toma o valor da posição do array !
-                    System.out.println("Colaborador" + c.getUser());
-                    System.out.println("Gestor" + p.getGestor().getUser());
-                    System.out.println("Utilizador Ligado" + sistema.getUtilizadorLigado().getUser());
-
-                }
-            }
-
-            //Adiciona o valor do utilizador e do nome na linha da tabela !
-        }*/
-    }//GEN-LAST:event_formWindowOpened
-
-    private void ftxFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxFimActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ftxFimActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -14,9 +14,9 @@ public class RegistarTarefa extends javax.swing.JDialog {
 
     public RegistarTarefa(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        this.setModal(true); 
+        //Não permite o redimensionamento da janela
+        this.setResizable(false);
+        this.setModal(true);
         //Mostra a centralização da janela
         this.setLocationRelativeTo(null);
         this.sistema = sistema;
@@ -210,9 +210,7 @@ public class RegistarTarefa extends javax.swing.JDialog {
         gravar();
     }//GEN-LAST:event_btnGravarActionPerformed
     public void gravar() {
-        
-        
-        
+
         Tarefa novat = new Tarefa();
         TarefasProjeto tmplist = new TarefasProjeto();
 
@@ -226,6 +224,46 @@ public class RegistarTarefa extends javax.swing.JDialog {
         int numerotarefa = sistema.getListatarefas().NumeroTarefa() + 1;
         //O numero do Projeto toma o valor da variavel numeroprojeto
         novat.setNumtarefa(numerotarefa);
+
+        if (this.cmbProjeto.getSelectedIndex() == -1) {
+            //Se tiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Selecione um Projeto!");
+            return;
+        }
+
+        if (this.cmbListaTarefas.getSelectedIndex() == -1) {
+            //Se tiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Selecione uma Lista de tarefas!");
+            return;
+        }
+
+        if (this.txtTitulo.getText().isEmpty()) {
+            //Se tiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Selecione um Título!");
+            txtTitulo.requestFocus();
+            return;
+        }
+
+        if (this.txaDescricao.getText().isEmpty()) {
+            //Se tiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Selecione uma Descrição!");
+            txaDescricao.requestFocus();
+            return;
+        }
+
+        if (this.ftxInicio.getText().isEmpty()) {
+            //Se tiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Selecione a Data de Inicio da tarefa!");
+            ftxInicio.requestFocus();
+            return;
+        }
+
+        if (this.ftxFim.getText().isEmpty()) {
+            //Se tiver dá aviso !!
+            JOptionPane.showMessageDialog(this, "Selecione a Data de fim da tarefa!");
+            ftxFim.requestFocus();
+            return;
+        }
 
         if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
             JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
@@ -275,7 +313,7 @@ public class RegistarTarefa extends javax.swing.JDialog {
         }
 
         sistema.getListatarefas().InserirTarefa(novat);
-        
+
         tmplist.getArraylistalistatarefas().add(novat);
 
         String tarefaprojeto = this.cmbListaTarefas.getSelectedItem().toString();
@@ -306,7 +344,7 @@ public class RegistarTarefa extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.cmbProjeto.removeAllItems();
         this.cmbListaTarefas.removeAllItems();
- this.cmbProjeto.addItem("");
+        this.cmbProjeto.addItem("");
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
@@ -318,7 +356,6 @@ public class RegistarTarefa extends javax.swing.JDialog {
                     if ((sistema.getUtilizadorLigado().getUser().equals(c.getUser()))) {
                         this.cmbProjeto.addItem(p.getTitulo());
                     }
-                   
 
                 }
             }
@@ -332,7 +369,7 @@ public class RegistarTarefa extends javax.swing.JDialog {
     private void cmbProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProjetoActionPerformed
         this.cmbListaTarefas.removeAllItems();
 
-       for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
             if (cmbProjeto.getSelectedItem().equals(p.getTitulo())) {
                 for (TarefasProjeto tp : p.getArraylistalistatarefasprojeto()) {

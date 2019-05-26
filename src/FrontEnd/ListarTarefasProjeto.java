@@ -12,9 +12,9 @@ public class ListarTarefasProjeto extends javax.swing.JDialog {
 
     public ListarTarefasProjeto(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        this.setModal(true); 
+        //Não permite o redimensionamento da janela
+        this.setResizable(false);
+        this.setModal(true);
         //Mostra a centralização da janela
         this.setLocationRelativeTo(null);
         this.sistema = sistema;
@@ -25,21 +25,12 @@ public class ListarTarefasProjeto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         spUtilizadores = new javax.swing.JScrollPane();
         tblListaTarefasProjeto = new javax.swing.JTable();
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de Tarefas");
-
-        jLabel1.setText("Lista de Tarefas do Projeto");
-
-        jTextField1.setText("Numero do projeto");
-
-        jButton1.setText("Selecione o projeto");
 
         tblListaTarefasProjeto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -65,37 +56,20 @@ public class ListarTarefasProjeto extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(41, 41, 41))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(spUtilizadores, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(249, 249, 249)
-                        .addComponent(btnCancelar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(249, 249, 249)
+                .addComponent(btnCancelar)
+                .addContainerGap(278, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addComponent(spUtilizadores, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spUtilizadores, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(btnCancelar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -117,33 +91,39 @@ public class ListarTarefasProjeto extends javax.swing.JDialog {
         tm.addColumn("Criador");
         tm.addColumn("Projeto");
 
-        for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             //apanha o valor do array !
 
-            TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+            if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
+                for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+                    //apanha o valor do array !
 
-            for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-                //apanha o valor do array !
+                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+                    for (TarefasProjeto tptemp : p.getArraylistalistatarefasprojeto()) {
+                        if (tp.getNumtarefaProjeto() == tptemp.getNumtarefaProjeto()) {
+                            tm.addRow(new Object[]{tp.getTitulo(), tp.getDescricao(), tp.getCriadapor(), p.getTitulo()});
 
-                Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+                        }
 
-                for (TarefasProjeto tptemp : p.getArraylistalistatarefasprojeto()) {
-                    if (tp.getNumtarefaProjeto() == tptemp.getNumtarefaProjeto()) {
-                        tm.addRow(new Object[]{tp.getTitulo(), tp.getDescricao(), tp.getCriadapor(), p.getTitulo()});
+                    }
+                    this.tblListaTarefasProjeto.setModel(tm);
+                }
+            } else {
+                for (Colaborador c : p.getArraylistcolaborador()) {
+                    if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
+                        tm.addRow(new Object[]{p.getNumprojeto(), p.getTitulo(), p.getGestor().getUser(), p.getDatainicio(), p.getDatafim(), p.getEstadoprojeto().getDescricao()});
 
                     }
 
+                    //se for gestor mostra na linha, senão for, passa à frente !!
                 }
-                this.tblListaTarefasProjeto.setModel(tm);
             }
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JScrollPane spUtilizadores;
     private javax.swing.JTable tblListaTarefasProjeto;
     // End of variables declaration//GEN-END:variables

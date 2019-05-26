@@ -74,98 +74,101 @@ public class AlterarProjeto extends javax.swing.JDialog {
 
     private void guardar() {
 
-        //Cria as variáveis com os sistema dos objetos
-        String titulo = this.txtTitulo.getText();
-        ListaColaboradores tmplist = new ListaColaboradores();
-        String descricao = this.txaDescricao.getText();
-        String datainicio = this.ftxInicio.getText();
-        String datafim = this.ftxFim.getText();
-
-        //valida se o campo Titulo está preenchido
-        if (this.txtTitulo.getText().isEmpty()) {
-            //Se tiver dá aviso !!
-            JOptionPane.showMessageDialog(this, "Introduza p.f. o titulo do Projeto!");
-            txtTitulo.requestFocus();
-            return;
-        }
-        //verifica se a descrição está preenchida
-        if (this.txaDescricao.getText().isEmpty()) {
-            //Se tiver dá aviso !!
-            JOptionPane.showMessageDialog(this, "Introduza p.f. a descrição do Projeto!");
-            txaDescricao.requestFocus();
-            return;
-        }
-        //Valida se a data de inicio está preenchida
-        if (this.ftxInicio.getText().isEmpty()) {
-            //Se estiver dá aviso !!
-            JOptionPane.showMessageDialog(this, "Introduza p.f. a Data de Inicio Projeto!");
-            ftxInicio.requestFocus();
-            return;
-        }
-        //Valida se a data de Fim está preenchida
-        if (this.ftxFim.getText().isEmpty()) {
-            //Se estiver dá aviso !!
-            JOptionPane.showMessageDialog(this, "Introduza p.f. a Data de Fim Projeto!");
-            ftxFim.requestFocus();
-            return;
-        }
         if (this.txtNumero.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Tem de escolher um projeto para ser alterado");
-            ftxFim.requestFocus();
-            return;
+            JOptionPane.showMessageDialog(this, "Selecione um Projeto para alteração !",
+                    "Atenção", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            projeto.setNumprojeto(projeto.getNumprojeto());
-        }
-        projeto.setTitulo(titulo);
-        projeto.setDescricao(descricao);
+            //Cria as variáveis com os sistema dos objetos
+            String titulo = this.txtTitulo.getText();
+            ListaColaboradores tmplist = new ListaColaboradores();
+            String descricao = this.txaDescricao.getText();
+            String datainicio = this.ftxInicio.getText();
+            String datafim = this.ftxFim.getText();
 
-        if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
-            JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
-            ftxInicio.requestFocus();
-            return;
+            //valida se o campo Titulo está preenchido
+            if (this.txtTitulo.getText().isEmpty()) {
+                //Se tiver dá aviso !!
+                JOptionPane.showMessageDialog(this, "Introduza p.f. o titulo do Projeto!");
+                txtTitulo.requestFocus();
+                return;
+            }
+            //verifica se a descrição está preenchida
+            if (this.txaDescricao.getText().isEmpty()) {
+                //Se tiver dá aviso !!
+                JOptionPane.showMessageDialog(this, "Introduza p.f. a descrição do Projeto!");
+                txaDescricao.requestFocus();
+                return;
+            }
+            //Valida se a data de inicio está preenchida
+            if (this.ftxInicio.getText().isEmpty()) {
+                //Se estiver dá aviso !!
+                JOptionPane.showMessageDialog(this, "Introduza p.f. a Data de Inicio Projeto!");
+                ftxInicio.requestFocus();
+                return;
+            }
+            //Valida se a data de Fim está preenchida
+            if (this.ftxFim.getText().isEmpty()) {
+                //Se estiver dá aviso !!
+                JOptionPane.showMessageDialog(this, "Introduza p.f. a Data de Fim Projeto!");
+                ftxFim.requestFocus();
+                return;
+            }
+            if (this.txtNumero.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Tem de escolher um projeto para ser alterado");
+                ftxFim.requestFocus();
+                return;
+            } else {
+                projeto.setNumprojeto(projeto.getNumprojeto());
+            }
+            projeto.setTitulo(titulo);
+            projeto.setDescricao(descricao);
 
-        }
+            if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
+                JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
+                ftxInicio.requestFocus();
+                return;
 
-        projeto.setDatainicio(sistema.Data(datainicio));
-        projeto.setDatafim(sistema.Data(datafim));
-        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
-            //se for toma o valor Concluido
-            projeto.setEstadoprojeto(sistema.getEstado().concluido);
-        }
-        //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
-        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
-            //se for toma o valor Iniciado
-            projeto.setEstadoprojeto(sistema.getEstado().emcurso);
-        }
-        //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
-        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
-            //se for toma o valor Não Iniciado
-            projeto.setEstadoprojeto(sistema.getEstado().naoiniciado);
-        }
+            }
 
-        for (int i = 0; i < this.tblListaColaboradores.getRowCount(); i++) {
-            DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
+            projeto.setDatainicio(sistema.Data(datainicio));
+            projeto.setDatafim(sistema.Data(datafim));
+            if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
+                //se for toma o valor Concluido
+                projeto.setEstadoprojeto(sistema.getEstado().concluido);
+            }
+            //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
+            if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
+                //se for toma o valor Iniciado
+                projeto.setEstadoprojeto(sistema.getEstado().emcurso);
+            }
+            //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
+            if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
+                //se for toma o valor Não Iniciado
+                projeto.setEstadoprojeto(sistema.getEstado().naoiniciado);
+            }
 
-            String user = tm.getValueAt(i, 0).toString();
+            for (int i = 0; i < this.tblListaColaboradores.getRowCount(); i++) {
+                DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
 
-            for (int j = 0; j < sistema.getListautilizadores().getArraylistautilizador().size(); j++) {
-                //apanha o valor do array !
-                Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(j);
-                //valida se o utilizador autenticado é gestor do projeto
-                if (u.getUser().equals(user)) {
-                    Colaborador c = new Colaborador(u.getUser(), u.getPassword(), u.getNome(), u.getMorada(), u.getTelefone(), u.getEmail());
-                    tmplist.inserirColaborador(c);
+                String user = tm.getValueAt(i, 0).toString();
+
+                for (int j = 0; j < sistema.getListautilizadores().getArraylistautilizador().size(); j++) {
+                    //apanha o valor do array !
+                    Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(j);
+                    //valida se o utilizador autenticado é gestor do projeto
+                    if (u.getUser().equals(user)) {
+                        Colaborador c = new Colaborador(u.getUser(), u.getPassword(), u.getNome(), u.getMorada(), u.getTelefone(), u.getEmail());
+                        tmplist.inserirColaborador(c);
+                    }
                 }
             }
+            projeto.setArraylistcolaborador(tmplist.getarraylistcolaborador());
+
+            sistema.guardarObjectos();
+            JOptionPane.showMessageDialog(null, "Alterado com Sucesso", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+            //Guarda para ficheiro !!
         }
-        projeto.setArraylistcolaborador(tmplist.getarraylistcolaborador());
-
-        sistema.guardarObjectos();
-        JOptionPane.showMessageDialog(this, "Projeto Alterado com sucesso !",
-                "Alteração", JOptionPane.INFORMATION_MESSAGE);
-        this.dispose();
-        //Guarda para ficheiro !!
-
     }
 
     @SuppressWarnings("unchecked")

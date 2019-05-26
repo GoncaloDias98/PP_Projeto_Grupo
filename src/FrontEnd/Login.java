@@ -14,13 +14,13 @@ public class Login extends javax.swing.JFrame {
     //CRIAÇÃO DO CONSTRUTOR, ESTANCIO O OBJETO DADOS !
     public Login(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        
+        //Não permite o redimensionamento da janela
+        this.setResizable(false);
+
         //Mostra a centralização da janela
         this.setLocationRelativeTo(null);
         this.sistema = sistema;
-        
+
     }
     //CRIAÇÃO DO CONSTRUTOR, ESTANCIO O OBJETO DADOS !
 
@@ -35,10 +35,10 @@ public class Login extends javax.swing.JFrame {
         }
         //VALIDA SE ESTÁ PREECHIDA A PASSWORD
         if (txtPassword.getPassword().length == 0) {
-           
+
             JOptionPane.showMessageDialog(this, "Introduza p.f. a password de utilizador!",
                     "Autenticação", JOptionPane.WARNING_MESSAGE);
-                        txtPassword.requestFocus();
+            txtPassword.requestFocus();
             return;
         }
         //VALIDA SE O UTILIZADOR E A PASSWORD  EXISTE NO ARRAY !
@@ -49,23 +49,13 @@ public class Login extends javax.swing.JFrame {
             dispose();
             Principal principal = new Principal(sistema);
             principal.setVisible(true);
-        }else {
-           
-            JOptionPane.showMessageDialog(this, "O Nome de Utilizador e/ou Password estão errados",
-                    "Autenticação", JOptionPane.WARNING_MESSAGE);
-            //txtUsername.requestFocus();
-            
-        }
-        /*if (dados.login(txtUsername.getText(), new String(txtPassword.getPassword()))) {
-            //Devolve o controlo da aplicação para o método main
-            dispose(); 
         } else {
-           
+
             JOptionPane.showMessageDialog(this, "O Nome de Utilizador e/ou Password estão errados",
                     "Autenticação", JOptionPane.WARNING_MESSAGE);
-            txtUsername.requestFocus();
-            
-        }*/
+
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -99,6 +89,9 @@ public class Login extends javax.swing.JFrame {
         setForeground(java.awt.Color.white);
         setName("frmLogin"); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -226,8 +219,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        //FECHA A APLICAÇÃO !
-        sistema.terminar();
+        terminar();
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnRegistoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistoActionPerformed
@@ -237,37 +229,48 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistoActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-           
-   
+
+
     }//GEN-LAST:event_formKeyPressed
 
     private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
-  
+
         // Invoked when a key has been pressed.
-        
-       
-        
+
     }//GEN-LAST:event_txtPasswordKeyReleased
 
     private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyPressed
-     
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER ) {
-            
-           Autenticar();
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            Autenticar();
         }
     }//GEN-LAST:event_txtUsernameKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-this.txtUsername.requestFocus();
+        this.txtUsername.requestFocus();
     }//GEN-LAST:event_formWindowOpened
 
     private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER ) {
-         
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
             Autenticar();
         }
     }//GEN-LAST:event_txtPasswordKeyPressed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+     terminar();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void terminar() {
+        if (JOptionPane.showConfirmDialog(null,
+                "Deseja Sair ?",
+                "Terminar",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+            sistema.terminar();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
