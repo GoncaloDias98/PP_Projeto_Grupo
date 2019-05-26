@@ -22,6 +22,7 @@ public class RegistarProjeto extends javax.swing.JDialog {
     private Projeto projemedicao;
     private TarefasProjeto tpemedicao;
     
+    
 
     //Cria as colunas abaixo na tabela
     public RegistarProjeto(Sistema sistema) {
@@ -156,6 +157,7 @@ projemedicao = novop;
         sistema.getListacolaboradores().limparArrayColaboradores();
         //Guarda para ficheiro !!
         sistema.guardarObjectos();
+        
         JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
         if (JOptionPane.showConfirmDialog(null,
                 "Deseja criar Lista de Tarefas ?",
@@ -166,7 +168,7 @@ projemedicao = novop;
             this.jpnListaTarefas.setVisible(true);
             this.jpnTarefas.setVisible(false);
         } else {
-
+            
             this.dispose();
         }
 
