@@ -37,10 +37,10 @@ public class Principal extends javax.swing.JFrame {
             this.percentagemProjetosConcluidos.setText(String.format("%.2f", percentagemProjetosConcluidos()) + "%");
             this.percentagemProjetosAtrasados.setText(String.format("%.2f", percentagemProjetosAtrasados()) + "%");
             this.percentagemProjetosEmCurso.setText(String.format("%.2f", percentagemProjetosEmCurso()) + "%");
-
+        }
             //Força a maximização da janela
             this.setExtendedState(Principal.MAXIMIZED_BOTH);
-        }
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -435,6 +435,7 @@ public class Principal extends javax.swing.JFrame {
         contadorProjetosEmCurso = 0;
         contadorProjetosAtrasados = 0;
         contadorProjetosParticipa = 0;
+        if (sistema.getListaprojetos().getArraylistaprojeto().size() > 0) {
         projetosConcluidos();
         projetosEmCurso();
         projetosAtrasados();
@@ -450,6 +451,7 @@ public class Principal extends javax.swing.JFrame {
         this.percentagemProjetosConcluidos.setText(String.format("%.2f", percentagemProjetosConcluidos()) + "%");
         this.percentagemProjetosAtrasados.setText(String.format("%.2f", percentagemProjetosAtrasados()) + "%");
         this.percentagemProjetosEmCurso.setText(String.format("%.2f", percentagemProjetosEmCurso()) + "%");
+        }
     }//GEN-LAST:event_atualizarDashboardActionPerformed
 
     private void jmiMudarUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMudarUtilizadorActionPerformed
