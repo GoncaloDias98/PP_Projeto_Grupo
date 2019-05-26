@@ -64,7 +64,7 @@ public class RegistarTarefa extends javax.swing.JDialog {
         txaDescricao.setRows(5);
         jScrollPane1.setViewportView(txaDescricao);
 
-        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Iniciado", "Concluído" }));
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Em Curso", "Concluído" }));
 
         lblEstado.setText("Estado");
 
@@ -248,9 +248,9 @@ public class RegistarTarefa extends javax.swing.JDialog {
             novat.setEstadotarefa(sistema.getEstado().concluido);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
-        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().iniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
             //se for toma o valor Iniciado
-            novat.setEstadotarefa(sistema.getEstado().iniciado);
+            novat.setEstadotarefa(sistema.getEstado().emcurso);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
         if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {

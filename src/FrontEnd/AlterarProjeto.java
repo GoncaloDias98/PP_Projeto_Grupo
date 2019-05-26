@@ -133,9 +133,9 @@ public class AlterarProjeto extends javax.swing.JDialog {
             projeto.setEstadoprojeto(sistema.getEstado().concluido);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
-        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().iniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
             //se for toma o valor Iniciado
-            projeto.setEstadoprojeto(sistema.getEstado().iniciado);
+            projeto.setEstadoprojeto(sistema.getEstado().emcurso);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
         if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
@@ -259,7 +259,7 @@ public class AlterarProjeto extends javax.swing.JDialog {
 
         lblFim.setText("Data Fim:");
 
-        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Iniciado", "Concluído" }));
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Em Curso", "Concluído" }));
 
         ftxFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
@@ -337,7 +337,7 @@ public class AlterarProjeto extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblFim)
@@ -352,7 +352,6 @@ public class AlterarProjeto extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblDescricao)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblColaborador)
                     .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

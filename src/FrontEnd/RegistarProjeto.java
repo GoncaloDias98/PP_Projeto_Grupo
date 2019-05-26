@@ -19,14 +19,15 @@ public class RegistarProjeto extends javax.swing.JDialog {
     private Estado estado;
     private ListarUtilizadores listautilizadores;
     private int numprojeto;
-    Projeto novop = new Projeto();
-    TarefasProjeto tp = new TarefasProjeto();
+    private Projeto projemedicao;
+    private TarefasProjeto tpemedicao;
+    
 
     //Cria as colunas abaixo na tabela
     public RegistarProjeto(Sistema sistema) {
         initComponents();
         this.setModal(true);
-        this.setModal(true);
+        
         //Não permite o redimensionamento da janela
         this.setResizable(false);
 
@@ -47,7 +48,8 @@ public class RegistarProjeto extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
 
     private void guardar() {
-
+Projeto novop = new Projeto();
+projemedicao = novop;
         //valida se o campo Titulo está preenchido
         if (this.txtTitulo.getText().isEmpty()) {
             //Se tiver dá aviso !!
@@ -116,9 +118,9 @@ public class RegistarProjeto extends javax.swing.JDialog {
             novop.setEstadoprojeto(sistema.getEstado().concluido);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
-        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().iniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
             //se for toma o valor Iniciado
-            novop.setEstadoprojeto(sistema.getEstado().iniciado);
+            novop.setEstadoprojeto(sistema.getEstado().emcurso);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
         if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
@@ -240,7 +242,7 @@ public class RegistarProjeto extends javax.swing.JDialog {
             }
         });
 
-        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Iniciado", "Concluído" }));
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Em Curso", "Concluído" }));
 
         lblEstado.setText("Estado");
 
@@ -297,7 +299,7 @@ public class RegistarProjeto extends javax.swing.JDialog {
             }
         });
 
-        jplcriacaorapida.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jplcriacaorapida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jpnListaTarefas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jpnListaTarefas.setToolTipText("Lista Tarefas");
@@ -372,7 +374,7 @@ public class RegistarProjeto extends javax.swing.JDialog {
 
         jLabel7.setText("Estado");
 
-        cmbEstadoTarefa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Iniciado", "Concluído" }));
+        cmbEstadoTarefa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Em Curso", "Concluído" }));
 
         jLabel8.setText("Prioridade");
 
@@ -416,7 +418,7 @@ public class RegistarProjeto extends javax.swing.JDialog {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTarefasLayout.createSequentialGroup()
                         .addGroup(jpnTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                             .addComponent(txtTituloTarefa))
                         .addGap(14, 14, 14))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTarefasLayout.createSequentialGroup()
@@ -712,7 +714,8 @@ public class RegistarProjeto extends javax.swing.JDialog {
     }
 
     public void guardarListaTarefa() {
-
+TarefasProjeto tp = new TarefasProjeto();
+tpemedicao = tp;
         ListaTarefasProjeto tmplist = new ListaTarefasProjeto();
         int numtarefasprojeto = sistema.getListatarefasprojeto().NumeroTarefaProjeto() + 1;
         String titulo = this.txtTituloLTarefa.getText();
@@ -726,7 +729,7 @@ public class RegistarProjeto extends javax.swing.JDialog {
         sistema.getListatarefasprojeto().inserirTarefasProjeto(tp);
         tmplist.getListatarefasprojeto().add(tp);
 
-        novop.getArraylistalistatarefasprojeto().add(tp);
+        projemedicao.getArraylistalistatarefasprojeto().add(tp);
 
         //Guarda para ficheiro !!
         sistema.guardarObjectos();
@@ -794,9 +797,9 @@ public class RegistarProjeto extends javax.swing.JDialog {
             novat.setEstadotarefa(sistema.getEstado().concluido);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
-        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().iniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
             //se for toma o valor Iniciado
-            novat.setEstadotarefa(sistema.getEstado().iniciado);
+            novat.setEstadotarefa(sistema.getEstado().emcurso);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
         if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
@@ -824,7 +827,7 @@ public class RegistarProjeto extends javax.swing.JDialog {
 
         tmplist.getArraylistalistatarefas().add(novat);
 
-        tp.getArraylistalistatarefas().add(novat);
+        tpemedicao.getArraylistalistatarefas().add(novat);
 
         sistema.guardarObjectos();
         JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);

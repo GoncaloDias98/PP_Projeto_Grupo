@@ -548,12 +548,12 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
-                if (p.getEstadoprojeto() == sistema.getEstado().iniciado) {
+                if (p.getEstadoprojeto() == sistema.getEstado().emcurso) {
                     contadorProjetosEmCurso++;
                 } else {
                     for (Colaborador c : p.getArraylistcolaborador()) {
                         if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
-                            if (p.getEstadoprojeto() == sistema.getEstado().iniciado) {
+                            if (p.getEstadoprojeto() == sistema.getEstado().emcurso) {
                                 contadorProjetosEmCurso++;
                             }
                         }

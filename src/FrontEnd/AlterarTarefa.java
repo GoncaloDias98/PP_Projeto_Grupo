@@ -4,50 +4,53 @@ import FrontEnd.*;
 import BackEnd.*;
 import javax.swing.JOptionPane;
 
-
 public class AlterarTarefa extends javax.swing.JDialog {
 
     private Sistema sistema;
     private Tarefa tarefa;
+    private Projeto projeto;
+    private TarefasProjeto tarefasprojeto;
 
     public AlterarTarefa(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);      
-        this.setModal(true); 
-        
+        //Não permite o redimensionamento da janela
+        this.setResizable(false);
+        this.setModal(true);
+
         //Mostra a centralização da janela
         this.setLocationRelativeTo(null);
         this.sistema = sistema;
 
     }
 
-    public AlterarTarefa(Sistema sistema, Tarefa tarefa) {
+    public AlterarTarefa(Sistema sistema, Projeto projeto, TarefasProjeto tarefasprojeto, Tarefa tarefa) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);    
-        this.setModal(true); 
-        
+        //Não permite o redimensionamento da janela
+        this.setResizable(false);
+        this.setModal(true);
+
         //Mostra a centralização da janela
         this.setLocationRelativeTo(null);
         this.sistema = sistema;
         this.tarefa = tarefa;
+        this.projeto = projeto;
+        this.tarefasprojeto = tarefasprojeto;
         carregar();
     }
 
-    public void carregar(){
-         this.ftxInicio.setText(sistema.Datatexto(tarefa.getDatainicio()));
+    public void carregar() {
+        this.ftxInicio.setText(sistema.Datatexto(tarefa.getDatainicio()));
         this.ftxFim.setText(sistema.Datatexto(tarefa.getDatafim()));
         this.txaDescricao.setText(tarefa.getDescricao());
         this.txtTitulo.setText(tarefa.getTitulo());
-       /* this.cmbProjeto.setSelectedItem(tarefa.getProjeto().getTitulo());*/
+        this.cmbProjeto.addItem(projeto.getTitulo());
+        this.cmbListaProjeto.addItem(tarefasprojeto.getTitulo());
         this.cmbEstado.setSelectedItem(tarefa.getEstadotarefa().getDescricao());
         this.cmbPrioridadeTarefas.setSelectedItem(tarefa.getPrioridade().getDescricao());
         this.txtNumero.setText(String.valueOf(tarefa.getNumtarefa()));
 
-       
-       
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -71,6 +74,8 @@ public class AlterarTarefa extends javax.swing.JDialog {
         txaDescricao = new javax.swing.JTextArea();
         txtNumero = new javax.swing.JTextField();
         btnF4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        cmbListaProjeto = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alterar Tarefa");
@@ -80,7 +85,7 @@ public class AlterarTarefa extends javax.swing.JDialog {
             }
         });
 
-        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Iniciado", "Concluído" }));
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Iniciado", "Em Curso", "Concluído" }));
 
         lblEstado.setText("Estado");
 
@@ -139,63 +144,75 @@ public class AlterarTarefa extends javax.swing.JDialog {
             }
         });
 
+        jLabel2.setText("Lista Tarefas");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo)
-                            .addComponent(lblDescricao)
-                            .addComponent(jLabel1)
-                            .addComponent(lblInicio)
-                            .addComponent(lblEstado))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lblPrioridade)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cmbPrioridadeTarefas, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lblFim)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ftxFim, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ftxInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(cmbProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(btnF4))))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGravar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelar)))
-                .addGap(30, 30, 30))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblTitulo)
+                                    .addComponent(lblDescricao)
+                                    .addComponent(lblInicio)
+                                    .addComponent(lblEstado)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(lblPrioridade)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cmbPrioridadeTarefas, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(lblFim)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(ftxFim, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jScrollPane1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(ftxInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnF4))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(cmbListaProjeto, 0, 143, Short.MAX_VALUE)
+                                                    .addComponent(cmbProjeto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGap(130, 130, 130)
+                                                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnGravar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCancelar)))
+                        .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(cmbListaProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,7 +251,6 @@ public class AlterarTarefa extends javax.swing.JDialog {
 
     public void gravar() {
 
-
         String titulo = this.txtTitulo.getText();
         String descricao = this.txaDescricao.getText();
         String datainicio = this.ftxInicio.getText();
@@ -245,7 +261,6 @@ public class AlterarTarefa extends javax.swing.JDialog {
         //int numerotarefa = sistema.getListatarefas().NumeroTarefa() + 1;
         //O numero do Projeto toma o valor da variavel numeroprojeto
         //tarefa.setNumtarefa(numerotarefa);
-
         if (sistema.Data(datainicio).isAfter(sistema.Data(datafim))) {
             JOptionPane.showMessageDialog(this, "Data de Inicio não pode ser posterior à Data de Fim");
             ftxInicio.requestFocus();
@@ -267,9 +282,9 @@ public class AlterarTarefa extends javax.swing.JDialog {
             tarefa.setEstadotarefa(sistema.getEstado().concluido);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
-        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().iniciado.getDescricao()) {
+        if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
             //se for toma o valor Iniciado
-            tarefa.setEstadotarefa(sistema.getEstado().iniciado);
+            tarefa.setEstadotarefa(sistema.getEstado().emcurso);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
         if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
@@ -293,7 +308,7 @@ public class AlterarTarefa extends javax.swing.JDialog {
             tarefa.setPrioridade(sistema.getPrioridadestarefas().baixa);
         }
 
-      /*  for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+        /*  for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             //apanha o valor do array !
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
 
@@ -301,8 +316,6 @@ public class AlterarTarefa extends javax.swing.JDialog {
                 tarefa.setProjeto(p);
             }
         }*/
-
-        
         sistema.guardarObjectos();
         JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
 
@@ -310,6 +323,7 @@ public class AlterarTarefa extends javax.swing.JDialog {
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
         gravar();
+         this.dispose();
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -323,13 +337,14 @@ public class AlterarTarefa extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnF4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnF4ActionPerformed
-       ListarTarefas listatarefas = new ListarTarefas(sistema);
-        listatarefas.setVisible(true);
         this.dispose();
+        ListarTarefas listatarefas = new ListarTarefas(sistema);
+        listatarefas.setVisible(true);
+        
     }//GEN-LAST:event_btnF4ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        this.cmbProjeto.removeAllItems();
+        /* this.cmbProjeto.removeAllItems();
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
@@ -350,7 +365,7 @@ public class AlterarTarefa extends javax.swing.JDialog {
             }
 
             //Adiciona o valor do utilizador e do nome na linha da tabela !
-        }
+        }*/
     }//GEN-LAST:event_formWindowOpened
 
     private void ftxFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxFimActionPerformed
@@ -363,11 +378,13 @@ public class AlterarTarefa extends javax.swing.JDialog {
     private javax.swing.JButton btnF4;
     private javax.swing.JButton btnGravar;
     private javax.swing.JComboBox<String> cmbEstado;
+    private javax.swing.JComboBox<String> cmbListaProjeto;
     private javax.swing.JComboBox<String> cmbPrioridadeTarefas;
     private javax.swing.JComboBox<String> cmbProjeto;
     private javax.swing.JFormattedTextField ftxFim;
     private javax.swing.JFormattedTextField ftxInicio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblEstado;

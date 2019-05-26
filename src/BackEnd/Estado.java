@@ -10,7 +10,7 @@ public enum Estado {
     
     
     naoiniciado("Não Iniciado"),
-    iniciado("Iniciado"),
+    emcurso("Em Curso"),
     concluido("Concluído");
 
     private final String descricao;
@@ -23,8 +23,8 @@ public enum Estado {
         return naoiniciado;
     }
 
-    public static Estado getIniciado() {
-        return iniciado;
+    public static Estado getEmCurso() {
+        return emcurso;
     }
 
     public static Estado getConcluido() {

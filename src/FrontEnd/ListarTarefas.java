@@ -93,32 +93,32 @@ public class ListarTarefas extends javax.swing.JDialog {
                 for (Colaborador c : p.getArraylistcolaborador()) {
 
                     if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
-for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
-                    //apanha o valor do array !
+                        for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+                            //apanha o valor do array !
 
-                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+                            TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
 
-                    for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
+                            for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
 
-                        if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
+                                if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
 
-                            for (int k = 0; k < sistema.getListatarefas().getArraylistatarefa().size(); k++) {
+                                    for (int k = 0; k < sistema.getListatarefas().getArraylistatarefa().size(); k++) {
 
-                                Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(k);
+                                        Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(k);
 
-                                for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
+                                        for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
 
-                                    if (t.getNumtarefa() == tmpt.getNumtarefa()) {
+                                            if (t.getNumtarefa() == tmpt.getNumtarefa()) {
 
-                                        tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
+                                                tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
 
+                                            }
+                                        }
                                     }
+
                                 }
                             }
-
                         }
-                    }
-                }
                     }
                 }
             }
@@ -374,22 +374,47 @@ for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().si
         DefaultTableModel tm = (DefaultTableModel) this.tblListaTarefa.getModel();
         int numlinha = tblListaTarefa.getSelectedRow();
         Tarefa tarefa = new Tarefa();
-        int numtarefa = tm.getValueAt(numlinha, 2).hashCode();
+        Projeto projeto = new Projeto();
+        TarefasProjeto tarefasprojeto = new TarefasProjeto();
+        int numtarefa = tm.getValueAt(numlinha, 4).hashCode();
+        int numprojeto = tm.getValueAt(numlinha, 0).hashCode();
+        int numtp = tm.getValueAt(numlinha, 2).hashCode();
 
-        for (int i = 0; i < sistema.getListatarefas().getArraylistatarefa().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             //apanha o valor do array !
-            Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(i);
-            //valida se o utilizador autenticado é gestor do projeto
-            if (t.getNumtarefa() == numtarefa) {
-                tarefa = t;
 
-                AlterarTarefa alterartarefa = new AlterarTarefa(sistema, tarefa);
-                alterartarefa.setVisible(true);
-                alterartarefa.setResizable(false);
-                this.dispose();
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+
+            if (p.getNumprojeto() == numprojeto) {
+                projeto = p;
+                for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+                    //apanha o valor do array !
+
+                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+
+                    if (tp.getNumtarefaProjeto() == numtp) {
+                        tarefasprojeto = tp;
+                        for (int k = 0; k < sistema.getListatarefas().getArraylistatarefa().size(); k++) {
+
+                            Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(k);
+
+                            if (t.getNumtarefa() == numtarefa) {
+                                tarefa = t;
+                                this.dispose();
+                                AlterarTarefa alterartarefa = new AlterarTarefa(sistema, projeto, tarefasprojeto, tarefa);
+                                alterartarefa.setVisible(true);
+                                alterartarefa.setResizable(false);
+                                
+
+                            }
+                        }
+                    }
+
+                }
             }
-
         }
+
+
     }//GEN-LAST:event_btnAlterarActionPerformed
     //--Barra de Procura
 
