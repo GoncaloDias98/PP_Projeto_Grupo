@@ -170,6 +170,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ftxInicioActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="try{&#xd;&#xa;  javax.swing.text.MaskFormatter datainicio = new javax.swing.text.MaskFormatter(&quot;##/##/####&quot;);&#xd;&#xa; &#xd;&#xa;  ftxInicio = new javax.swing.JFormattedTextField(datainicio);&#xd;&#xa;  }catch(Exception e){&#xd;&#xa; }"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbEstado">
       <Properties>

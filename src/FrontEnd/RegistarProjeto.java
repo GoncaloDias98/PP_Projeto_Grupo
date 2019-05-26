@@ -178,6 +178,12 @@ projemedicao = novop;
         lblDescricao = new javax.swing.JLabel();
         lblInicio = new javax.swing.JLabel();
         ftxInicio = new javax.swing.JFormattedTextField();
+        try{
+            javax.swing.text.MaskFormatter datainicio = new javax.swing.text.MaskFormatter("##/##/####");
+
+            ftxInicio = new javax.swing.JFormattedTextField(datainicio);
+        }catch(Exception e){
+        }
         cmbEstado = new javax.swing.JComboBox<>();
         lblEstado = new javax.swing.JLabel();
         btnGravar = new javax.swing.JButton();
