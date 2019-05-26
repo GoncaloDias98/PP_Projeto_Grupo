@@ -10,11 +10,11 @@ public class ListaGestor {
     
     
     
-     public ArrayList<Gestor> getarraylistgestor() {
+     public ArrayList<Gestor> getListaGestor() {
         return arraylistgestor;
     }
 
-    public void setarraylistgestor(ArrayList<Gestor> arraylistgestor) {
+    public void setListaGestor(ArrayList<Gestor> arraylistgestor) {
         this.arraylistgestor = arraylistgestor;
     }
 
@@ -23,7 +23,7 @@ public class ListaGestor {
     }
    
     
-    public void ConsultaGestor() {
+    public void consultaGestor() {
 
         for (Gestor g : arraylistgestor) {
            g.ConsultaUtilizador();

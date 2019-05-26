@@ -94,7 +94,7 @@ projemedicao = novop;
         String datafim = this.ftxFim.getText();
         //JComboBox comboBox = new JComboBox(sistema.getListautilizadores());
         //verifica qual o numero do projeto e soma + 1 
-        int numeroprojeto = sistema.getListaprojetos().NumeroProjeto() + 1;
+        int numeroprojeto = sistema.getListaprojetos().numeroProjeto() + 1;
         numprojeto = numeroprojeto;
         //O numero do Projeto toma o valor da variavel numeroprojeto
         novop.setNumprojeto(numeroprojeto);
@@ -149,12 +149,12 @@ projemedicao = novop;
             }
         }
 
-        novop.setArraylistcolaborador(tmplist.getarraylistcolaborador());
+        novop.setArraylistcolaborador(tmplist.getListasColaboradores());
 
         //Insere os sistema do projeto com o valor de novop !!!
         sistema.getListaprojetos().inserirProjeto(novop);
         tm.setRowCount(0);
-        sistema.getListacolaboradores().limparArrayColaboradores();
+        sistema.getListacolaboradores().limparListasColaboradores();
         //Guarda para ficheiro !!
         sistema.guardarObjectos();
         
@@ -745,7 +745,7 @@ projemedicao = novop;
 TarefasProjeto tp = new TarefasProjeto();
 tpemedicao = tp;
         ListaTarefasProjeto tmplist = new ListaTarefasProjeto();
-        int numtarefasprojeto = sistema.getListatarefasprojeto().NumeroTarefaProjeto() + 1;
+        int numtarefasprojeto = sistema.getListatarefasprojeto().numeroTarefaProjeto() + 1;
         String titulo = this.txtTituloLTarefa.getText();
         String descricao = this.txtDescricaoLTarefa.getText();
         String criadopor = sistema.getUtilizadorLigado().getUser();
@@ -755,7 +755,7 @@ tpemedicao = tp;
         tp.setCriadapor(criadopor);
 
         sistema.getListatarefasprojeto().inserirTarefasProjeto(tp);
-        tmplist.getListatarefasprojeto().add(tp);
+        tmplist.getListaTarefasProjeto().add(tp);
 
         projemedicao.getArraylistalistatarefasprojeto().add(tp);
 
@@ -800,7 +800,7 @@ tpemedicao = tp;
 
         //JComboBox comboBox = new JComboBox(sistema.getListautilizadores());
         //verifica qual o numero do projeto e soma + 1 
-        int numerotarefa = sistema.getListatarefas().NumeroTarefa() + 1;
+        int numerotarefa = sistema.getListatarefas().numeroTarefa() + 1;
         //O numero do Projeto toma o valor da variavel numeroprojeto
         novat.setNumtarefa(numerotarefa);
 
@@ -851,7 +851,7 @@ tpemedicao = tp;
             novat.setPrioridade(sistema.getPrioridadestarefas().baixa);
         }
 
-        sistema.getListatarefas().InserirTarefa(novat);
+        sistema.getListatarefas().inserirTarefa(novat);
 
         tmplist.getArraylistalistatarefas().add(novat);
 

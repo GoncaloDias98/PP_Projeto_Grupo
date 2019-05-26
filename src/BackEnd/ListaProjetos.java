@@ -10,11 +10,11 @@ public class ListaProjetos implements java.io.Serializable {
     
     
 
-    public ArrayList<Projeto> getArraylistaprojeto() {
+    public ArrayList<Projeto> getListasProjeto() {
         return arraylistaprojeto;
     }
 
-    public void setArraylistaprojeto(ArrayList<Projeto> arraylistaprojeto) {
+    public void setListasProjeto(ArrayList<Projeto> arraylistaprojeto) {
         this.arraylistaprojeto = arraylistaprojeto;
     }
 
@@ -22,14 +22,14 @@ public class ListaProjetos implements java.io.Serializable {
         arraylistaprojeto.add(p);
     }
 
-    public void ConsultaProjetos() {
+    public void consultaProjetos() {
 
         for (Projeto p : arraylistaprojeto) {
             p.ConsultaProjeto();
         }
     }
 
-    public int NumeroProjeto() {
+    public int numeroProjeto() {
         //inicializa o numero de projeto a 0
         int numeroprojeto = 0;
         //percorre todo o array de projetos 

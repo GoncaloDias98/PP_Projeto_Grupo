@@ -162,7 +162,7 @@ public class AlterarProjeto extends javax.swing.JDialog {
                     }
                 }
             }
-            projeto.setArraylistcolaborador(tmplist.getarraylistcolaborador());
+            projeto.setArraylistcolaborador(tmplist.getListasColaboradores());
 
             sistema.guardarObjectos();
             JOptionPane.showMessageDialog(null, "Alterado com Sucesso", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);

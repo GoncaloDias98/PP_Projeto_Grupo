@@ -46,25 +46,25 @@ public class ListarTarefas extends javax.swing.JDialog {
         tm.addColumn("Criada Por");
         //percorre todo o array de projetos
 
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
             //apanha o valor do array !
 
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
 
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
 
-                for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+                for (int j = 0; j < sistema.getListatarefasprojeto().getListaTarefasProjeto().size(); j++) {
                     //apanha o valor do array !
 
-                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListaTarefasProjeto().get(j);
 
                     for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
 
                         if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
 
-                            for (int k = 0; k < sistema.getListatarefas().getArraylistatarefa().size(); k++) {
+                            for (int k = 0; k < sistema.getListatarefas().getListaTarefas().size(); k++) {
 
-                                Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(k);
+                                Tarefa t = sistema.getListatarefas().getListaTarefas().get(k);
 
                                 for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
 
@@ -84,18 +84,18 @@ public class ListarTarefas extends javax.swing.JDialog {
                 for (Colaborador c : p.getArraylistcolaborador()) {
 
                     if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
-                        for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+                        for (int j = 0; j < sistema.getListatarefasprojeto().getListaTarefasProjeto().size(); j++) {
                             //apanha o valor do array !
 
-                            TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+                            TarefasProjeto tp = sistema.getListatarefasprojeto().getListaTarefasProjeto().get(j);
 
                             for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
 
                                 if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
 
-                                    for (int k = 0; k < sistema.getListatarefas().getArraylistatarefa().size(); k++) {
+                                    for (int k = 0; k < sistema.getListatarefas().getListaTarefas().size(); k++) {
 
-                                        Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(k);
+                                        Tarefa t = sistema.getListatarefas().getListaTarefas().get(k);
 
                                         for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
 
@@ -379,23 +379,23 @@ public class ListarTarefas extends javax.swing.JDialog {
         int numprojeto = tm.getValueAt(numlinha, 0).hashCode();
         int numtp = tm.getValueAt(numlinha, 2).hashCode();
 
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
             //apanha o valor do array !
 
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
 
             if (p.getNumprojeto() == numprojeto) {
                 projeto = p;
-                for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+                for (int j = 0; j < sistema.getListatarefasprojeto().getListaTarefasProjeto().size(); j++) {
                     //apanha o valor do array !
 
-                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListaTarefasProjeto().get(j);
 
                     if (tp.getNumtarefaProjeto() == numtp) {
                         tarefasprojeto = tp;
-                        for (int k = 0; k < sistema.getListatarefas().getArraylistatarefa().size(); k++) {
+                        for (int k = 0; k < sistema.getListatarefas().getListaTarefas().size(); k++) {
 
-                            Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(k);
+                            Tarefa t = sistema.getListatarefas().getListaTarefas().get(k);
 
                             if (t.getNumtarefa() == numtarefa) {
                                 tarefa = t;
@@ -417,7 +417,7 @@ public class ListarTarefas extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAlterarActionPerformed
     //--Barra de Procura
 
-    private void Filtros() {
+    private void filtros() {
 
         //resgata o TableModel da sua JTable
         DefaultTableModel tm = (DefaultTableModel) this.tblListaTarefa.getModel();
@@ -456,7 +456,7 @@ public class ListarTarefas extends javax.swing.JDialog {
         tr.setRowFilter(RowFilter.regexFilter(query, 3));
     }
 
-    private void FiltroEstado() {
+    private void filtroEstado() {
         String query = this.cmbEstado.getSelectedItem().toString().trim();
         DefaultTableModel tm = (DefaultTableModel) this.tblListaTarefa.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tm);
@@ -476,8 +476,8 @@ public class ListarTarefas extends javax.swing.JDialog {
 
         this.cmbProjeto.removeAllItems();
         this.cmbProjeto.addItem("");
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 this.cmbProjeto.addItem(p.getTitulo());
             } else {
@@ -534,7 +534,7 @@ public class ListarTarefas extends javax.swing.JDialog {
     }//GEN-LAST:event_lblFiltroMouseClicked
 
     private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
-        Filtros();
+        filtros();
     }//GEN-LAST:event_btnAplicarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -542,7 +542,7 @@ public class ListarTarefas extends javax.swing.JDialog {
         this.ftxInicio.setText("");
         this.cmbCriadoPor.setSelectedItem("");
         this.cmbEstado.setSelectedItem("");
-        Filtros();
+        filtros();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void ftxInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxInicioActionPerformed

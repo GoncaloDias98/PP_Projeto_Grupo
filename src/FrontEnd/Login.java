@@ -25,7 +25,7 @@ public class Login extends javax.swing.JFrame {
     //CRIAÇÃO DO CONSTRUTOR, ESTANCIO O OBJETO DADOS !
 
     //METODO DE AUTENTICAR, SERVE PARA VALIDAR O LOGIN !
-    private void Autenticar() {
+    private void autenticar() {
 
         //VALIDA SE ESTÁ PREECHIDO O UTILIZADOR
         if (txtUsername.getText().isEmpty()) {
@@ -215,7 +215,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         //CHAMA O METODO AUTENTICAR !
-        Autenticar();
+        autenticar();
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -243,7 +243,7 @@ public class Login extends javax.swing.JFrame {
 
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
-            Autenticar();
+            autenticar();
         }
     }//GEN-LAST:event_txtUsernameKeyPressed
 
@@ -254,7 +254,7 @@ public class Login extends javax.swing.JFrame {
     private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
-            Autenticar();
+            autenticar();
         }
     }//GEN-LAST:event_txtPasswordKeyPressed
 

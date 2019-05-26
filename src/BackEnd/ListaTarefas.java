@@ -11,19 +11,19 @@ public class ListaTarefas implements java.io.Serializable {
     private Utilizador utilizador;
     private Sistema sistema;
 
-    public void InserirTarefa(Tarefa t) {
+    public void inserirTarefa(Tarefa t) {
         arraylistatarefa.add(t);
     }
 
-    public ArrayList<Tarefa> getArraylistatarefa() {
+    public ArrayList<Tarefa> getListaTarefas() {
         return arraylistatarefa;
     }
 
-    public void setArraylistatarefa(ArrayList<Tarefa> arraylistatarefa) {
+    public void setListaTarefa(ArrayList<Tarefa> arraylistatarefa) {
         this.arraylistatarefa = arraylistatarefa;
     }
 
-    public int NumeroTarefa() {
+    public int numeroTarefa() {
         //inicializa o numero de tarefa a 0
         int numtarefa = 0;
         //percorre todo o array de tarefa 
@@ -35,7 +35,7 @@ public class ListaTarefas implements java.io.Serializable {
         return numtarefa;
     }
 
-    public void ConsultaTarefas() {
+    public void consultaTarefas() {
 
         for (Tarefa t : arraylistatarefa) {
             t.consultaTarefa();

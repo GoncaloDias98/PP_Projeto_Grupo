@@ -22,7 +22,7 @@ public class Principal extends javax.swing.JFrame {
         this.lblUtilizador.setText(sistema.getUtilizadorLigado().getNome());
         this.setLocationRelativeTo(null);
         this.setExtendedState(Principal.MAXIMIZED_BOTH);
-        if (sistema.getListaprojetos().getArraylistaprojeto().size() > 0) {
+        if (sistema.getListaprojetos().getListasProjeto().size() > 0) {
             projetosConcluidos();
             projetosEmCurso();
             projetosAtrasados();
@@ -512,7 +512,7 @@ public class Principal extends javax.swing.JFrame {
         contadorProjetosEmCurso = 0;
         contadorProjetosAtrasados = 0;
         contadorProjetosParticipa = 0;
-        if (sistema.getListaprojetos().getArraylistaprojeto().size() > 0) {
+        if (sistema.getListaprojetos().getListasProjeto().size() > 0) {
             projetosConcluidos();
             projetosEmCurso();
             projetosAtrasados();
@@ -566,8 +566,8 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void projetosConcluidos() {
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 if (p.getEstadoprojeto() == sistema.getEstado().concluido) {
                     contadorProjetosConcluidos++;
@@ -590,8 +590,8 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public void projetosEmCurso() {
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 if (p.getEstadoprojeto() == sistema.getEstado().emcurso) {
                     contadorProjetosEmCurso++;
@@ -614,8 +614,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void projetosAtrasados() {
         LocalDate hoje = LocalDate.now();
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 if (p.getDatafim().isBefore(hoje)) {
                     contadorProjetosAtrasados++;
@@ -637,8 +637,8 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void numeroProjetosParticipa() {
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 contadorProjetosParticipa++;
             } else {
@@ -682,8 +682,8 @@ public class Principal extends javax.swing.JFrame {
         LocalDate top2 = LocalDate.now();
         LocalDate top3 = LocalDate.now();
 
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             LocalDate data = p.getDatafim();
             String nome = p.getTitulo();
 
@@ -709,8 +709,8 @@ public class Principal extends javax.swing.JFrame {
             lbltop1.setText(nometop1);
         }
 
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             LocalDate data = p.getDatafim();
             String nome = p.getTitulo();
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
@@ -734,8 +734,8 @@ public class Principal extends javax.swing.JFrame {
 
         }
 
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             LocalDate data = p.getDatafim();
             String nome = p.getTitulo();
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
@@ -767,15 +767,15 @@ public class Principal extends javax.swing.JFrame {
         int numProjetoMaisProblematico = 0;
         int numColaboradoresAnterior = 0;
 
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             if (p.getArraylistcolaborador().size() > numColaboradoresAnterior) {
                 numColaboradoresAnterior = p.getArraylistcolaborador().size();
                 numProjetoMaisProblematico = i;
             }
         }
 
-        tituloProjetoMaisProblematico.setText(String.valueOf(sistema.getListaprojetos().getArraylistaprojeto().get(numProjetoMaisProblematico).getTitulo()));
+        tituloProjetoMaisProblematico.setText(String.valueOf(sistema.getListaprojetos().getListasProjeto().get(numProjetoMaisProblematico).getTitulo()));
 
     }
 
