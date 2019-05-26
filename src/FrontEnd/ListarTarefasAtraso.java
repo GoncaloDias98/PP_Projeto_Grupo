@@ -16,9 +16,9 @@ public class ListarTarefasAtraso extends javax.swing.JDialog {
 
     public ListarTarefasAtraso(Sistema sistema) {
         initComponents();
-         //Não permite o redimensionamento da janela
-        this.setResizable(false);                        
-        this.setModal(true); 
+        //Não permite o redimensionamento da janela
+        this.setResizable(false);
+        this.setModal(true);
         //Mostra a centralização da janela
         this.setLocationRelativeTo(null);
         this.sistema = sistema;
@@ -100,30 +100,92 @@ public class ListarTarefasAtraso extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 private void listarProjetos() {
+        LocalDate hoje = LocalDate.now();
         DefaultTableModel tm = (DefaultTableModel) this.tblListaTarefasAtraso.getModel();
         //Cria as colunas da tabela
         tm.setColumnCount(0);
         tm.setRowCount(0);
-        tm.addColumn("Num. Projeto");
+        tm.addColumn("Núm. Projeto");
         tm.addColumn("Projeto");
-        tm.addColumn("Número");
-        tm.addColumn("Titulo");
+        tm.addColumn("Núm. Lista Tarefa");
+        tm.addColumn("Lista Tarefa");
+        tm.addColumn("Núm Tarefa");
+        tm.addColumn("Tarefa");
         tm.addColumn("Data Inicio");
         tm.addColumn("Data Fim");
         tm.addColumn("Estado");
+        tm.addColumn("Criada Por");
         //percorre todo o array de projetos
-        
-        for (int i = 0; i < sistema.getListatarefas().getArraylistatarefa().size(); i++) {
-            LocalDate hoje = LocalDate.now();
+
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             //apanha o valor do array !
-               Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(i);
-               Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
-             if (t.getDatafim().isBefore(hoje)) {
-            //se for gestor mostra na linha, senão for, passa à frente !!
-            tm.addRow(new Object[]{ t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao()});
-              
-        }
-            this.tblListaTarefasAtraso.setModel(tm);
+
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+
+            if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
+
+                for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+                    //apanha o valor do array !
+
+                    TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+
+                    for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
+
+                        if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
+
+                            for (int k = 0; k < sistema.getListatarefas().getArraylistatarefa().size(); k++) {
+
+                                Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(k);
+                                if (t.getDatafim().isBefore(hoje)) {
+                                    for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
+
+                                        if (t.getNumtarefa() == tmpt.getNumtarefa()) {
+
+                                            tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            } else {
+                for (Colaborador c : p.getArraylistcolaborador()) {
+
+                    if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
+                        for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+                            //apanha o valor do array !
+
+                            TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+
+                            for (TarefasProjeto tpmpt : p.getArraylistalistatarefasprojeto()) {
+
+                                if (tp.getNumtarefaProjeto() == tpmpt.getNumtarefaProjeto()) {
+
+                                    for (int k = 0; k < sistema.getListatarefas().getArraylistatarefa().size(); k++) {
+
+                                        Tarefa t = sistema.getListatarefas().getArraylistatarefa().get(k);
+                                        if (t.getDatafim().isBefore(hoje)) {
+                                            for (Tarefa tmpt : tp.getArraylistalistatarefas()) {
+
+                                                if (t.getNumtarefa() == tmpt.getNumtarefa()) {
+
+                                                    tm.addRow(new Object[]{p.getNumprojeto(), p.getDescricao(), tp.getNumtarefaProjeto(), tp.getTitulo(), t.getNumtarefa(), t.getTitulo(), t.getDatainicio(), t.getDatafim(), t.getEstadotarefa().getDescricao(), t.getCriadopor().getUser()});
+
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
         }
     }
 
@@ -137,25 +199,25 @@ private void listarProjetos() {
     }//GEN-LAST:event_formWindowActivated
 
     private void barraProcuraTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barraProcuraTxtKeyReleased
-        String query= barraProcuraTxt.getText().toLowerCase();
+        String query = barraProcuraTxt.getText().toLowerCase();
         barraProcura(query);
     }//GEN-LAST:event_barraProcuraTxtKeyReleased
 
- // Barra procura   
-    private void barraProcura(String query){
+    // Barra procura   
+    private void barraProcura(String query) {
         DefaultTableModel tm = (DefaultTableModel) this.tblListaTarefasAtraso.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tm);
         tblListaTarefasAtraso.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(query));
     }
-    
+
 // Ordernação da lista
-    private void ordenar(){
+    private void ordenar() {
         DefaultTableModel tm = (DefaultTableModel) this.tblListaTarefasAtraso.getModel();
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(tm);
         tblListaTarefasAtraso.setRowSorter(sorter);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField barraProcuraTxt;
     private javax.swing.JButton btnCancelar;
