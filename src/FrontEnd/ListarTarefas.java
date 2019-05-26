@@ -134,12 +134,8 @@ public class ListarTarefas extends javax.swing.JDialog {
         btnAlterar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        cmbProjeto = new javax.swing.JComboBox<>();
-        lblProjeto = new javax.swing.JLabel();
         lblFiltro = new javax.swing.JLabel();
         jpFiltro = new javax.swing.JPanel();
-        barraProcuraTxt = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cmbCriadoPor = new javax.swing.JComboBox<>();
         lblColaborador = new javax.swing.JLabel();
@@ -150,6 +146,10 @@ public class ListarTarefas extends javax.swing.JDialog {
         btnLimpar = new javax.swing.JButton();
         lblDataInico = new javax.swing.JLabel();
         ftxInicio = new javax.swing.JFormattedTextField();
+        lblProjeto = new javax.swing.JLabel();
+        cmbProjeto = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        ftxFim = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SoftProject - Tarefas");
@@ -196,14 +196,6 @@ public class ListarTarefas extends javax.swing.JDialog {
             }
         });
 
-        cmbProjeto.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbProjetoItemStateChanged(evt);
-            }
-        });
-
-        lblProjeto.setText("Projeto");
-
         lblFiltro.setText("Filtro +");
         lblFiltro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -216,20 +208,13 @@ public class ListarTarefas extends javax.swing.JDialog {
             }
         });
 
-        barraProcuraTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                barraProcuraTxtActionPerformed(evt);
-            }
-        });
-        barraProcuraTxt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                barraProcuraTxtKeyReleased(evt);
-            }
-        });
-
-        jLabel4.setText("Título");
-
         jLabel2.setText("Criado por:");
+
+        cmbCriadoPor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCriadoPorActionPerformed(evt);
+            }
+        });
 
         lblColaborador.setText("Colaborador:");
 
@@ -260,46 +245,64 @@ public class ListarTarefas extends javax.swing.JDialog {
             }
         });
 
+        lblProjeto.setText("Projeto");
+
+        cmbProjeto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbProjetoItemStateChanged(evt);
+            }
+        });
+
+        jLabel3.setText("Data Fim");
+
         javax.swing.GroupLayout jpFiltroLayout = new javax.swing.GroupLayout(jpFiltro);
         jpFiltro.setLayout(jpFiltroLayout);
         jpFiltroLayout.setHorizontalGroup(
             jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpFiltroLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jpFiltroLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(barraProcuraTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpFiltroLayout.createSequentialGroup()
                         .addComponent(lblDataInico)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ftxInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbCriadoPor, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblColaborador)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblEstado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(ftxInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpFiltroLayout.createSequentialGroup()
+                        .addComponent(lblProjeto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14)
+                .addGroup(jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpFiltroLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbCriadoPor, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblColaborador)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblEstado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpFiltroLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ftxFim, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLimpar)
                     .addComponent(btnAplicar))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpFiltroLayout.setVerticalGroup(
             jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpFiltroLayout.createSequentialGroup()
                 .addGroup(jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(barraProcuraTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                    .addGroup(jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(lblProjeto)
+                        .addComponent(cmbProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cmbCriadoPor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblColaborador)
                     .addComponent(cmbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,37 +310,44 @@ public class ListarTarefas extends javax.swing.JDialog {
                     .addGroup(jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btnAplicar)
                         .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpar)
-                    .addComponent(lblDataInico)
-                    .addComponent(ftxInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpFiltroLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnLimpar))
+                    .addGroup(jpFiltroLayout.createSequentialGroup()
+                        .addGroup(jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(ftxInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)
+                                .addComponent(ftxFim, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblDataInico))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(spTarefas, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblProjeto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAlterar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCancelar))
-                            .addComponent(jButton1))
-                        .addGap(44, 44, 44))
-                    .addComponent(jpFiltro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lblFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jpFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(spTarefas, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAlterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar))
+                    .addComponent(jButton1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,16 +357,14 @@ public class ListarTarefas extends javax.swing.JDialog {
                     .addComponent(btnAlterar)
                     .addComponent(btnCancelar))
                 .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(cmbProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblProjeto))
+                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblFiltro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spTarefas, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(spTarefas, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -427,21 +435,22 @@ public class ListarTarefas extends javax.swing.JDialog {
 //Aplica o RowSorte na na JTable
         tblListaTarefa.setRowSorter(tr);
 
-        String titulo = this.barraProcuraTxt.getText().trim();
+        
         String estado = this.cmbEstado.getSelectedItem().toString().trim();
         String datainicio = this.ftxInicio.getText().trim();
+        String datafim = this.ftxFim.getText().trim();
         String criadopor = this.cmbCriadoPor.getSelectedItem().toString().trim();
         String projeto = this.cmbProjeto.getSelectedItem().toString().trim();
 
         //cria uma lista para guardar os filtros de cada coluna
         ArrayList<RowFilter<Object, Object>> filters = new ArrayList<RowFilter<Object, Object>>();
         filters.add(RowFilter.regexFilter("(?i)" + projeto, 1));
-        filters.add(RowFilter.regexFilter("(?i)" + titulo, 3));
         //RowFilter.dateFilter(ComparisonType.AFTER, date, indices)sistema.Data(datainicio));
         //RowFilter.dateFilter(ComparisonType.AFTER, date, indices)
-        //filters.add(RowFilter.regexFilter(datainicio, 4));
-        filters.add(RowFilter.regexFilter(estado, 6));
-        filters.add(RowFilter.regexFilter(criadopor, 7));
+        filters.add(RowFilter.regexFilter(datainicio, 6));
+        filters.add(RowFilter.regexFilter(datafim, 7));
+        filters.add(RowFilter.regexFilter(estado, 8));
+        filters.add(RowFilter.regexFilter(criadopor, 9));
 
         //aplica os filtros no RowSorter que foi criado no construtor
         //utilizando o andFilter
@@ -517,14 +526,6 @@ public class ListarTarefas extends javax.swing.JDialog {
 
     }//GEN-LAST:event_cmbProjetoItemStateChanged
 
-    private void barraProcuraTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barraProcuraTxtKeyReleased
-
-    }//GEN-LAST:event_barraProcuraTxtKeyReleased
-
-    private void barraProcuraTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barraProcuraTxtActionPerformed
-
-    }//GEN-LAST:event_barraProcuraTxtActionPerformed
-
     private void lblFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblFiltroKeyPressed
 
 
@@ -546,7 +547,8 @@ public class ListarTarefas extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAplicarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        this.barraProcuraTxt.setText("");
+        this.ftxFim.setText("");
+        this.ftxInicio.setText("");
         this.cmbCriadoPor.setSelectedItem("");
         this.cmbEstado.setSelectedItem("");
         Filtros();
@@ -555,6 +557,10 @@ public class ListarTarefas extends javax.swing.JDialog {
     private void ftxInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxInicioActionPerformed
 
     }//GEN-LAST:event_ftxInicioActionPerformed
+
+    private void cmbCriadoPorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCriadoPorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbCriadoPorActionPerformed
     //FIM Barra de Procura--
 
 // Ordernação da lista
@@ -566,7 +572,6 @@ public class ListarTarefas extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField barraProcuraTxt;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnAplicar;
     private javax.swing.JButton btnCancelar;
@@ -575,10 +580,11 @@ public class ListarTarefas extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cmbCriadoPor;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JComboBox<String> cmbProjeto;
+    private javax.swing.JTextField ftxFim;
     private javax.swing.JFormattedTextField ftxInicio;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jpFiltro;
     private javax.swing.JLabel lblColaborador;
     private javax.swing.JLabel lblDataInico;
