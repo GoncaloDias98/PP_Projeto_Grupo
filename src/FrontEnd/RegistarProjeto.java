@@ -222,7 +222,7 @@ projemedicao = novop;
         jLabel10.setText("Registar Utilizador");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Novo Projeto");
+        setTitle("SoftProject - Novo Projeto");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);

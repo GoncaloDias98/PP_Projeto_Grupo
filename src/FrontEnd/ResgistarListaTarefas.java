@@ -33,7 +33,7 @@ public class ResgistarListaTarefas extends javax.swing.JDialog {
         lblProjeto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Nova Lista de Tarefas");
+        setTitle("SoftProject - Nova Lista de Tarefas");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);

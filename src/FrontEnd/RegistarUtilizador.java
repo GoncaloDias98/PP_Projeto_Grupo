@@ -119,7 +119,7 @@ public class RegistarUtilizador extends javax.swing.JDialog {
         }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Novo Utilizador");
+        setTitle("SoftProject - Novo Utilizador");
         setName("frmRegisto"); // NOI18N
 
         jLabel2.setText("Username");

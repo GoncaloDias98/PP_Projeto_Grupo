@@ -35,7 +35,7 @@ public class ListarTarefasAtraso extends javax.swing.JDialog {
         barraProcuraTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Tarefas em Atraso");
+        setTitle("SoftProject - Tarefas em Atraso");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);

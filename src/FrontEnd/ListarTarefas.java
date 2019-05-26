@@ -152,7 +152,7 @@ public class ListarTarefas extends javax.swing.JDialog {
         ftxInicio = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Tarefas");
+        setTitle("SoftProject - Tarefas");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);

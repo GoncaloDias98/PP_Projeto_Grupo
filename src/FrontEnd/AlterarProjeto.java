@@ -198,7 +198,7 @@ public class AlterarProjeto extends javax.swing.JDialog {
         btnGravar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Alterar Projeto");
+        setTitle("SoftProject - Alterar Projeto");
 
         txtTitulo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
