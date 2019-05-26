@@ -13,6 +13,7 @@ public class Tarefa implements java.io.Serializable {
     private Estado estadotarefa;
     private PrioridadeTarefas prioridade;
     
+    
 
     public Tarefa() {
     }

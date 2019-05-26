@@ -681,9 +681,6 @@ public class Principal extends javax.swing.JFrame {
         LocalDate top1 = LocalDate.now();
         LocalDate top2 = LocalDate.now();
         LocalDate top3 = LocalDate.now();
-        LocalDate data1;
-        LocalDate data2;
-        LocalDate data3;
 
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
@@ -698,9 +695,18 @@ public class Principal extends javax.swing.JFrame {
                     nometop1 = nome;
                 }
 
-                lbltop1.setText(nometop1);
-            }
+            } else {
+                for (Colaborador c : p.getArraylistcolaborador()) {
+                    if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
+                        if (data.isBefore(top1)) {
+                            top1 = data;
 
+                            nometop1 = nome;
+                        }
+                    }
+                }
+            }
+            lbltop1.setText(nometop1);
         }
 
         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
@@ -714,8 +720,17 @@ public class Principal extends javax.swing.JFrame {
                     nometop2 = nome;
                 }
 
-                lbltop2.setText(nometop2);
+            } else {
+                for (Colaborador c : p.getArraylistcolaborador()) {
+                    if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
+                        if (data.isBefore(top2) && data.isAfter(top1)) {
+                            top2 = data;
+                            nometop2 = nome;
+                        }
+                    }
+                }
             }
+            lbltop2.setText(nometop2);
 
         }
 
@@ -731,7 +746,18 @@ public class Principal extends javax.swing.JFrame {
                 }
 
                 lbltop3.setText(nometop3);
+            } else {
+                for (Colaborador c : p.getArraylistcolaborador()) {
+                    if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
+                        if (data.isBefore(top3) && data.isAfter(top2)) {
+                            top3 = data;
+                            nometop3 = nome;
+                        }
+
+                    }
+                }
             }
+            lbltop3.setText(nometop3);
 
         }
 

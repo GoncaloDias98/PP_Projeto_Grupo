@@ -79,16 +79,7 @@ public class ListarTarefas extends javax.swing.JDialog {
                         }
                     }
                 }
-                /* //tm.addRow(new Object[]{});
-                //------------------------------------PROJETO EM ATRASO     ------------------------------
-                a = new SimpleDateFormat("dd/MM/YYYY").format(new Date());
-                if ((sistema.Datatexto(t.getDatafim())).compareTo(a) < 0) {
-                    ++atraso;
-                }
-                this.tblListaTarefa.setModel(tm);
-                 */
-                // entra em loop infinito com a interface
-                // JOptionPane.showMessageDialog(this, "tens "+ atraso +" tarefas em atraso");
+              
             } else {
                 for (Colaborador c : p.getArraylistcolaborador()) {
 
