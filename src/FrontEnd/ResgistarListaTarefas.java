@@ -134,14 +134,14 @@ public class ResgistarListaTarefas extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.cmbProjeto.removeAllItems();
-        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
+        for (int i = 0; i < sistema.getListaProjetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaProjetos().getListasProjeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 this.cmbProjeto.addItem(p.getTitulo());
             } else {
-                for (int j = 0; j < p.getArraylistcolaborador().size(); j++) {
+                for (int j = 0; j < p.getArraylistColaborador().size(); j++) {
 
-                    Colaborador c = p.getArraylistcolaborador().get(j);
+                    Colaborador c = p.getArraylistColaborador().get(j);
                     if ((sistema.getUtilizadorLigado().getUser().equals(c.getUser()))) {
                         this.cmbProjeto.addItem(p.getTitulo());
                     }
@@ -156,7 +156,7 @@ public class ResgistarListaTarefas extends javax.swing.JDialog {
             //Adiciona o valor do utilizador e do nome na linha da tabela !
         }
 
-        System.out.println(sistema.getListatarefasprojeto().numeroTarefaProjeto());
+        System.out.println(sistema.getListaTarefasProjeto().numeroTarefaProjeto());
     }//GEN-LAST:event_formWindowOpened
 
     public void guardar() {
@@ -178,23 +178,23 @@ public class ResgistarListaTarefas extends javax.swing.JDialog {
                 txtDescricao.requestFocus();
                 return;
             }
-            int numtarefasprojeto = sistema.getListatarefasprojeto().numeroTarefaProjeto() + 1;
+            int numtarefasprojeto = sistema.getListaTarefasProjeto().numeroTarefaProjeto() + 1;
             String titulo = this.txtTitulo.getText();
             String descricao = this.txtDescricao.getText();
             String criadopor = sistema.getUtilizadorLigado().getUser();
             tp.setNumtarefaProjeto(numtarefasprojeto);
             tp.setTitulo(titulo);
             tp.setDescricao(descricao);
-            tp.setCriadapor(criadopor);
+            tp.setCriadaPor(criadopor);
 
-            sistema.getListatarefasprojeto().inserirTarefasProjeto(tp);
+            sistema.getListaTarefasProjeto().inserirTarefasProjeto(tp);
             tmplist.getListaTarefasProjeto().add(tp);
 
             String projeto = this.cmbProjeto.getSelectedItem().toString();
 
-            for (int j = 0; j < sistema.getListaprojetos().getListasProjeto().size(); j++) {
+            for (int j = 0; j < sistema.getListaProjetos().getListasProjeto().size(); j++) {
                 //apanha o valor do array !
-                Projeto p = sistema.getListaprojetos().getListasProjeto().get(j);
+                Projeto p = sistema.getListaProjetos().getListasProjeto().get(j);
                 //valida se o utilizador autenticado é gestor do projeto
                 if (p.getTitulo().equals(projeto)) {
 

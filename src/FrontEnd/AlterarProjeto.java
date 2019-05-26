@@ -38,29 +38,29 @@ public class AlterarProjeto extends javax.swing.JDialog {
         //Carrega para os objetos os sistema do projeto
         //Converte a data de inicio e data de fim para texto !!
         this.ftxInicio.setText(sistema.Datatexto(projeto.getDatainicio()));
-        this.ftxFim.setText(sistema.Datatexto(projeto.getDatafim()));
+        this.ftxFim.setText(sistema.Datatexto(projeto.getDataFim()));
         this.txaDescricao.setText(projeto.getDescricao());
         this.txtTitulo.setText(projeto.getTitulo());
-        this.cmbEstado.setSelectedItem(projeto.getEstadoprojeto().getDescricao());
-        this.txtNumero.setText(String.valueOf(projeto.getNumprojeto()));
+        this.cmbEstado.setSelectedItem(projeto.getEstadoProjeto().getDescricao());
+        this.txtNumero.setText(String.valueOf(projeto.getNumProjeto()));
 
         DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
         tm.setRowCount(0);
-        for (Colaborador c : projeto.getArraylistcolaborador()) {
+        for (Colaborador c : projeto.getArraylistColaborador()) {
             tm.addRow(new Object[]{c.getUser(), c.getNome()});
         }
         this.tblListaColaboradores.setModel(tm);
         this.cmbColaborador.removeAllItems();
-        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
+        for (int i = 0; i < sistema.getListaUtilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListaUtilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
 
             this.cmbColaborador.addItem(u.getUser());
 
         }
 
-        for (Colaborador c : projeto.getArraylistcolaborador()) {
+        for (Colaborador c : projeto.getArraylistColaborador()) {
 
             for (int i = 0; i < cmbColaborador.getItemCount(); i = i + 1) {
                 if ((cmbColaborador.getItemAt(i).equals(c.getUser())) || (cmbColaborador.getItemAt(i).equals(projeto.getGestor().getUser()))) {
@@ -118,7 +118,7 @@ public class AlterarProjeto extends javax.swing.JDialog {
                 ftxFim.requestFocus();
                 return;
             } else {
-                projeto.setNumprojeto(projeto.getNumprojeto());
+                projeto.setNumProjeto(projeto.getNumProjeto());
             }
             projeto.setTitulo(titulo);
             projeto.setDescricao(descricao);
@@ -130,21 +130,21 @@ public class AlterarProjeto extends javax.swing.JDialog {
 
             }
 
-            projeto.setDatainicio(sistema.Data(datainicio));
-            projeto.setDatafim(sistema.Data(datafim));
+            projeto.setDataInicio(sistema.Data(datainicio));
+            projeto.setDataFim(sistema.Data(datafim));
             if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
                 //se for toma o valor Concluido
-                projeto.setEstadoprojeto(sistema.getEstado().concluido);
+                projeto.setEstadoProjeto(sistema.getEstado().concluido);
             }
             //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
             if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
                 //se for toma o valor Iniciado
-                projeto.setEstadoprojeto(sistema.getEstado().emcurso);
+                projeto.setEstadoProjeto(sistema.getEstado().emcurso);
             }
             //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
             if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
                 //se for toma o valor Não Iniciado
-                projeto.setEstadoprojeto(sistema.getEstado().naoiniciado);
+                projeto.setEstadoProjeto(sistema.getEstado().naoiniciado);
             }
 
             for (int i = 0; i < this.tblListaColaboradores.getRowCount(); i++) {
@@ -152,9 +152,9 @@ public class AlterarProjeto extends javax.swing.JDialog {
 
                 String user = tm.getValueAt(i, 0).toString();
 
-                for (int j = 0; j < sistema.getListautilizadores().getArraylistautilizador().size(); j++) {
+                for (int j = 0; j < sistema.getListaUtilizadores().getArraylistautilizador().size(); j++) {
                     //apanha o valor do array !
-                    Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(j);
+                    Utilizador u = sistema.getListaUtilizadores().getArraylistautilizador().get(j);
                     //valida se o utilizador autenticado é gestor do projeto
                     if (u.getUser().equals(user)) {
                         Colaborador c = new Colaborador(u.getUser(), u.getPassword(), u.getNome(), u.getMorada(), u.getTelefone(), u.getEmail());
@@ -162,7 +162,7 @@ public class AlterarProjeto extends javax.swing.JDialog {
                     }
                 }
             }
-            projeto.setArraylistcolaborador(tmplist.getListasColaboradores());
+            projeto.setArraylistColaborador(tmplist.getListasColaboradores());
 
             sistema.guardarObjectos();
             JOptionPane.showMessageDialog(null, "Alterado com Sucesso", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);
@@ -429,9 +429,9 @@ public class AlterarProjeto extends javax.swing.JDialog {
         DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
 
         //Percorre o array de ulizadores até à ultima posição !
-        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
+        for (int i = 0; i < sistema.getListaUtilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListaUtilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
             if (this.cmbColaborador.getSelectedItem() == u.getUser()) {
 

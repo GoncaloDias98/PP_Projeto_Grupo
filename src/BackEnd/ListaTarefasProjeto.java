@@ -20,7 +20,7 @@ public class ListaTarefasProjeto {
         //percorre todo o array de tarefa 
         for (TarefasProjeto tp : listatarefasprojeto) {
             //numero do tarefa toma o valor da tarefa
-            numtarefaprojeto = tp.getNumtarefaProjeto();
+            numtarefaprojeto = tp.getNumTarefaProjeto();
         }
         //retorna o ultimo numero da tarefa !!
         return numtarefaprojeto;

@@ -25,7 +25,7 @@ public class ListaProjetos implements java.io.Serializable {
     public void consultaProjetos() {
 
         for (Projeto p : arraylistaprojeto) {
-            p.ConsultaProjeto();
+            p.consultaProjeto();
         }
     }
 
@@ -35,7 +35,7 @@ public class ListaProjetos implements java.io.Serializable {
         //percorre todo o array de projetos 
         for (Projeto p : arraylistaprojeto) {
             //numero do projeto toma o valor do projeto
-            numeroprojeto = p.getNumprojeto();
+            numeroprojeto = p.getNumProjeto();
         }
         //retorna o ultimo numero de projeto !!
         return numeroprojeto;

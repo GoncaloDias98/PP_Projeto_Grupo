@@ -92,12 +92,12 @@ projemedicao = novop;
         String descricao = this.txaDescricao.getText();
         String datainicio = this.ftxInicio.getText();
         String datafim = this.ftxFim.getText();
-        //JComboBox comboBox = new JComboBox(sistema.getListautilizadores());
+        //JComboBox comboBox = new JComboBox(sistema.getListaUtilizadores());
         //verifica qual o numero do projeto e soma + 1 
-        int numeroprojeto = sistema.getListaprojetos().numeroProjeto() + 1;
+        int numeroprojeto = sistema.getListaProjetos().numeroProjeto() + 1;
         numprojeto = numeroprojeto;
         //O numero do Projeto toma o valor da variavel numeroprojeto
-        novop.setNumprojeto(numeroprojeto);
+        novop.setNumProjeto(numeroprojeto);
 
         //Cria o Gestor do projeot com os sistema do utilizadorLigado !!
         Gestor g = new Gestor(sistema.getUtilizadorLigado().getUser(), sistema.getUtilizadorLigado().getPassword(), sistema.getUtilizadorLigado().getNome(), sistema.getUtilizadorLigado().getMorada(), sistema.getUtilizadorLigado().getTelefone(), sistema.getUtilizadorLigado().getEmail());
@@ -110,8 +110,8 @@ projemedicao = novop;
 
         } else {
 
-            novop.setDatainicio(sistema.Data(datainicio));
-            novop.setDatafim(sistema.Data(datafim));
+            novop.setDataInicio(sistema.Data(datainicio));
+            novop.setDataFim(sistema.Data(datafim));
         }
 
         novop.setTitulo(titulo);
@@ -119,17 +119,17 @@ projemedicao = novop;
         //Verifica se o valor da combo Estado é igual à descrição do Estado Concluído
         if (this.cmbEstado.getSelectedItem() == sistema.getEstado().concluido.getDescricao()) {
             //se for toma o valor Concluido
-            novop.setEstadoprojeto(sistema.getEstado().concluido);
+            novop.setEstadoProjeto(sistema.getEstado().concluido);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Iniciado
         if (this.cmbEstado.getSelectedItem() == sistema.getEstado().emcurso.getDescricao()) {
             //se for toma o valor Iniciado
-            novop.setEstadoprojeto(sistema.getEstado().emcurso);
+            novop.setEstadoProjeto(sistema.getEstado().emcurso);
         }
         //Verifica se o valor da combo Estado é igual à descrição do Estado Não Iniciado
         if (this.cmbEstado.getSelectedItem() == sistema.getEstado().naoiniciado.getDescricao()) {
             //se for toma o valor Não Iniciado
-            novop.setEstadoprojeto(sistema.getEstado().naoiniciado);
+            novop.setEstadoProjeto(sistema.getEstado().naoiniciado);
         }
 
         DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
@@ -138,9 +138,9 @@ projemedicao = novop;
 
             String user = tm.getValueAt(i, 0).toString();
 
-            for (int j = 0; j < sistema.getListautilizadores().getArraylistautilizador().size(); j++) {
+            for (int j = 0; j < sistema.getListaUtilizadores().getArraylistautilizador().size(); j++) {
                 //apanha o valor do array !
-                Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(j);
+                Utilizador u = sistema.getListaUtilizadores().getArraylistautilizador().get(j);
                 //valida se o utilizador autenticado é gestor do projeto
                 if (u.getUser().equals(user)) {
                     Colaborador c = new Colaborador(u.getUser(), u.getPassword(), u.getNome(), u.getMorada(), u.getTelefone(), u.getEmail());
@@ -149,12 +149,12 @@ projemedicao = novop;
             }
         }
 
-        novop.setArraylistcolaborador(tmplist.getListasColaboradores());
+        novop.setArraylistColaborador(tmplist.getListasColaboradores());
 
         //Insere os sistema do projeto com o valor de novop !!!
-        sistema.getListaprojetos().inserirProjeto(novop);
+        sistema.getListaProjetos().inserirProjeto(novop);
         tm.setRowCount(0);
-        sistema.getListacolaboradores().limparListasColaboradores();
+        sistema.getListaColaboradores().limparListasColaboradores();
         //Guarda para ficheiro !!
         sistema.guardarObjectos();
         
@@ -654,9 +654,9 @@ projemedicao = novop;
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.cmbColaborador.removeAllItems();
-        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
+        for (int i = 0; i < sistema.getListaUtilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListaUtilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
             this.cmbColaborador.addItem(u.getUser());
 
@@ -669,9 +669,9 @@ projemedicao = novop;
         DefaultTableModel tm = (DefaultTableModel) this.tblListaColaboradores.getModel();
 
         //Percorre o array de ulizadores até à ultima posição !
-        for (int i = 0; i < sistema.getListautilizadores().getArraylistautilizador().size(); i++) {
+        for (int i = 0; i < sistema.getListaUtilizadores().getArraylistautilizador().size(); i++) {
             //Utilizador toma o valor da posição do array !
-            Utilizador u = sistema.getListautilizadores().getArraylistautilizador().get(i);
+            Utilizador u = sistema.getListaUtilizadores().getArraylistautilizador().get(i);
             //Adiciona o valor do utilizador e do nome na linha da tabela !
             if (this.cmbColaborador.getSelectedItem() == u.getUser()) {
 
@@ -745,16 +745,16 @@ projemedicao = novop;
 TarefasProjeto tp = new TarefasProjeto();
 tpemedicao = tp;
         ListaTarefasProjeto tmplist = new ListaTarefasProjeto();
-        int numtarefasprojeto = sistema.getListatarefasprojeto().numeroTarefaProjeto() + 1;
+        int numtarefasprojeto = sistema.getListaTarefasProjeto().numeroTarefaProjeto() + 1;
         String titulo = this.txtTituloLTarefa.getText();
         String descricao = this.txtDescricaoLTarefa.getText();
         String criadopor = sistema.getUtilizadorLigado().getUser();
         tp.setNumtarefaProjeto(numtarefasprojeto);
         tp.setTitulo(titulo);
         tp.setDescricao(descricao);
-        tp.setCriadapor(criadopor);
+        tp.setCriadaPor(criadopor);
 
-        sistema.getListatarefasprojeto().inserirTarefasProjeto(tp);
+        sistema.getListaTarefasProjeto().inserirTarefasProjeto(tp);
         tmplist.getListaTarefasProjeto().add(tp);
 
         projemedicao.getArraylistalistatarefasprojeto().add(tp);
@@ -798,9 +798,9 @@ tpemedicao = tp;
         String datafim = this.ftxDataFimTarefa.getText();
         
 
-        //JComboBox comboBox = new JComboBox(sistema.getListautilizadores());
+        //JComboBox comboBox = new JComboBox(sistema.getListaUtilizadores());
         //verifica qual o numero do projeto e soma + 1 
-        int numerotarefa = sistema.getListatarefas().numeroTarefa() + 1;
+        int numerotarefa = sistema.getListaTarefas().numeroTarefa() + 1;
         //O numero do Projeto toma o valor da variavel numeroprojeto
         novat.setNumTarefa(numerotarefa);
 
@@ -851,11 +851,11 @@ tpemedicao = tp;
             novat.setPrioridade(sistema.getPrioridadestarefas().baixa);
         }
 
-        sistema.getListatarefas().inserirTarefa(novat);
+        sistema.getListaTarefas().inserirTarefa(novat);
 
-        tmplist.getArraylistalistatarefas().add(novat);
+        tmplist.getArrayListaListaTarefas().add(novat);
 
-        tpemedicao.getArraylistalistatarefas().add(novat);
+        tpemedicao.getArrayListaListaTarefas().add(novat);
 
         sistema.guardarObjectos();
         JOptionPane.showMessageDialog(null, "Registado", "Sucesso !", JOptionPane.INFORMATION_MESSAGE);

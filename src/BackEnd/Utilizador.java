@@ -71,7 +71,7 @@ public class Utilizador implements java.io.Serializable {
     }
   
             
-    public void ConsultaUtilizador() {
+    public void consultaUtilizador() {
         System.out.println("username: " + username + ", password: " + password + ", nome: " +   nome + ", morada: " + morada + ", telefone: " + telefone + ", email: " + email );
     
     }

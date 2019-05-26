@@ -33,7 +33,7 @@ public class ListaUtilizadores implements java.io.Serializable {
     public void consultaUtilizadores() {
 
         for (Utilizador u : arraylistautilizador) {
-            u.ConsultaUtilizador();
+            u.consultaUtilizador();
         }
     }
 
