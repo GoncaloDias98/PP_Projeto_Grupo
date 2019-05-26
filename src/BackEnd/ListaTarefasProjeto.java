@@ -10,11 +10,11 @@ public class ListaTarefasProjeto {
   
     private Sistema sistema;
 
-    public ArrayList<TarefasProjeto> getListatarefasprojeto() {
+    public ArrayList<TarefasProjeto> getListaTarefasProjeto() {
         return listatarefasprojeto;
     }
 
-    public int NumeroTarefaProjeto() {
+    public int numeroTarefaProjeto() {
         //inicializa o numero de tarefa a 0
         int numtarefaprojeto = 0;
         //percorre todo o array de tarefa 
@@ -26,7 +26,7 @@ public class ListaTarefasProjeto {
         return numtarefaprojeto;
     }
     
-    public void setListatarefasprojeto(ArrayList<TarefasProjeto> listatarefasprojeto) {
+    public void setListaTarefasProjeto(ArrayList<TarefasProjeto> listatarefasprojeto) {
         this.listatarefasprojeto = listatarefasprojeto;
     }
     

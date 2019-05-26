@@ -201,9 +201,9 @@ public class Sistema implements java.io.Serializable {
 
     public void guardarObjectos() {
         boolean utilizadoresOk = Serializacao.guardarObjecto(listautilizadores.getArraylistautilizador(), FICHEIRO_UTILIZADORES);
-        boolean projetoOk = Serializacao.guardarObjecto(listaprojetos.getArraylistaprojeto(), FICHEIRO_PROJETOS);
-        boolean tarefasOk = Serializacao.guardarObjecto(listatarefas.getArraylistatarefa(), FICHEIRO_TAREFAS);
-        boolean tarefasprojetoOk = Serializacao.guardarObjecto(listatarefasprojeto.getListatarefasprojeto(), FICHEIRO_TAREFASPROJETO);
+        boolean projetoOk = Serializacao.guardarObjecto(listaprojetos.getListasProjeto(), FICHEIRO_PROJETOS);
+        boolean tarefasOk = Serializacao.guardarObjecto(listatarefas.getListaTarefas(), FICHEIRO_TAREFAS);
+        boolean tarefasprojetoOk = Serializacao.guardarObjecto(listatarefasprojeto.getListaTarefasProjeto(), FICHEIRO_TAREFASPROJETO);
 
         if (!utilizadoresOk) {
             System.out.println("Ocorreu um erro ao gravar os objetos");
@@ -240,20 +240,20 @@ public class Sistema implements java.io.Serializable {
             System.out.println("Ocorreu um erro ao ler o ficheiro de utilizadores");
         }
         if (projetos != null) {
-            listaprojetos.setArraylistaprojeto((ArrayList<Projeto>) projetos);
+            listaprojetos.setListasProjeto((ArrayList<Projeto>) projetos);
             System.out.println("lista de projetos carregada");
         } else {
             System.out.println("Ocorreu um erro ao ler o ficheiro de projetos");
         }
 
         if (tarefas != null) {
-            listatarefas.setArraylistatarefa((ArrayList<Tarefa>) tarefas);
+            listatarefas.setListaTarefa((ArrayList<Tarefa>) tarefas);
             System.out.println("lista de tarefas carregada");
         } else {
             System.out.println("Ocorreu um erro ao ler o ficheiro de tarefas");
         }
         if (tarefasprojeto != null) {
-            listatarefasprojeto.setListatarefasprojeto((ArrayList<TarefasProjeto>) tarefasprojeto);
+            listatarefasprojeto.setListaTarefasProjeto((ArrayList<TarefasProjeto>) tarefasprojeto);
             System.out.println("lista de tarefasprojeto carregada");
         } else {
             System.out.println("Ocorreu um erro ao ler o ficheiro de tarefasprojeto");

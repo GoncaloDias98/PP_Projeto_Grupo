@@ -229,7 +229,7 @@ public class RegistarTarefa extends javax.swing.JDialog {
 
         //JComboBox comboBox = new JComboBox(sistema.getListautilizadores());
         //verifica qual o numero do projeto e soma + 1 
-        int numerotarefa = sistema.getListatarefas().NumeroTarefa() + 1;
+        int numerotarefa = sistema.getListatarefas().numeroTarefa() + 1;
         //O numero do Projeto toma o valor da variavel numeroprojeto
         novat.setNumtarefa(numerotarefa);
 
@@ -320,15 +320,15 @@ public class RegistarTarefa extends javax.swing.JDialog {
             novat.setPrioridade(sistema.getPrioridadestarefas().baixa);
         }
 
-        sistema.getListatarefas().InserirTarefa(novat);
+        sistema.getListatarefas().inserirTarefa(novat);
 
         tmplist.getArraylistalistatarefas().add(novat);
 
         String tarefaprojeto = this.cmbListaTarefas.getSelectedItem().toString();
 
-        for (int j = 0; j < sistema.getListatarefasprojeto().getListatarefasprojeto().size(); j++) {
+        for (int j = 0; j < sistema.getListatarefasprojeto().getListaTarefasProjeto().size(); j++) {
             //apanha o valor do array !
-            TarefasProjeto tp = sistema.getListatarefasprojeto().getListatarefasprojeto().get(j);
+            TarefasProjeto tp = sistema.getListatarefasprojeto().getListaTarefasProjeto().get(j);
             //valida se o utilizador autenticado é gestor do projeto
             if (tp.getTitulo().equals(tarefaprojeto)) {
 
@@ -353,8 +353,8 @@ public class RegistarTarefa extends javax.swing.JDialog {
         this.cmbProjeto.removeAllItems();
         this.cmbListaTarefas.removeAllItems();
         this.cmbProjeto.addItem("");
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 this.cmbProjeto.addItem(p.getTitulo());
             } else {
@@ -377,8 +377,8 @@ public class RegistarTarefa extends javax.swing.JDialog {
     private void cmbProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProjetoActionPerformed
         this.cmbListaTarefas.removeAllItems();
 
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             if (cmbProjeto.getSelectedItem().equals(p.getTitulo())) {
                 for (TarefasProjeto tp : p.getArraylistalistatarefasprojeto()) {
 

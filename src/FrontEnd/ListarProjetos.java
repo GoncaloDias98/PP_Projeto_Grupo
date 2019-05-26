@@ -303,10 +303,10 @@ private void listarProjetos() {
         tm.addColumn("Data Fim");
         tm.addColumn("Estado");
         //percorre todo o array de projetos
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
             //apanha o valor do array !
 
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             //valida se o utilizador autenticado é gestor do projeto
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 //se for gestor mostra na linha, senão for, passa à frente !!
@@ -341,9 +341,9 @@ private void listarProjetos() {
         Projeto projeto = new Projeto();
         int numprojeto = tm.getValueAt(numlinha, 0).hashCode();
 
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
             //apanha o valor do array !
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             //valida se o utilizador autenticado é gestor do projeto
             if (p.getNumprojeto() == numprojeto) {
                 projeto = p;
@@ -391,7 +391,7 @@ private void listarProjetos() {
     }//GEN-LAST:event_barraProcuraTxtKeyReleased
 
     private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
-        Filtros();
+        filtros();
     }//GEN-LAST:event_btnAplicarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -400,7 +400,7 @@ private void listarProjetos() {
         this.cmbEstado.setSelectedItem(" ");
         this.ftxInicio.setText("");
         this.ftxFim.setText("");
-        Filtros();
+        filtros();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void ftxInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxInicioActionPerformed
@@ -429,8 +429,8 @@ private void listarProjetos() {
 
         this.cmbProjeto.removeAllItems();
         this.cmbProjeto.addItem("");
-        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+        for (int i = 0; i < sistema.getListaprojetos().getListasProjeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getListasProjeto().get(i);
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 this.cmbProjeto.addItem(p.getTitulo());
             } else {
@@ -476,7 +476,7 @@ private void listarProjetos() {
         tblListaProjetos.setRowSorter(sorter);
     }
     
-     private void Filtros() {
+     private void filtros() {
 
         //resgata o TableModel da sua JTable
         DefaultTableModel tm = (DefaultTableModel) this.tblListaProjetos.getModel();
@@ -515,7 +515,7 @@ private void listarProjetos() {
         tr.setRowFilter(RowFilter.regexFilter(query, 3));
     }
 
-    private void FiltroEstado() {
+    private void filtroEstado() {
         String query = this.cmbEstado.getSelectedItem().toString().trim();
         DefaultTableModel tm = (DefaultTableModel) this.tblListaProjetos.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tm);
