@@ -13,7 +13,7 @@ public class Principal extends javax.swing.JFrame {
     private int contadorProjetosConcluidos = 0;
     private int contadorProjetosEmCurso = 0;
     private int contadorProjetosAtrasados = 0;
-    String projetoMaisProblematico;
+    private int contadorProjetosParticipa = 0;
 
     public Principal(Sistema sistema) {
         initComponents();
@@ -28,12 +28,13 @@ public class Principal extends javax.swing.JFrame {
         percentagemProjetosAtrasados();
         percentagemProjetosEmCurso();
         projetoProblematico();
-        this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos()));
-        this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso()));
-        this.nProjetosAtrasados.setText(String.valueOf(getProjetosAtrasados()));
+        numeroProjetosParticipa();
+        this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos()+ "/" + contadorProjetosParticipa));
+        this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso()+ "/" + contadorProjetosParticipa));
+        this.nProjetosAtrasados.setText(String.valueOf(getProjetosAtrasados() + "/" + contadorProjetosParticipa));
         this.percentagemProjetosConcluidos.setText(String.format("%.2f", percentagemProjetosConcluidos()) + "%");
-        this.percentagemProjetosAtrasados.setText(String.format("%.2f",percentagemProjetosAtrasados()) + "%");
-        this.percentagemProjetosEmCurso.setText(String.format("%.2f",percentagemProjetosEmCurso()) + "%");
+        this.percentagemProjetosAtrasados.setText(String.format("%.2f", percentagemProjetosAtrasados()) + "%");
+        this.percentagemProjetosEmCurso.setText(String.format("%.2f", percentagemProjetosEmCurso()) + "%");
     }
 
     @SuppressWarnings("unchecked")
@@ -448,13 +449,22 @@ public class Principal extends javax.swing.JFrame {
         contadorProjetosConcluidos = 0;
         contadorProjetosEmCurso = 0;
         contadorProjetosAtrasados = 0;
+        contadorProjetosParticipa = 0;
         projetosConcluidos();
         projetosEmCurso();
         projetosAtrasados();
         topProjetosAtrasados();
-        this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos()));
-        this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso()));
-        this.nProjetosAtrasados.setText(String.valueOf(getProjetosAtrasados()));
+        percentagemProjetosConcluidos();
+        percentagemProjetosAtrasados();
+        percentagemProjetosEmCurso();
+        projetoProblematico();
+        numeroProjetosParticipa();
+        this.nProjetosConcluidos.setText(String.valueOf(getProjetosConcluidos()+ "/" + contadorProjetosParticipa));
+        this.nProjetosEmCurso.setText(String.valueOf(getProjetosEmCurso()+ "/" + contadorProjetosParticipa));
+        this.nProjetosAtrasados.setText(String.valueOf(getProjetosAtrasados() + "/" + contadorProjetosParticipa));
+        this.percentagemProjetosConcluidos.setText(String.format("%.2f", percentagemProjetosConcluidos()) + "%");
+        this.percentagemProjetosAtrasados.setText(String.format("%.2f", percentagemProjetosAtrasados()) + "%");
+        this.percentagemProjetosEmCurso.setText(String.format("%.2f", percentagemProjetosEmCurso()) + "%");
     }//GEN-LAST:event_atualizarDashboardActionPerformed
 
     private void projetosConcluidos() {
@@ -528,29 +538,47 @@ public class Principal extends javax.swing.JFrame {
         return contadorProjetosAtrasados;
     }
 
+    private void numeroProjetosParticipa() {
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+            if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
+                contadorProjetosParticipa++;
+            } else {
+                for (Colaborador c : p.getArraylistcolaborador()) {
+                    if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
+                        contadorProjetosParticipa++;
+                    }
+                }
+            }
+
+        }
+    }
+
     private double percentagemProjetosConcluidos() {
-        double percentagemProjetosConcluidos = 0 ;
-        
-        percentagemProjetosConcluidos = (float) contadorProjetosConcluidos / sistema.getListaprojetos().getArraylistaprojeto().size() * 100;
+        double percentagemProjetosConcluidos = 0;
+
+        percentagemProjetosConcluidos = (float) contadorProjetosConcluidos / contadorProjetosParticipa * 100;
         return percentagemProjetosConcluidos;
     }
-    
+
     private double percentagemProjetosAtrasados() {
         double percentagemProjetosAtrasados = 0;
-        
-        percentagemProjetosAtrasados = (float) contadorProjetosAtrasados / sistema.getListaprojetos().getArraylistaprojeto().size() * 100;
+
+        percentagemProjetosAtrasados = (float) contadorProjetosAtrasados / contadorProjetosParticipa * 100;
         return percentagemProjetosAtrasados;
     }
-    
+
     private double percentagemProjetosEmCurso() {
         double percentagemProjetosEmCurso = 0;
-        
-        percentagemProjetosEmCurso = (float) contadorProjetosEmCurso / sistema.getListaprojetos().getArraylistaprojeto().size() * 100;
+
+        percentagemProjetosEmCurso = (float) contadorProjetosEmCurso / contadorProjetosParticipa * 100;
         return percentagemProjetosEmCurso;
     }
-    
 
     private void topProjetosAtrasados() {
+        String nometop1 = "Não existe";
+        String nometop2= "Não existe";
+        String nometop3= "Não existe";
         LocalDate top1 = LocalDate.now();
         LocalDate top2 = LocalDate.now();
         LocalDate top3 = LocalDate.now();
@@ -559,53 +587,55 @@ public class Principal extends javax.swing.JFrame {
             if (sistema.getUtilizadorLigado().getUser().equals(p.getGestor().getUser())) {
                 if (p.getDatafim().isBefore(top1)) {
                     top1 = p.getDatafim();
+                    nometop1 = p.getTitulo();
                 }
                 if (p.getDatafim().isAfter(top1)) {
                     top2 = p.getDatafim();
+                    nometop2 = p.getTitulo();
                 }
                 if (p.getDatafim().isAfter(top1)) {
                     top3 = p.getDatafim();
-
-                    System.out.println(top3);
+                    nometop3 = p.getTitulo();
                 }
 
-            }else {
+            } else {
                 for (Colaborador c : p.getArraylistcolaborador()) {
                     if (sistema.getUtilizadorLigado().getUser().equals(c.getUser())) {
                         if (p.getDatafim().isBefore(top1)) {
                             top1 = p.getDatafim();
-                            System.out.println(top1);
+                            nometop1 = p.getTitulo();
                         }
                         if (p.getDatafim().isAfter(top1)) {
                             top2 = p.getDatafim();
+                            nometop2 = p.getTitulo();
                         }
                         if (p.getDatafim().isAfter(top2)) {
                             top3 = p.getDatafim();
+                            nometop3 = p.getTitulo();
                         }
                     }
                 }
             }
         }
-        lbltop1.setText(sistema.Datatexto(top1));
-        lbltop2.setText(sistema.Datatexto(top2));
-        lbltop3.setText(sistema.Datatexto(top3));
+        lbltop1.setText(nometop1);
+        lbltop2.setText(nometop2);
+        lbltop3.setText(nometop3);
     }
-    
-    
-    private void projetoProblematico(){
+
+    private void projetoProblematico() {
         int numProjetoMaisProblematico = 0;
         int numColaboradoresAnterior = 0;
-        
-         for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
-             Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
-             if(p.getArraylistcolaborador().size() > numColaboradoresAnterior  ){
-                 numColaboradoresAnterior = p.getArraylistcolaborador().size();
-                 numProjetoMaisProblematico = i;
-             }
-         }
-    
-                 tituloProjetoMaisProblematico.setText(String.valueOf(sistema.getListaprojetos().getArraylistaprojeto().get(numProjetoMaisProblematico).getTitulo()));
-    
+
+        for (int i = 0; i < sistema.getListaprojetos().getArraylistaprojeto().size(); i++) {
+            Projeto p = sistema.getListaprojetos().getArraylistaprojeto().get(i);
+            if (p.getArraylistcolaborador().size() > numColaboradoresAnterior) {
+                numColaboradoresAnterior = p.getArraylistcolaborador().size();
+                numProjetoMaisProblematico = i;
+            }
+        }
+
+        tituloProjetoMaisProblematico.setText(String.valueOf(sistema.getListaprojetos().getArraylistaprojeto().get(numProjetoMaisProblematico).getTitulo()));
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
