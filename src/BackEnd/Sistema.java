@@ -282,6 +282,7 @@ public class Sistema implements java.io.Serializable {
 
     //Fecha a aplicação
     public void terminar() {
+        
         System.exit(0);
     }
 

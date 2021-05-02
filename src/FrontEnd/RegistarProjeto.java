@@ -258,6 +258,7 @@ projemedicao = novop;
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ftxInicio.setText("21/31/2312");
         ftxInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ftxInicioActionPerformed(evt);
